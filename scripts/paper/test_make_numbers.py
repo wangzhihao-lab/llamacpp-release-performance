@@ -780,3 +780,18 @@ def test_long_term_macros(tmp_path: Path) -> None:
     assert v["netMistralCpuPp"] == "2.00" and v["netConfMistralCpuPp"] == "0.50"
     assert v["netTgMin"] == "1.00" and v["netTgMax"] == "1.20"
     assert v["nCpInConfirmed"] == "1" and v["nConfirmedWithCp"] == "1"
+
+
+def test_direction_macros() -> None:
+    vis = pd.DataFrame([
+        {"event_id": "E01", "series": TINY_M_PP, "state": "up", "lr_pct": 10.0, "z": 5.0, "source": "E01"},
+        {"event_id": "E03", "series": MIS_C_PP, "state": "down", "lr_pct": -10.0, "z": -5.0, "source": "E03"},
+        {"event_id": "E03", "series": TINY_M_PP, "state": "none", "lr_pct": 1.0, "z": 0.5, "source": "E03"},
+    ])
+    vals = {m.name: m.value for m in mn.direction_macros(vis, (), "src")}
+    assert vals["nRegressions"] == "1" and vals["nImprovements"] == "1"
+    assert vals["nRegressionsWord"] == "one" and vals["nRegressionsCap"] == "One"
+    mixed = pd.concat([vis, pd.DataFrame([{"event_id": "E01", "series": MIS_C_PP, "state": "down", "lr_pct": -9.0,
+                                           "z": -5.0, "source": "E01"}])], ignore_index=True)
+    vals = {m.name: m.value for m in mn.direction_macros(mixed, (), "src")}
+    assert vals["nRegressions"] == "1" and vals["nImprovements"] == "0"

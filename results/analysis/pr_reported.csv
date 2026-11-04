@@ -1,0 +1,10 @@
+event,pr,thread_has_throughput,machine,build,test,reported,source
+E01,2959,yes,M2 Ultra,Metal,pp512,"LLaMA 7B Q4_0: 719.63 to 1009.82 t/s (1.403x)",comment by the maintainer in the pull request
+E01,3168,yes,M2 Ultra,Metal,pp512,"LLaMA 7B Q4_K: 1027.95 to 1169.12 t/s (1.137x)",description
+E03,4060,no,,,,,description and comments searched
+E04,4240,no,,,,,description and comments searched
+E16,6210,yes,M3 Max; M2 Ultra,default macOS build with BLAS,pp512,"7B Q4_0: 0.92x at 4 threads, 1.07x at 12 threads (M3 Max); 1B Q4_0: 0.93x at 4 threads, 1.29x at 16 threads (M2 Ultra)",comments
+E19,8672,yes,M2 Max; M3 Max,no BLAS (author); BLAS (reviewer and author),pp512; pp64,"Without Accelerate: 7B Q4_0 pp512 1.01x to 1.11x at 4 to 12 threads (M2 Max). Default macOS build: 7B Q4_0 1.02x, 0.95x, 0.80x at 4, 8, 12 threads (M3 Max). BLIS: pp64 48.69 to 35.90 t/s, 46.44 with --poll 0 (M2 Max)",comments
+E46,16739,yes,M4 Max,CPU back end listed as the only back end,pp256; tg128,"pp256 1.53x to 1.67x, tg128 1.08x to 1.10x on four Q4_K models, 8 threads",description
+E49,21048,no,,,,,description and comments searched
+E50,20962,yes,M5 Max,Metal,pp512,"pp512 +6.1% to +86.2% over 13 models; TinyLlama Q4_K_M +18.7%",description

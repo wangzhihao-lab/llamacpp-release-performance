@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Figures 1 and 3 to 7 of the paper (llama.cpp cross-version performance study).
+"""Generate the data figures of the paper (llama.cpp cross-version performance study).
 
 Every number drawn or written in a figure is computed here from files under ``results/``;
 ``results/`` is only read.  The confirmed/noise verdicts, the A/A control, the visibility
@@ -7,9 +7,9 @@ matrix and the set cover use the same sources and the same excluded-cell list as
 ``scripts/paper/make_numbers.py`` (imported from it), so the figures agree with ``paper/numbers.tex``.
 
 Outputs (``paper/figs/``), each as PDF and SVG, named by content so that the printed figure
-numbers can change: ``motivation`` (Fig. 1), ``timeline``, ``methodology``, ``bisection``,
-``visibility``, ``coverage`` (Figs. 3 to 7).  Fig. 2, the study overview, is drawn by
-``scripts/paper/make_fig_overview.py``.
+numbers can change: ``motivation``, ``timeline``, ``methodology``, ``bisection``, ``diffs``,
+``visibility``, ``coverage``.  The study overview, the code paths and the decision flow are drawn by
+``scripts/paper/make_fig_overview.py`` and ``scripts/paper/make_fig_flow.py``.
 
 Sources:
 
@@ -21,7 +21,9 @@ Sources:
 * methodology: ``interleaved/judge_v11_series.csv`` (A/A rows), ``control_events.csv``,
   ``interleaved/*/runs.tsv`` and the per-run JSON files, the judge thresholds from ``scripts/analysis/step2b_judge.py``;
 * bisection: ``bisect/<label>/runs.tsv``, ``steps.csv``, ``result.json``;
-* visibility and coverage: ``step4_visibility.csv`` with the excluded cells of ``make_numbers.DEFAULT_EXCLUDED_CELLS``.
+* visibility and coverage: ``step4_visibility.csv`` with the excluded cells of ``make_numbers.DEFAULT_EXCLUDED_CELLS``;
+* diffs: lines of the commits named in ``DIFF_PANELS``, as they appear in the llama.cpp history, with the changes
+  of ``step4_visibility.csv``.
 
 Run: taskpolicy -b nice -n 19 uv run --no-project --with pandas --with numpy --with matplotlib python3 -I scripts/paper/make_figures.py
 """
@@ -71,6 +73,13 @@ CONFIRMED_COLOR = fs.ROSE
 REJECTED_COLOR = fs.SAND
 BISECT_TARGETS = ("E49_tinyllama-1.1b_metal_pp512", "E03_tinyllama-1.1b_cpu_pp512",
                   "E04_tinyllama-1.1b_cpu_pp512")
+# Root-cause categories of Table 4 as row groups of the visibility matrix, in the order of the text.
+CATEGORY_ROWS: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("Metal kernels\nand probing", ("E01", "E49", "E50")),
+    ("BLAS\ndispatch", ("E03", "E04", "E16")),
+    ("Thread\nruntime", ("E19",)),
+    ("Repacking", ("E46",)),
+)
 
 
 def series_label(series: str, short: bool = False) -> str:
@@ -369,7 +378,7 @@ def fig_timeline(root: Path, out: Path, vis: pd.DataFrame) -> None:
     events["d0"] = pd.to_datetime(events.date_old)
     events["d1"] = pd.to_datetime(events.date_new)
 
-    fig, axes = plt.subplots(2, 2, figsize=(fs.cm(fs.FULL_WIDTH_CM), fs.cm(8.4)), sharex=True)
+    fig, axes = plt.subplots(2, 2, figsize=(fs.cm(fs.FULL_WIDTH_CM), fs.cm(7.0)), sharex=True)
     for i, b in enumerate(BACKENDS):
         for j, t in enumerate(TESTS):
             ax = axes[i, j]
@@ -383,7 +392,7 @@ def fig_timeline(root: Path, out: Path, vis: pd.DataFrame) -> None:
                         ax.axvspan(ev.d0, ev.d1, color=CONFIRMED_COLOR, alpha=0.55, lw=0, zorder=1)
                         labels.append((ev.d0 + (ev.d1 - ev.d0) / 2, ev.event_id))
                 elif v == "noise" and event_series(ev) & panel_series:
-                    ax.axvspan(ev.d0, ev.d1, color=REJECTED_COLOR, alpha=0.45, lw=0, zorder=0)
+                    ax.axvspan(ev.d0, ev.d1, color=REJECTED_COLOR, alpha=0.26, lw=0, zorder=0)
             for m in MODELS:
                 st = fs.MODEL_STYLE[m]
                 d = rec[(rec.model == m) & (rec.backend == b) & (rec.test == t)].sort_values("build_number")
@@ -411,13 +420,13 @@ def fig_timeline(root: Path, out: Path, vis: pd.DataFrame) -> None:
                       marker=fs.MODEL_STYLE[m]["marker"], ms=3, mew=0, label=fs.MODEL_STYLE[m]["label"])
                for m in MODELS]
     handles += [Patch(color=CONFIRMED_COLOR, alpha=0.55, lw=0, label="Confirmed event interval"),
-                Patch(color=REJECTED_COLOR, alpha=0.45, lw=0, label="Candidate not confirmed by re-measurement")]
+                Patch(color=REJECTED_COLOR, alpha=0.26, lw=0, label="Candidate not confirmed by re-measurement")]
     # two legend rows (models, then interval shading) so the legend fits the 13.7 cm text width;
     # matplotlib fills legend columns first, so interleave the two rows
     handles = [h for pair in zip(handles[:3], handles[3:] + [None]) for h in pair if h is not None]
     fig.legend(handles=handles, loc="lower center", ncol=3, bbox_to_anchor=(0.5, 0.0), handlelength=2.2,
                columnspacing=1.4)
-    fig.tight_layout(rect=(0, 0.09, 1, 1), h_pad=0.8, w_pad=1.5)
+    fig.tight_layout(rect=(0, 0.1, 1, 1), h_pad=0.6, w_pad=1.5)
     fs.save_figure(fig, out, "timeline")
 
 
@@ -445,7 +454,7 @@ def fig_methodology(root: Path, out: Path) -> dict[str, object]:
     aa = aa.sort_values("order")
     bias = first_run_bias(root)
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(fs.cm(fs.FULL_WIDTH_CM), fs.cm(6.3)),
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(fs.cm(fs.FULL_WIDTH_CM), fs.cm(5.6)),
                                    gridspec_kw={"width_ratios": [1.0, 1.15]})
     # (a) A/A forest plot
     y = np.arange(len(aa))[::-1]
@@ -497,21 +506,19 @@ def fig_methodology(root: Path, out: Path) -> dict[str, object]:
     n_groups = len(first[first.test == "pp512"])
     ax2.set_title(f"(b) No warm-up ({n_groups} groups, {first.event.nunique()} events)", loc="left")
     ax2.tick_params(axis="x", length=0)
-    handles = [Line2D([], [], ls="", marker="s", mfc="0.3", mec="0.3", ms=3.5, label="First run of the group"),
-               Line2D([], [], ls="", marker="s", mfc="white", mec="0.3", ms=3.5,
-                      label="First run of the other version"),
-               Line2D([], [], color="black", lw=1.0, label="Median")]
-    handles += [Line2D([], [], ls="", marker=str(fs.MODEL_STYLE[m]["marker"]), mfc="0.5", mec="0.5", ms=3.5,
+    # marker shape = model, fill = which run; the fill is explained in words, because a filled or
+    # hollow legend marker would have to borrow the shape of one of the models
+    handles = [Line2D([], [], ls="", marker=str(fs.MODEL_STYLE[m]["marker"]), mfc="0.5", mec="0.5", ms=3.5,
                        label=str(fs.MODEL_STYLE[m]["label"])) for m in MODELS]
-    # legend below both panels, in two rows (markings, then models), so it neither leaves the page nor
-    # covers the points; matplotlib fills legend columns first, so interleave the two rows
-    handles = [h for pair in zip(handles[:3], handles[3:]) for h in pair]
-    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 0.0), ncol=3, handlelength=1.2,
-               fontsize=6.5, columnspacing=1.2)
+    handles.append(Line2D([], [], color="black", lw=1.0, label="Median"))
+    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.72, 0.045), ncol=4, handlelength=1.2,
+               fontsize=6.5, columnspacing=1.0)
+    fig.text(0.72, 0.012, "Filled: first run of the group.  Hollow: first run of the other version.",
+             ha="center", va="bottom", fontsize=6.5)
     ax2.set_xlim(-0.55, len(cats) - 0.45)
     ytop = float(max(first.dev.max(), ref.dev.max())) * 100
     ax2.set_ylim(top=ytop * 1.08)
-    fig.tight_layout(rect=(0, 0.1, 1, 1), w_pad=1.5)
+    fig.tight_layout(rect=(0, 0.11, 1, 1), w_pad=1.5)
     fs.save_figure(fig, out, "methodology")
     summ: dict[str, object] = {"aa_fp": n_fp, "aa_n": len(aa), "z_min": z_min, "min_rel": min_rel,
                                "groups": n_groups, "events": int(first.event.nunique())}
@@ -554,7 +561,7 @@ def fig_bisection(root: Path, out: Path) -> list[dict[str, object]]:
         Per-target summary for the log.
     """
     bdir = root / "results" / "analysis" / "bisect"
-    fig, axes = plt.subplots(1, len(BISECT_TARGETS), figsize=(fs.cm(fs.FULL_WIDTH_CM), fs.cm(5.8)))
+    fig, axes = plt.subplots(1, len(BISECT_TARGETS), figsize=(fs.cm(fs.FULL_WIDTH_CM), fs.cm(5.0)))
     roles = {"lo": (fs.INDIGO, "v", "Older end (lo)"), "mid": (fs.ROSE, "o", "Midpoint (mid)"),
              "hi": (fs.TEAL, "^", "Newer end (hi)")}
     summ = []
@@ -594,6 +601,97 @@ def fig_bisection(root: Path, out: Path) -> list[dict[str, object]]:
 
 
 # --------------------------------------------------------------------------------------------
+# The code of three changes (RQ2)
+# --------------------------------------------------------------------------------------------
+
+CODE_FONT = "Courier New"  # verbatim code stays monospaced
+CODE_PT = 6.1
+# Lines of the located commits, indentation shortened: (kind, text) with kind " " unchanged, "+" added, "-" removed.
+# ggml.c at 3d68f364f and 8406b0924, ggml-metal-device.m at 9bcb4eff4, ggml.c at 42c76d135; the log line is printed
+# by ggml_metal_device_init and recorded in results/<tag>/llama-bench_help.txt.
+DIFF_PANELS: dict[str, tuple[str, str, tuple[tuple[str, str], ...]]] = {
+    "E03": ("#4060", "use_blas() in ggml.c", ((" ", "if (ggml_is_contiguous(src0) &&"),
+                                              (" ", "    ggml_is_contiguous(src1) &&"),
+                                              ("+", "    src0->type == GGML_TYPE_F32 &&"),
+                                              ("+", "    src1->type == GGML_TYPE_F32 &&"),
+                                              (" ", "    (ne0 >= 32 && ne1 >= 32 && ne10 >= 32)) {"))),
+    "E04": ("#4240", "the same condition", (("-", "    src0->type == GGML_TYPE_F32 &&"),
+                                            ("+", "  //src0->type == GGML_TYPE_F32 &&"))),
+    "E49": ("#21048", "both start-up probes", (("-", '"  matmul2d_descriptor(8, 8, dynamic_extent), \\n"'),
+                                          ("+", '"  matmul2d_descriptor(16, 16, dynamic_extent), \\n"'),
+                                          (" ", "log of b8545: has tensor = false"),
+                                          (" ", "log of b8740: has tensor = true"))),
+    "E19": ("#8672", "new thread pool", (("+", "p->prio = 0;   // default priority"),
+                                         ("+", "p->poll = 50;  // hybrid-polling enabled"))),
+}
+
+
+def event_change(vis_raw: pd.DataFrame, vis: pd.DataFrame, event: str) -> str:
+    """Range of the visible changes of an event, smaller magnitude first: '\u221265% to \u221268%'.
+
+    Args:
+        vis_raw: Visibility frame before exclusions (values).
+        vis: Visibility frame after exclusions (states).
+        event: Event id.
+
+    Returns:
+        The range, or the single value when all cells agree.
+    """
+    cells = vis[(vis.event_id == event) & vis.state.isin(VISIBLE_STATES)].series
+    vals = vis_raw[(vis_raw.event_id == event) & vis_raw.series.isin(cells)].lr_pct.astype(float)
+    lo, hi = sorted((float(vals.abs().min()), float(vals.abs().max())))
+    sign = 1 if vals.iloc[0] > 0 else -1
+    a, b = fmt_pct(sign * lo), fmt_pct(sign * hi)
+    return f"{a}%" if a == b else f"{a}% to {b}%"
+
+
+def fig_diffs(out: Path, vis_raw: pd.DataFrame, vis: pd.DataFrame) -> dict[str, str]:
+    """Lines changed by four located commits with the measured change, as colored diffs.
+
+    Args:
+        out: Output directory.
+        vis_raw: Visibility frame before exclusions.
+        vis: Visibility frame after exclusions.
+
+    Returns:
+        The change written in each panel title.
+    """
+    width, row = fs.FULL_WIDTH_CM, 0.3
+    columns = (("E03", "E04"), ("E49", "E19"))
+    col_x, col_w = (0.0, 6.68), (6.53, 7.02)
+    n_rows = max(sum(1 + len(DIFF_PANELS[e][2]) for e in col) + 0.35 * (len(col) - 1) for col in columns)
+    height = n_rows * row + 0.04
+    fig = plt.figure(figsize=(fs.cm(width), fs.cm(height)))
+    ax = fig.add_axes((0, 0, 1, 1))
+    ax.set_xlim(0, width)
+    ax.set_ylim(0, height)
+    ax.axis("off")
+    fills = {"+": gl.tint(fs.GREEN, 0.2), "-": gl.tint(fs.ROSE, 0.3), " ": "0.965"}
+    changes: dict[str, str] = {}
+    for col, x, w in zip(columns, col_x, col_w):
+        y = height - 0.02
+        for k, ev in enumerate(col):
+            if k:
+                y -= 0.35 * row
+            pr, where, lines = DIFF_PANELS[ev]
+            changes[ev] = event_change(vis_raw, vis, ev)
+            ax.text(x + 0.02, y - row / 2, f"{ev} ({pr}), {where}", ha="left", va="center", fontsize=6.8, fontweight="bold",
+                    color=gl.INK)
+            ax.text(x + w - 0.02, y - row / 2, changes[ev], ha="right", va="center", fontsize=6.8, fontweight="bold",
+                    color=fs.WINE if changes[ev].startswith("+") else fs.INDIGO)
+            y -= row
+            for kind, text in lines:
+                ax.add_patch(Rectangle((x, y - row), w, row, fc=fills[kind], ec="none", zorder=1))
+                ax.text(x + 0.06, y - row / 2, kind, ha="left", va="center", fontsize=CODE_PT, fontfamily=CODE_FONT,
+                        color=gl.INK, zorder=2)
+                ax.text(x + 0.26, y - row / 2, text, ha="left", va="center", fontsize=CODE_PT, fontfamily=CODE_FONT,
+                        color=gl.INK, zorder=2)
+                y -= row
+    fs.save_figure(fig, out, "diffs")
+    return changes
+
+
+# --------------------------------------------------------------------------------------------
 # Visibility heat map (RQ3)
 # --------------------------------------------------------------------------------------------
 
@@ -615,14 +713,16 @@ def fig_visibility(out: Path, vis_raw: pd.DataFrame, vis: pd.DataFrame) -> dict[
     Returns:
         Cell counts by state for the log.
     """
-    events = sorted(vis.event_id.unique(), key=lambda e: int(e[1:]))
+    events = [e for _, group in CATEGORY_ROWS for e in group]
+    if sorted(events) != sorted(vis.event_id.unique()):
+        raise ValueError(f"CATEGORY_ROWS {sorted(events)} differ from the confirmed events {sorted(vis.event_id.unique())}")
     cmap = fs.diverging_cmap()
     lr = np.log1p(vis_raw.lr_pct.dropna() / 100)
     lim = float(np.ceil(np.abs(lr).max() * 10) / 10)
     norm = Normalize(-lim, lim)
-    fig = plt.figure(figsize=(fs.cm(fs.FULL_WIDTH_CM), fs.cm(6.6)))
-    ax = fig.add_axes((0.05, 0.19, 0.845, 0.66))
-    cax = fig.add_axes((0.905, 0.19, 0.013, 0.66))
+    fig = plt.figure(figsize=(fs.cm(fs.FULL_WIDTH_CM), fs.cm(5.9)))
+    ax = fig.add_axes((0.135, 0.2, 0.765, 0.645))
+    cax = fig.add_axes((0.91, 0.2, 0.013, 0.645))
     counts: dict[str, int] = {}
     for i, ev in enumerate(events):
         for j, s in enumerate(SERIES_ORDER):
@@ -659,7 +759,16 @@ def fig_visibility(out: Path, vis_raw: pd.DataFrame, vis: pd.DataFrame) -> dict[
     ax.set_xlim(-0.5, len(SERIES_ORDER) - 0.5)
     ax.set_ylim(-0.5, len(events) - 0.5)
     ax.set_yticks(range(len(events)), events[::-1])
-    ax.set_xticks(range(len(SERIES_ORDER)), [SHORT_MODEL[s.split("/")[0]] for s in SERIES_ORDER], fontsize=6.5)
+    ax.set_xticks(range(len(SERIES_ORDER)), [SHORT_MODEL[s.split("/")[0]] for s in SERIES_ORDER], fontsize=6.2)
+    # root-cause groups: a rule between the groups and the category name left of the event names
+    top = len(events) - 0.5
+    for name, group in CATEGORY_ROWS:
+        ax.text(-0.116, 1 - (len(events) - top - 0.5 + len(group) / 2) / len(events), name,
+                transform=ax.transAxes, ha="center", va="center", fontsize=6.1, linespacing=1.05, color=gl.INK)
+        top -= len(group)
+        if top > -0.5:
+            ax.plot([-0.19, 1.0], [(top + 0.5) / len(events)] * 2, transform=ax.transAxes, color="black", lw=0.5,
+                    clip_on=False, zorder=5)
     for sp in ax.spines.values():
         sp.set_visible(False)
     ax.tick_params(length=0)
@@ -698,7 +807,12 @@ def fig_visibility(out: Path, vis_raw: pd.DataFrame, vis: pd.DataFrame) -> dict[
 
 
 def fig_coverage(out: Path, vis: pd.DataFrame) -> dict[str, object]:
-    """Confirmed events seen by each single series, sorted, plus the smallest covering set(s).
+    """UpSet view of the confirmed events and the series that see them.
+
+    Each column is one combination of series and each bar the events seen by exactly that combination;
+    a filled dot marks a series of the combination.  The shaded rows belong to a smallest covering set,
+    so a set covers all events when every column has a dot in its rows.  The bars on the left give the
+    events each series sees.  Series that see no event (all of tg128) are left out and named in the caption.
 
     Args:
         out: Output directory.
@@ -709,46 +823,65 @@ def fig_coverage(out: Path, vis: pd.DataFrame) -> dict[str, object]:
     """
     cv = cover(vis)
     sees: dict[str, set[str]] = cv["sees"]
-    n_ev = len(cv["events"])
     best = cv["best"]
-    order = sorted(SERIES_ORDER, key=lambda s: (-len(sees[s]), SERIES_ORDER.index(s)))
     in_best = {s for c in best for s in c}
-    labels = [" + ".join(series_label(s, short=True).replace(" pp512", "") for s in c) for c in best]  # all pp512
-    rows = [(lab, len(set().union(*(sees[s] for s in c))), "best") for lab, c in zip(labels, best)]
-    rows += [(series_label(s, short=True), len(sees[s]), "in" if s in in_best else "out") for s in order]
-    h = 1.4 + 0.36 * len(rows)
-    fig, ax = plt.subplots(figsize=(fs.cm(fs.COLUMN_WIDTH_CM), fs.cm(h)))
-    y = np.arange(len(rows))[::-1].astype(float)
-    y[: len(best)] += 0.4  # gap between the combined bar(s) and the single series
-    colors = {"best": fs.GREEN, "in": fs.INDIGO, "out": fs.LIGHT_BLUE}
-    hatches = {"best": "", "in": "", "out": ""}
-    for yy, (lab, n, kind) in zip(y, rows):
-        ax.barh(yy, n, color=colors[kind], edgecolor="black", lw=0.4, height=0.66, hatch=hatches[kind])
-        if kind == "best":  # the set is named inside its bar (one line), the count stays outside
-            ax.text(0.12, yy, lab, va="center", ha="left", fontsize=6.0, color="white")
-            ax.text(n + 0.12, yy, str(n), va="center", fontsize=7)
-        elif n >= n_ev:
-            ax.text(n - 0.15, yy, str(n), va="center", ha="right", fontsize=7, color="white", fontweight="bold")
-        else:
-            ax.text(n + 0.12, yy, str(n), va="center", fontsize=7)
-    ax.axvline(n_ev, color=fs.ROSE, ls="--", lw=0.8)
-    ax.text(n_ev - 0.1, y.max() + 0.62, f"all {n_ev} confirmed", ha="right", va="bottom", fontsize=6.5, color=fs.WINE)
-    ax.set_yticks(y, ["" if r[2] == "best" else r[0] for r in rows])
-    ax.set_xlim(0, n_ev + 1.2)
-    ax.set_ylim(y.min() - 0.6, y.max() + 1.3)
-    ax.set_xticks(range(0, n_ev + 1, 2 if n_ev > 6 else 1))
-    ax.set_xlabel("Confirmed events visible in the series")
-    ax.tick_params(axis="y", length=0)
-    many = len(best) > 1
-    handles = [Patch(facecolor=fs.GREEN, edgecolor="black", lw=0.4,
-                     label="Smallest covering set" + ("s" if many else "")),
-               Patch(facecolor=fs.INDIGO, edgecolor="black", lw=0.4, label="Series in " + ("such a set" if many else "that set")),
-               Patch(facecolor=fs.LIGHT_BLUE, edgecolor="black", lw=0.4, label="Other series")]
-    ax.legend(handles=handles, loc="lower left", bbox_to_anchor=(0.2, 0.0), handlelength=1.4)
-    fig.tight_layout()
+    rows = [s for b in BACKENDS for s in sorted((x for x in SERIES_ORDER if sees[x] and x.split("/")[1] == b),
+                                                key=lambda x: (x not in in_best, -len(sees[x]), SERIES_ORDER.index(x)))]
+    combos: dict[frozenset[str], list[str]] = {}
+    for ev in sorted(cv["events"], key=lambda e: int(e[1:])):
+        combos.setdefault(frozenset(s for s in rows if ev in sees[s]), []).append(ev)
+
+    def backend_of(combo: frozenset[str]) -> str:
+        names = {s.split("/")[1] for s in combo}
+        if len(names) != 1:
+            raise ValueError(f"event seen on both back ends: {sorted(combo)}")
+        return next(iter(names))
+
+    cols = sorted(combos, key=lambda c: (BACKENDS.index(backend_of(c)), -len(combos[c]), -len(c)))
+    width, height = 7.3, 4.5
+    fig = plt.figure(figsize=(fs.cm(width), fs.cm(height)))
+    label_w, bar_w, top_h, row_h = 2.3, 0.95, 1.2, 0.42
+    x0 = label_w + bar_w + 0.1
+    col_w = (width - x0 - 0.08) / len(cols)
+    y_rows = 0.42 + row_h * len(rows)
+    ax = fig.add_axes((0, 0, 1, 1))
+    ax.set_xlim(0, width)
+    ax.set_ylim(0, height)
+    ax.axis("off")
+    max_top = max(len(v) for v in combos.values())
+    max_left = max(len(sees[s]) for s in rows)
+    for i, s in enumerate(rows):
+        y = y_rows - row_h * (i + 0.5)
+        color = fs.BACKEND_STYLE[s.split("/")[1]]["color"]
+        if s in in_best:
+            ax.add_patch(Rectangle((0.02, y - row_h / 2 + 0.02), width - 0.06, row_h - 0.04, fc=gl.tint(fs.SAND, 0.35),
+                                   ec="none", zorder=0))
+        ax.text(label_w - 0.04, y, series_label(s, short=True).replace(" pp512", ""), ha="right", va="center",
+                fontsize=7, fontweight="bold" if s in in_best else "normal")
+        w = bar_w * 0.72 * len(sees[s]) / max_left
+        ax.add_patch(Rectangle((label_w + bar_w - w, y - 0.12), w, 0.24, fc=color, ec="none", zorder=2))
+        ax.text(label_w + bar_w - w - 0.05, y, str(len(sees[s])), ha="right", va="center", fontsize=6.5)
+        for j, c in enumerate(cols):
+            xc = x0 + col_w * (j + 0.5)
+            ax.add_patch(plt.Circle((xc, y), 0.095, fc=color if s in c else "0.84", ec="none", zorder=3))
+    for j, c in enumerate(cols):
+        xc = x0 + col_w * (j + 0.5)
+        color = fs.BACKEND_STYLE[backend_of(c)]["color"]
+        ys = [y_rows - row_h * (rows.index(s) + 0.5) for s in c]
+        ax.plot([xc, xc], [min(ys), max(ys)], color=color, lw=1.3, zorder=2.5, solid_capstyle="round")
+        h = top_h * 0.62 * len(combos[c]) / max_top
+        ax.add_patch(Rectangle((xc - 0.17, y_rows + 0.1), 0.34, h, fc=color, ec="none", zorder=2))
+        ax.text(xc, y_rows + 0.1 + h + 0.05, "\n".join(combos[c]), ha="center", va="bottom", fontsize=6.3,
+                linespacing=1.0, color=gl.INK)
+    ax.text(label_w + bar_w, y_rows + 0.1, "Events seen\nby the series", ha="right", va="bottom", fontsize=6.3,
+            linespacing=1.05, color="0.25")
+    ax.text(x0 + col_w * len(cols) / 2, 0.2, "Events seen by exactly the marked series", ha="center", va="center",
+            fontsize=6.5, color="0.25")
     fs.save_figure(fig, out, "coverage")
+    labels = [" + ".join(series_label(s, short=True).replace(" pp512", "") for s in c) for c in best]
     return {"k": cv["k"], "best": labels, "single_max": cv["single_max"], "single": cv["single_series"],
-            "n_events": n_ev, "zero": sum(len(sees[s]) == 0 for s in SERIES_ORDER)}
+            "n_events": len(cv["events"]), "zero": sum(len(sees[s]) == 0 for s in SERIES_ORDER),
+            "combinations": {" + ".join(sorted(k)): v for k, v in combos.items()}}
 
 
 # --------------------------------------------------------------------------------------------
@@ -781,6 +914,7 @@ def main(argv: list[str] | None = None) -> int:
     fig_timeline(root, out, vis)
     logger.info("methodology: %s", fig_methodology(root, out))
     logger.info("bisection: %s", fig_bisection(root, out))
+    logger.info("diffs: %s", fig_diffs(out, vis_raw, vis))
     logger.info("visibility: %s", fig_visibility(out, vis_raw, vis))
     logger.info("coverage: %s", fig_coverage(out, vis))
     return 0

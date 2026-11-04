@@ -988,6 +988,131 @@ def cover_series_macros(vis_raw: pd.DataFrame, excluded: tuple[tuple[str, str], 
             for s in SERIES]
 
 
+def direction_macros(vis_raw: pd.DataFrame, excluded: tuple[tuple[str, str], ...], src: str) -> list[Macro]:
+    """Confirmed events by the direction of their visible changes (regressions and improvements).
+
+    Args:
+        vis_raw: Visibility frame before exclusions.
+        excluded: Excluded cells.
+        src: Source file for the macro comments.
+
+    Returns:
+        The macros.  An event whose visible cells point in both directions counts as neither.
+    """
+    vis = apply_exclusions(vis_raw, excluded)
+    states = vis[vis.state.isin(VISIBLE_STATES)].groupby("event_id").state.agg(set)
+    mixed = [str(e) for e, s in states.items() if len(s) != 1]
+    if mixed:
+        logger.warning("events with visible changes in both directions: %s", mixed)
+    down = sorted((str(e) for e, s in states.items() if s == {"down"}), key=_event_key)
+    up = sorted((str(e) for e, s in states.items() if s == {"up"}), key=_event_key)
+    return [Macro("nRegressions", str(len(down)), src, f"confirmed events that lower throughput: {', '.join(down)}"),
+            Macro("nRegressionsWord", number_word(len(down)).lower(), src, "the same count as a word"),
+            Macro("nRegressionsCap", number_word(len(down)), src, "the same count as a capitalised word"),
+            Macro("nImprovements", str(len(up)), src, f"confirmed events that raise throughput: {', '.join(up)}"),
+            Macro("nImprovementsWord", number_word(len(up)).lower(), src, "the same count as a word")]
+
+
+SIZE_BANDS = (30, 50)  # limits (%) of the bands of the largest campaign change of a candidate
+E49_BISECTIONS = ("E49_tinyllama-1.1b_metal_pp512", "E49_qwen2.5-1.5b_metal_pp512", "E49_mistral-7b_metal_pp512")
+
+
+def candidate_size_macros(cand: pd.DataFrame, confirmed: list[str], src: str) -> list[Macro]:
+    """Candidates and confirmed events by the largest campaign change among the listed series.
+
+    Args:
+        cand: candidate_events.csv.
+        confirmed: Confirmed step-1 events.
+        src: Source file for the macro comments.
+
+    Returns:
+        Macros candBandLow, candBandHigh, nCand{Small,Mid,Large} and nCand{Small,Mid,Large}Confirmed.
+    """
+    if "series_json" not in cand.columns:
+        return []
+    size = {str(r.event_id): max((100 * abs(float(s.get("delta", 0.0))) for s in json.loads(str(r.series_json))), default=0.0)
+            for r in cand.itertuples()}
+    low, high = SIZE_BANDS
+    bands = (("Small", lambda v: v < low), ("Mid", lambda v: low <= v < high), ("Large", lambda v: v >= high))
+    out = [Macro("candBandLow", str(low), src, "lower limit of the middle band of the largest campaign change (%)"),
+           Macro("candBandHigh", str(high), src, "upper limit of the middle band (%)")]
+    for name, inside in bands:
+        ids = [e for e, v in size.items() if inside(v)]
+        hits = [e for e in ids if e in confirmed]
+        out += [Macro(f"nCand{name}", str(len(ids)), src, f"candidates whose largest |delta| is in the band {name}"),
+                Macro(f"nCand{name}Confirmed", str(len(hits)), src, f"confirmed among them: {', '.join(hits) or 'none'}")]
+    return out
+
+
+def cover_flag_macros(cand: pd.DataFrame, vis_raw: pd.DataFrame, excluded: tuple[tuple[str, str], ...],
+                      confirmed: list[str], src: str) -> list[Macro]:
+    """What the threshold detector flagged on the series of the smallest covering sets.
+
+    Args:
+        cand: candidate_events.csv.
+        vis_raw: Visibility frame before exclusions.
+        excluded: Excluded cells.
+        confirmed: Confirmed step-1 events.
+        src: Source file for the macro comments.
+
+    Returns:
+        Macros coverFlaggedConfirmed (fewest confirmed events flagged by a smallest set) and
+        coverFlaggedMin, coverFlaggedMax (candidates flagged on a smallest set).
+    """
+    if "series_json" not in cand.columns:
+        return []
+    best = cover(apply_exclusions(vis_raw, excluded))["best"]
+    listed = {str(r.event_id): {s["series"] for s in json.loads(str(r.series_json))} for r in cand.itertuples()}
+    hits = [sum(1 for e in confirmed if listed.get(e, set()) & set(c)) for c in best]
+    flagged = [sum(1 for v in listed.values() if v & set(c)) for c in best]
+    if not hits:
+        return []
+    return [Macro("coverFlaggedConfirmed", str(min(hits)), src, f"confirmed events flagged on a smallest covering set: {hits}"),
+            Macro("coverFlaggedMin", str(min(flagged)), src, f"candidates flagged on a smallest covering set: {flagged}"),
+            Macro("coverFlaggedMax", str(max(flagged)), src, "same, largest")]
+
+
+def e49_boundary_macros(root: Path) -> list[Macro]:
+    """Change between the two boundary releases of E49 in the last step of its bisections.
+
+    Args:
+        root: Repository root.
+
+    Returns:
+        Macros eFortyNineBoundaryPctMin and eFortyNineBoundaryPctMax (empty without the bisections).
+    """
+    pct = []
+    for label in E49_BISECTIONS:
+        path = root / "results" / "analysis" / "bisect" / label / "steps.csv"
+        if path.is_file():
+            last = pd.read_csv(path).iloc[-1]
+            pct.append(100 * (float(last.ts_mid) / float(last.ts_lo) - 1))
+    if len(pct) != len(E49_BISECTIONS):
+        return []
+    src = "results/analysis/bisect/E49_*/steps.csv"
+    return [Macro("eFortyNineBoundaryPctMin", str(round(min(pct))), src, "last step, b8548 over b8547, smallest of the three series (%)"),
+            Macro("eFortyNineBoundaryPctMax", str(round(max(pct))), src, "same, largest (%)")]
+
+
+def norm_mde_macros(path: Path, z: float, n_side: int, src: str) -> list[Macro]:
+    """Smallest confirmable change without the first fixed round of the groups measured without warm-up.
+
+    Args:
+        path: noise_model_v11_norm1.csv.
+        z: Judge z threshold.
+        n_side: Fixed-phase runs per side.
+        src: Display path of the file.
+
+    Returns:
+        Macros mdeNormMin and mdeNormMax (empty without the file).
+    """
+    if not path.is_file():
+        return []
+    mde = np.expm1(z * pd.read_csv(path).sigma_fixed.astype(float) * math.sqrt(2.0 / n_side)) * 100
+    return [Macro("mdeNormMin", str(round(float(mde.min()))), src, "smallest confirmable change without those first rounds, min (%)"),
+            Macro("mdeNormMax", str(round(float(mde.max()))), src, "same, max (%)")]
+
+
 def _judge_row(series_df: pd.DataFrame, event_id: str, series: str, tag_a: str | None = None,
                tag_b: str | None = None) -> pd.Series | None:
     g = series_df[(series_df.event_id == event_id) & (series_df.series == series)]
@@ -1778,6 +1903,8 @@ def review_macros(root: Path, scripts: Path, cand: pd.DataFrame, cpev: pd.DataFr
     if nm.is_file():
         out += power_macros(pd.read_csv(nm), se, noise_ids, campaign_pair_lr([cand, cpev]), aa, z, n_side,
                             _rel(nm, root), src_se)
+        norm = an / "interleaved" / "noise_model_v11_norm1.csv"
+        out += norm_mde_macros(norm, z, n_side, _rel(norm, root))
     else:
         logger.warning("%s missing; power macros skipped", nm)
     if {"listed", "fixed_n_a", "fixed_n_b"} <= set(se.columns):
@@ -1854,6 +1981,16 @@ def _run_log_median(path: Path, test: str) -> float | None:
 SWITCH_EXP_WORD = {"S19": "Nineteen", "S46": "FortySix", "T04": "Four", "T50": "Fifty"}
 SWITCH_MODEL_WORD = {"tinyllama-1.1b": "Tiny", "qwen2.5-1.5b": "Qwen", "mistral-7b": "Mistral"}
 SWITCH_FIRST = {"T04": ("E04", "mistral-7b/cpu/tg128"), "T50": ("E50", "mistral-7b/metal/pp512")}
+
+
+PROMPT_TOKENS = 512  # tokens of the pp512 test
+# Macro, switch experiment, series and arm of the times for one prompt quoted in the text.
+PROMPT_SECONDS: tuple[tuple[str, str, str, str], ...] = (
+    ("secNineteenOld", "S19", "tinyllama-1.1b/cpu/pp512", "A"),
+    ("secNineteenNew", "S19", "tinyllama-1.1b/cpu/pp512", "B"),
+    ("secFortySixOld", "S46", "mistral-7b/cpu/pp512", "A"),
+    ("secFortySixNew", "S46", "mistral-7b/cpu/pp512", "B"),
+)
 
 
 def switch_macros(root: Path, se: pd.DataFrame) -> list[Macro]:
@@ -1934,6 +2071,11 @@ def switch_macros(root: Path, se: pd.DataFrame) -> list[Macro]:
     rounds = arms.groupby(["exp", "series"]).n.max()
     out += [Macro("swRoundsLong", str(int(rounds.max())), _rel(sw / "arms.csv", root), "rounds of the long groups"),
             Macro("swRoundsShort", str(int(rounds.min())), _rel(sw / "arms.csv", root), "rounds of the short groups")]
+    for name, exp, series, arm in PROMPT_SECONDS:
+        hit = arms[(arms.exp == exp) & (arms.series == series) & (arms.arm == arm)]
+        if len(hit) == 1 and "ts_geomean" in hit:
+            out.append(Macro(name, f"{PROMPT_TOKENS / float(hit.ts_geomean.iloc[0]):.1f}", _rel(sw / "arms.csv", root),
+                             f"seconds for a {PROMPT_TOKENS}-token prompt: {series}, {exp} arm {arm}"))
     if path_csv.is_file():
         ps = pd.read_csv(path_csv)
         counts = {str(r.log): ast.literal_eval(str(r.mul_mat_by_backend)) for r in ps.itertuples()}
@@ -2193,6 +2335,10 @@ def compute_all(root: Path, excluded: tuple[tuple[str, str], ...], scripts: Path
     macros += segment_macros(confirmed, runs, an / "bisect", _rel(an / "bisect", root) + "/<run>/steps.csv")
     macros += visibility_cell_macros(vis, r["vis"])
     macros += cover_series_macros(vis, excluded, r["vis"])
+    macros += direction_macros(vis, excluded, r["vis"])
+    macros += candidate_size_macros(cand, confirmed, r["cand"])
+    macros += cover_flag_macros(cand, vis, excluded, confirmed, r["cand"])
+    macros += e49_boundary_macros(root)
     macros += change_example_macros(cand, se, r["cand"], r["se"])
     macros += noise_example_macros(cand, se, r["se"])
     macros += bias_macros(first_run_bias(root), "results/analysis/interleaved/*/runs.tsv + llama-bench JSON")

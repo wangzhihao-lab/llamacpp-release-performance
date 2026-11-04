@@ -21,9 +21,10 @@ py scripts/analysis/step4_visibility.py
 py scripts/paper/make_numbers.py
 py scripts/paper/make_figures.py
 py scripts/paper/make_fig_overview.py
+py scripts/paper/make_fig_flow.py
 ```
 
-The first six commands rewrite the derived tables under `results/analysis/` from the stored runs, with the same content. `make_numbers.py` writes `paper/numbers.tex` (and creates `paper/`): 727 LaTeX macros, one for every measured number of the paper, each preceded by a comment that names its source file and computation. `make_figures.py` writes Figures 1 and 3 to 7 and `make_fig_overview.py` Figure 2 to `paper/figs/`, as PDF and SVG; `make_fig_overview.py` reads `paper/numbers.tex`, so `make_numbers.py` comes first. The figures use Times New Roman when the font is installed.
+The first six commands rewrite the derived tables under `results/analysis/` from the stored runs, with the same content. `make_numbers.py` writes `paper/numbers.tex` (and creates `paper/`): 751 LaTeX macros, one for every measured number of the paper, each preceded by a comment that names its source file and computation. `make_figures.py` writes the data figures, `make_fig_overview.py` the study overview and `make_fig_flow.py` the code paths and the decision flow to `paper/figs/`, as PDF and SVG; the last two read `paper/numbers.tex`, so `make_numbers.py` comes first. The figures use Times New Roman when the font is installed.
 
 ## Contents
 
@@ -35,7 +36,7 @@ The first six commands rewrite the derived tables under `results/analysis/` from
 | `scripts/analysis/` | Detection, re-measurement, judgment, bisection, switch controls, visibility, with tests; `scripts/analysis/README.md` documents each step and its options |
 | `scripts/analysis/queues/continuous.tsv` | The queue of re-measurement, judgment and bisection items, in the order of the study |
 | `scripts/analysis/thermal_state.swift` | Source of the thermal-state probe |
-| `scripts/paper/` | `make_numbers.py`, `make_figures.py`, `make_fig_overview.py`, their style and glyph modules, tests |
+| `scripts/paper/` | `make_numbers.py`, `make_figures.py`, `make_fig_overview.py`, `make_fig_flow.py`, their style and glyph modules, tests |
 | `data/releases.csv` | All 7,189 `b<N>` tags from b1046 to b11559 with commit, commit date and commits since the previous tag |
 | `data/selected_tags.txt`, `selected_tags.csv` | The 81 sampled releases |
 | `data/models.tsv` | The three models: file, URL pinned to a Hugging Face commit, size, sha256 |
@@ -53,9 +54,10 @@ Where the results of the paper are:
 | RQ2, Tables 3 and 4 | `bisect/` (one directory per bisection with `result.json`, `steps.csv`, `log.md`), `switch/`, `root_cause_categories.csv` |
 | RQ3 | `visibility_events.csv`, `step4_visibility.csv`, `step4_visibility.md` |
 | RQ4 | `step5_test_matrix.md` |
+| Section 5.2, Table 6 | `pr_reported.csv`, the numbers quoted from the pull-request threads, with where they stand |
 | Section 6 | `load_windows.tsv`, `load_window_runs.tsv`, `load_window_bisect_steps.csv`, `interleaved/judge_v11_*_nowin.csv`, `harness_check_E01/` |
 
-`control_events.csv`, `remeasure_events.csv`, `load_windows.tsv` and `root_cause_categories.csv` are inputs of the scripts, not outputs. `root_cause_categories.csv` holds the grouping of the confirmed events that results from reading the boundary commits (Section 4.2 of the paper).
+`control_events.csv`, `remeasure_events.csv`, `load_windows.tsv` and `root_cause_categories.csv` are inputs of the scripts, not outputs, and `pr_reported.csv` is a record for readers that no script uses. `root_cause_categories.csv` holds the grouping of the confirmed events that results from reading the boundary commits (Section 4.2 of the paper).
 
 Not in this package:
 
@@ -114,7 +116,7 @@ The paper numbers its steps by what they do, and the scripts by the order of the
 | Judgment (`step2b`), each variant | no | About 10 s |
 | Load windows, step 3b tables, visibility tables | no | Under 5 s each |
 | `make_numbers.py` | no | About 10 s |
-| `make_figures.py`, `make_fig_overview.py` | no | About 20 s |
+| `make_figures.py`, `make_fig_overview.py`, `make_fig_flow.py` | no | About 20 s |
 
 ### Commands
 
