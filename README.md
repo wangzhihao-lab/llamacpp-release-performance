@@ -2,7 +2,7 @@
 
 This is the replication package of the paper "What Changes the Speed of an LLM Inference Engine? Re-measuring and Bisecting Three Years of llama.cpp Releases" by Xiaoyan Tian, Min Yu and Zhihao Wang.
 
-The study sampled 81 llama.cpp releases from September 2023 to October 2026 (b1137 to b11559), rebuilt them with one toolchain, and measured each of the 78 that built once on one machine (the campaign). It then re-measured every candidate change with interleaved runs, bisected the confirmed changes to their commits, and checked in which benchmark series each change is visible. The package holds the build and measurement scripts, all raw results, the re-measurement and bisection logs, and the analysis scripts that generate every number and figure of the paper.
+The study sampled 81 llama.cpp releases from September 2023 to October 2026 (b1137 to b11559), rebuilt them with one toolchain, and measured each of the 78 that built once on one machine (the campaign). It then re-measured every candidate change with interleaved runs, bisected the confirmed changes to their commits, and checked in which benchmark series each change is visible. The package holds the build and measurement scripts, all raw results, the re-measurement and bisection logs, and the analysis scripts that generate every result and figure of the paper.
 
 All commands below run from the repository root.
 
@@ -23,7 +23,7 @@ py scripts/paper/make_figures.py
 py scripts/paper/make_fig_overview.py
 ```
 
-The first six commands rewrite the derived tables under `results/analysis/` from the stored runs, with the same content. `make_numbers.py` writes `paper/numbers.tex` (and creates `paper/`): 721 LaTeX macros, one for every number of the paper, each preceded by a comment that names its source file and computation. `make_figures.py` writes Figures 1 and 3 to 7 and `make_fig_overview.py` Figure 2 to `paper/figs/`, as PDF and SVG; `make_fig_overview.py` reads `paper/numbers.tex`, so `make_numbers.py` comes first. The figures use Times New Roman when the font is installed.
+The first six commands rewrite the derived tables under `results/analysis/` from the stored runs, with the same content. `make_numbers.py` writes `paper/numbers.tex` (and creates `paper/`): 721 LaTeX macros, one for every measured number of the paper, each preceded by a comment that names its source file and computation. `make_figures.py` writes Figures 1 and 3 to 7 and `make_fig_overview.py` Figure 2 to `paper/figs/`, as PDF and SVG; `make_fig_overview.py` reads `paper/numbers.tex`, so `make_numbers.py` comes first. The figures use Times New Roman when the font is installed.
 
 ## Contents
 
