@@ -1,0 +1,4 @@
+2026-10-15T00:10:13 [b8925] start (reps=5 jobs=8)
+2026-10-15T00:10:13 [b8925] build-only mode: no benchmark
+2026-10-15T00:10:51 [b8925] build ok in 30.259 s
+2026-10-15T00:10:52 [b8925] done stage=built -> <repo>/results/bisect_builds/b8925

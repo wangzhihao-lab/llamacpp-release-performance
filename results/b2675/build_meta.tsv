@@ -1,0 +1,31 @@
+tag	b2675
+release_commit	17e98d4c96a583d420f12046bc92102381dbd28e
+commit_date_utc	2024-04-15T09:12:26Z
+build_number	2675
+started_at_utc	2026-10-12T15:18:10Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b2675.tar.gz
+tarball_sha256	1403e49d535d1a4d2806a580f51cca12c213bd21e29064c8111a2f432cfcbdee
+tarball_commit	17e98d4c96a583d420f12046bc92102381dbd28e
+option_era	llama
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DLLAMA_METAL=ON -DLLAMA_CCACHE=OFF -DLLAMA_METAL_EMBED_LIBRARY=ON -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	0.800
+build_s	11.673
+compile_s	12.473
+binary_bytes	2189448
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	benchmarked
+finished_at_utc	2026-10-12T15:26:09Z

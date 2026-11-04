@@ -1,0 +1,1253 @@
+{
+ "event_id": "E01R",
+ "tag_old": "b1137",
+ "tag_new": "b1245",
+ "class": "C",
+ "problems": [],
+ "groups": [
+  {
+   "tag_a": "b1137",
+   "tag_b": "b1245",
+   "model": "mistral-7b",
+   "backend": "cpu",
+   "series": [
+    "mistral-7b/cpu/pp512"
+   ],
+   "fixed_a": [
+    "-ngl",
+    "0",
+    "-t",
+    "8",
+    "-b",
+    "512"
+   ],
+   "fixed_b": [
+    "-ngl",
+    "0",
+    "-t",
+    "8",
+    "-b",
+    "512"
+   ],
+   "notes": [],
+   "equivalent": true,
+   "runs": [
+    {
+     "phase": "warmup",
+     "round": 0,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "warmup_r0_A_b1137_mistral-7b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 105.929
+    },
+    {
+     "phase": "fixed",
+     "round": 1,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r1_A_b1137_mistral-7b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 105.929
+    },
+    {
+     "phase": "fixed",
+     "round": 1,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r1_B_b1245_mistral-7b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 111.694
+    },
+    {
+     "phase": "fixed",
+     "round": 2,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r2_B_b1245_mistral-7b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 111.694
+    },
+    {
+     "phase": "fixed",
+     "round": 2,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r2_A_b1137_mistral-7b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 105.929
+    },
+    {
+     "phase": "fixed",
+     "round": 3,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r3_A_b1137_mistral-7b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 105.929
+    },
+    {
+     "phase": "fixed",
+     "round": 3,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r3_B_b1245_mistral-7b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 111.694
+    },
+    {
+     "phase": "default",
+     "round": 1,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "default_r1_A_b1137_mistral-7b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8"
+     ],
+     "est_s": 105.929
+    },
+    {
+     "phase": "default",
+     "round": 1,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "default_r1_B_b1245_mistral-7b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8"
+     ],
+     "est_s": 111.694
+    }
+   ]
+  },
+  {
+   "tag_a": "b1137",
+   "tag_b": "b1245",
+   "model": "mistral-7b",
+   "backend": "metal",
+   "series": [
+    "mistral-7b/metal/tg128"
+   ],
+   "fixed_a": [
+    "-ngl",
+    "99",
+    "-t",
+    "4",
+    "-b",
+    "512"
+   ],
+   "fixed_b": [
+    "-ngl",
+    "99",
+    "-t",
+    "4",
+    "-b",
+    "512"
+   ],
+   "notes": [],
+   "equivalent": true,
+   "runs": [
+    {
+     "phase": "warmup",
+     "round": 0,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "warmup_r0_A_b1137_mistral-7b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 43.643
+    },
+    {
+     "phase": "fixed",
+     "round": 1,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r1_A_b1137_mistral-7b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 43.643
+    },
+    {
+     "phase": "fixed",
+     "round": 1,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r1_B_b1245_mistral-7b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 48.784
+    },
+    {
+     "phase": "fixed",
+     "round": 2,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r2_B_b1245_mistral-7b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 48.784
+    },
+    {
+     "phase": "fixed",
+     "round": 2,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r2_A_b1137_mistral-7b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 43.643
+    },
+    {
+     "phase": "fixed",
+     "round": 3,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r3_A_b1137_mistral-7b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 43.643
+    },
+    {
+     "phase": "fixed",
+     "round": 3,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r3_B_b1245_mistral-7b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 48.784
+    },
+    {
+     "phase": "default",
+     "round": 1,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "default_r1_A_b1137_mistral-7b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "99"
+     ],
+     "est_s": 43.643
+    },
+    {
+     "phase": "default",
+     "round": 1,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "default_r1_B_b1245_mistral-7b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "99"
+     ],
+     "est_s": 48.784
+    }
+   ]
+  },
+  {
+   "tag_a": "b1137",
+   "tag_b": "b1245",
+   "model": "tinyllama-1.1b",
+   "backend": "cpu",
+   "series": [
+    "tinyllama-1.1b/cpu/tg128"
+   ],
+   "fixed_a": [
+    "-ngl",
+    "0",
+    "-t",
+    "8",
+    "-b",
+    "512"
+   ],
+   "fixed_b": [
+    "-ngl",
+    "0",
+    "-t",
+    "8",
+    "-b",
+    "512"
+   ],
+   "notes": [],
+   "equivalent": true,
+   "runs": [
+    {
+     "phase": "warmup",
+     "round": 0,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "warmup_r0_A_b1137_tinyllama-1.1b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 24.04
+    },
+    {
+     "phase": "fixed",
+     "round": 1,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r1_A_b1137_tinyllama-1.1b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 24.04
+    },
+    {
+     "phase": "fixed",
+     "round": 1,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r1_B_b1245_tinyllama-1.1b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 34.902
+    },
+    {
+     "phase": "fixed",
+     "round": 2,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r2_B_b1245_tinyllama-1.1b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 34.902
+    },
+    {
+     "phase": "fixed",
+     "round": 2,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r2_A_b1137_tinyllama-1.1b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 24.04
+    },
+    {
+     "phase": "fixed",
+     "round": 3,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r3_A_b1137_tinyllama-1.1b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 24.04
+    },
+    {
+     "phase": "fixed",
+     "round": 3,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r3_B_b1245_tinyllama-1.1b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 34.902
+    },
+    {
+     "phase": "default",
+     "round": 1,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "default_r1_A_b1137_tinyllama-1.1b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8"
+     ],
+     "est_s": 12.02
+    },
+    {
+     "phase": "default",
+     "round": 1,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "default_r1_B_b1245_tinyllama-1.1b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8"
+     ],
+     "est_s": 17.451
+    }
+   ]
+  },
+  {
+   "tag_a": "b1137",
+   "tag_b": "b1245",
+   "model": "tinyllama-1.1b",
+   "backend": "metal",
+   "series": [
+    "tinyllama-1.1b/metal/pp512"
+   ],
+   "fixed_a": [
+    "-ngl",
+    "99",
+    "-t",
+    "4",
+    "-b",
+    "512"
+   ],
+   "fixed_b": [
+    "-ngl",
+    "99",
+    "-t",
+    "4",
+    "-b",
+    "512"
+   ],
+   "notes": [],
+   "equivalent": true,
+   "runs": [
+    {
+     "phase": "warmup",
+     "round": 0,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "warmup_r0_A_b1137_tinyllama-1.1b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 19.124
+    },
+    {
+     "phase": "fixed",
+     "round": 1,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r1_A_b1137_tinyllama-1.1b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 19.124
+    },
+    {
+     "phase": "fixed",
+     "round": 1,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r1_B_b1245_tinyllama-1.1b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 18.47
+    },
+    {
+     "phase": "fixed",
+     "round": 2,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r2_B_b1245_tinyllama-1.1b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 18.47
+    },
+    {
+     "phase": "fixed",
+     "round": 2,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r2_A_b1137_tinyllama-1.1b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 19.124
+    },
+    {
+     "phase": "fixed",
+     "round": 3,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r3_A_b1137_tinyllama-1.1b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 19.124
+    },
+    {
+     "phase": "fixed",
+     "round": 3,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r3_B_b1245_tinyllama-1.1b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 18.47
+    },
+    {
+     "phase": "default",
+     "round": 1,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "default_r1_A_b1137_tinyllama-1.1b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "99"
+     ],
+     "est_s": 9.562
+    },
+    {
+     "phase": "default",
+     "round": 1,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "default_r1_B_b1245_tinyllama-1.1b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "99"
+     ],
+     "est_s": 9.235
+    }
+   ]
+  }
+ ]
+}

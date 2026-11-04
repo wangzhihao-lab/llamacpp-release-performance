@@ -1,0 +1,32 @@
+tag	b3141
+release_commit	963552903f51043ee947a8deeaaa7ec00bc3f1a4
+commit_date_utc	2024-06-12T15:41:51Z
+build_number	3141
+started_at_utc	2026-10-15T20:44:35Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b3141.tar.gz
+mode	build_only
+tarball_sha256	a869bb7cb291fe58546419f1b4005d994c12e9050ccfec4a83a925752fb035a5
+tarball_commit	963552903f51043ee947a8deeaaa7ec00bc3f1a4
+option_era	llama
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DLLAMA_METAL=ON -DLLAMA_CCACHE=OFF -DLLAMA_METAL_EMBED_LIBRARY=ON -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	0.923
+build_s	10.537
+compile_s	11.460
+binary_bytes	2951448
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	built
+finished_at_utc	2026-10-15T20:44:51Z

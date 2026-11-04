@@ -1,0 +1,45 @@
+{
+ "event_id": "E49",
+ "series": "tinyllama-1.1b/metal/pp512",
+ "label": "E49_tinyllama-1.1b_metal_pp512",
+ "lo0": "b8545",
+ "hi0": "b8740",
+ "direction": "up",
+ "ref_lr": 0.6397174217653223,
+ "ref_source": "step 2 fixed phase (v11)",
+ "status": "located",
+ "pause_reason": "",
+ "note": "",
+ "lo": "b8547",
+ "hi": "b8548",
+ "lo_commit": "6861f6509a2b5b3b1b21d04fc502ba55f1326a7d",
+ "hi_commit": "9bcb4eff4d7e7755276645c767948c25c00481b8",
+ "level": "release",
+ "measured_steps": 7,
+ "builds": 7,
+ "intermediate": 0,
+ "outside": 0,
+ "skipped": [],
+ "commits_est": 1,
+ "n_commits": 1,
+ "prs": [
+  "21048"
+ ],
+ "commits": [
+  {
+   "sha": "9bcb4eff4d7e7755276645c767948c25c00481b8",
+   "date": "2026-03-27T09:05:21+02:00",
+   "author": "ren",
+   "subject": "metal : Fix dimension constraint violation in matmul2d descriptor (#21048)",
+   "pr": "21048",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/21048",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/9bcb4eff4d7e7755276645c767948c25c00481b8",
+   "n_files": 1,
+   "files": [
+    "ggml/src/ggml-metal/ggml-metal-device.m"
+   ]
+  }
+ ],
+ "git_error": "",
+ "updated_at_utc": "2026-10-15T14:12:26Z"
+}

@@ -1,0 +1,4 @@
+2026-10-14T23:25:07 [b1218] start (reps=5 jobs=8)
+2026-10-14T23:25:07 [b1218] build-only mode: no benchmark
+2026-10-14T23:25:14 [b1218] build ok in 6.305 s
+2026-10-14T23:25:15 [b1218] done stage=built -> <repo>/results/bisect_builds/b1218

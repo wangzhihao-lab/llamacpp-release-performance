@@ -1,0 +1,4 @@
+2026-10-14T15:25:06 [b8646] start (reps=5 jobs=8)
+2026-10-14T15:25:06 [b8646] build-only mode: no benchmark
+2026-10-14T15:25:44 [b8646] build ok in 31.568 s
+2026-10-14T15:25:51 [b8646] done stage=built -> <repo>/results/bisect_builds/b8646

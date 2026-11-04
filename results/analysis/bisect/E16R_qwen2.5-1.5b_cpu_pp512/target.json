@@ -1,0 +1,14 @@
+{
+ "event_id": "E16R",
+ "lo": "b3130",
+ "hi": "b3222",
+ "model": "qwen2.5-1.5b",
+ "backend": "cpu",
+ "test": "pp512",
+ "sign": 1,
+ "series": "qwen2.5-1.5b/cpu/pp512",
+ "direction": "up",
+ "ref_lr": 0.21463821833145236,
+ "ref_source": "step 2 fixed phase (v11)",
+ "written_at_utc": "2026-10-15T19:35:49Z"
+}

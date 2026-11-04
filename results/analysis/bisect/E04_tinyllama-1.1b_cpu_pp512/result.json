@@ -1,0 +1,46 @@
+{
+ "event_id": "E04",
+ "series": "tinyllama-1.1b/cpu/pp512",
+ "label": "E04_tinyllama-1.1b_cpu_pp512",
+ "lo0": "b1561",
+ "hi0": "b1621",
+ "direction": "up",
+ "ref_lr": 1.0822640178941434,
+ "ref_source": "step 2 fixed phase (v11)",
+ "status": "located",
+ "pause_reason": "",
+ "note": "",
+ "lo": "b1573",
+ "hi": "b1574",
+ "lo_commit": "b38a16dfcff88d547f78f52d1bea31b84a05aff7",
+ "hi_commit": "8406b0924bf323f37d536dee8b8165c1f3d9d11d",
+ "level": "release",
+ "measured_steps": 5,
+ "builds": 5,
+ "intermediate": 0,
+ "outside": 0,
+ "skipped": [],
+ "commits_est": 1,
+ "n_commits": 1,
+ "prs": [
+  "4240"
+ ],
+ "commits": [
+  {
+   "sha": "8406b0924bf323f37d536dee8b8165c1f3d9d11d",
+   "date": "2023-11-28T10:32:03+02:00",
+   "author": "Georgi Gerganov",
+   "subject": "ggml : re-enable BLAS for CPU when src0 != F32 + remove redundant full offload checks in llama.cpp (#4240)",
+   "pr": "4240",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/4240",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/8406b0924bf323f37d536dee8b8165c1f3d9d11d",
+   "n_files": 2,
+   "files": [
+    "ggml.c",
+    "llama.cpp"
+   ]
+  }
+ ],
+ "git_error": "",
+ "updated_at_utc": "2026-10-15T14:12:25Z"
+}

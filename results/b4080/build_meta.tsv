@@ -1,0 +1,31 @@
+tag	b4080
+release_commit	ae8de6d50a09d49545e0afab2e50cc4acfb280e2
+commit_date_utc	2024-11-14T17:04:35Z
+build_number	4080
+started_at_utc	2026-10-12T16:59:17Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b4080.tar.gz
+tarball_sha256	9d1bf36e829b007efe7e753debe5469aa04d432dccc8a946fb31e83db9e44065
+tarball_commit	ae8de6d50a09d49545e0afab2e50cc4acfb280e2
+option_era	ggml
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DGGML_CCACHE=OFF -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	1.133
+build_s	14.392
+compile_s	15.525
+binary_bytes	2608984
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	benchmarked
+finished_at_utc	2026-10-12T17:05:11Z

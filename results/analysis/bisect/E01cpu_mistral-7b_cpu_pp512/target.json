@@ -1,0 +1,14 @@
+{
+ "event_id": "E01cpu",
+ "lo": "b1137",
+ "hi": "b1245",
+ "model": "mistral-7b",
+ "backend": "cpu",
+ "test": "pp512",
+ "sign": -1,
+ "series": "mistral-7b/cpu/pp512",
+ "direction": "down",
+ "ref_lr": 0.248,
+ "ref_source": "--ref-lr",
+ "written_at_utc": "2026-10-26T12:12:45Z"
+}

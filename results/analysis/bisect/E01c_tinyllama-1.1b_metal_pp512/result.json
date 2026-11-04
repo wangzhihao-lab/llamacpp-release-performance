@@ -1,0 +1,48 @@
+{
+ "event_id": "E01c",
+ "series": "tinyllama-1.1b/metal/pp512",
+ "label": "E01c_tinyllama-1.1b_metal_pp512",
+ "lo0": "b1226",
+ "hi0": "b1245",
+ "direction": "up",
+ "ref_lr": 0.463,
+ "ref_source": "--ref-lr",
+ "status": "located",
+ "pause_reason": "",
+ "note": "",
+ "lo": "c76164fe2e65c",
+ "hi": "ca51b68765799",
+ "lo_commit": "76164fe2e65c058e9ee2c3afd0ad6b182ca57e25",
+ "hi_commit": "a51b68765799e75e17c7622f376bfbeb66f1bd70",
+ "level": "commit",
+ "measured_steps": 4,
+ "builds": 4,
+ "intermediate": 0,
+ "outside": 0,
+ "skipped": [],
+ "commits_est": null,
+ "n_commits": 1,
+ "prs": [
+  "3168"
+ ],
+ "commits": [
+  {
+   "sha": "a51b68765799e75e17c7622f376bfbeb66f1bd70",
+   "date": "2023-09-15T11:09:24+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "metal : relax conditions on fast matrix multiplication kernel (#3168)",
+   "pr": "3168",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/3168",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/a51b68765799e75e17c7622f376bfbeb66f1bd70",
+   "n_files": 4,
+   "files": [
+    "ggml-metal.m",
+    "ggml-metal.metal",
+    "ggml.c",
+    "llama.cpp"
+   ]
+  }
+ ],
+ "git_error": "",
+ "updated_at_utc": "2026-10-15T08:54:59Z"
+}

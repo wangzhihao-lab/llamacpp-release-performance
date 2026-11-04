@@ -1,0 +1,4 @@
+2026-10-15T01:14:01 [b7141] start (reps=5 jobs=8)
+2026-10-15T01:14:01 [b7141] build-only mode: no benchmark
+2026-10-15T01:15:40 [b7141] build ok in 26.789 s
+2026-10-15T01:15:41 [b7141] done stage=built -> <repo>/results/bisect_builds/b7141

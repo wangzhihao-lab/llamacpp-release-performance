@@ -1,0 +1,17 @@
+Data license
+
+The data in this package, the files under results/ and data/, are released
+under the Creative Commons Attribution 4.0 International license (CC BY 4.0).
+
+Copyright (c) 2026 Xiaoyan Tian, Min Yu, Zhihao Wang
+
+License summary: https://creativecommons.org/licenses/by/4.0/
+Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+To give credit, cite the paper "What Changes the Speed of an LLM Inference
+Engine? Re-measuring and Bisecting Three Years of llama.cpp Releases" by
+Xiaoyan Tian, Min Yu and Zhihao Wang.
+
+The code in this package is covered by the MIT License in the file LICENSE.
+llama.cpp and the models are not distributed with this package and keep their
+own licenses.

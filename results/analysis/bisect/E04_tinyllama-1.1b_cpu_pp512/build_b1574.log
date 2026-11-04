@@ -1,0 +1,4 @@
+2026-10-14T23:12:41 [b1574] start (reps=5 jobs=8)
+2026-10-14T23:12:41 [b1574] build-only mode: no benchmark
+2026-10-14T23:12:51 [b1574] build ok in 7.606 s
+2026-10-14T23:12:52 [b1574] done stage=built -> <repo>/results/bisect_builds/b1574

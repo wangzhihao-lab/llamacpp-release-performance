@@ -1,0 +1,31 @@
+tag	b5056
+release_commit	0364178ca2452bd241a4cdd4350d0d7a6ff8c4b4
+commit_date_utc	2025-04-05T15:17:40Z
+build_number	5056
+started_at_utc	2026-10-12T17:53:48Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b5056.tar.gz
+tarball_sha256	2bf1be2dcc38e23af3c0b2b84929189ac7bf891e081b43887de7dcf6155e9361
+tarball_commit	0364178ca2452bd241a4cdd4350d0d7a6ff8c4b4
+option_era	ggml
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DGGML_CCACHE=OFF -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	3.392
+build_s	16.178
+compile_s	19.570
+binary_bytes	2800312
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	benchmarked
+finished_at_utc	2026-10-12T17:58:44Z

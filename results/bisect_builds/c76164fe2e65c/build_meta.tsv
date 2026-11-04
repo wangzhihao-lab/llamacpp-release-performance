@@ -1,0 +1,32 @@
+tag	c76164fe2e65c
+release_commit	76164fe2e65c058e9ee2c3afd0ad6b182ca57e25
+commit_date_utc	2023-09-15T08:07:40Z
+build_number	
+started_at_utc	2026-10-15T08:51:38Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/76164fe2e65c058e9ee2c3afd0ad6b182ca57e25.tar.gz
+mode	build_only
+tarball_sha256	e2b02130d8613a80f949d9723164533e1d6969701922f2f2c91f399c83277815
+tarball_commit	76164fe2e65c058e9ee2c3afd0ad6b182ca57e25
+option_era	llama
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DLLAMA_METAL=ON -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	0.671
+build_s	5.927
+compile_s	6.598
+binary_bytes	967176
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	built
+finished_at_utc	2026-10-15T08:51:47Z

@@ -1,0 +1,14 @@
+{
+ "event_id": "E16R",
+ "lo": "b3130",
+ "hi": "b3222",
+ "model": "mistral-7b",
+ "backend": "cpu",
+ "test": "pp512",
+ "sign": 1,
+ "series": "mistral-7b/cpu/pp512",
+ "direction": "up",
+ "ref_lr": 0.20917545332126952,
+ "ref_source": "step 2 fixed phase (v11)",
+ "written_at_utc": "2026-10-15T19:42:40Z"
+}

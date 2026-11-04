@@ -1,0 +1,31 @@
+# Continuous queue of steps 2 and 3 (from 2026-10-14, no time window).
+# Read again before every item: append, reorder or remove lines freely; a running item is not affected.
+# Tab separated: name, kind (step2 | judge | step3 | bisect_confirmed | end), arguments. Done names: results/analysis/chain_runs/continuous_done.txt
+main18_rest	step2	--classes C,A --order-by priority --max-events 18
+judge1	judge
+judge1_norm1	judge	--drop-round1-unwarmed --suffix _norm1
+bisect_E49	step3	--from-step2 E49 --step2-rule v11
+rest_CA	step2	--classes C,A --order-by priority
+aa_control	step2	--events results/analysis/control_events.csv --event-ids AA1
+judge2	judge
+judge2_norm1	judge	--drop-round1-unwarmed --suffix _norm1
+cp	step2	--events results/analysis/changepoint_events.csv --classes CP --order-by priority
+judge3	judge
+judge3_norm1	judge	--drop-round1-unwarmed --suffix _norm1
+bisect_conf1	bisect_confirmed
+bisect_E01_commit	step3	--lo b1226 --hi b1245 --model tinyllama-1.1b --backend metal --test pp512 --direction up --event-id E01c --ref-lr 0.463 --commit-level
+d	step2	--classes D --order-by priority
+judge4	judge
+judge4_norm1	judge	--drop-round1-unwarmed --suffix _norm1
+bisect_conf2	bisect_confirmed
+visibility	step2	--events results/analysis/visibility_events.csv --classes V --order-by priority
+remeasure_E01_E14	step2	--events results/analysis/remeasure_events.csv --event-ids E01R,E14R
+judge_end	judge
+judge_end_norm1	judge	--drop-round1-unwarmed --suffix _norm1
+remeasure_E16	step2	--events results/analysis/remeasure_events.csv --event-ids E16R
+judge5	judge
+judge5_norm1	judge	--drop-round1-unwarmed --suffix _norm1
+bisect_E16R	step3	--from-step2 E16R --step2-rule v11 --rounds 4
+judge_final	judge
+judge_final_norm1	judge	--drop-round1-unwarmed --suffix _norm1
+stop	end

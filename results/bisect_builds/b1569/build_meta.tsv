@@ -1,0 +1,32 @@
+tag	b1569
+release_commit	3e73d31d9cc0232882ce61c64742aff3ecfec416
+commit_date_utc	2023-11-26T19:52:23Z
+build_number	1569
+started_at_utc	2026-10-15T06:00:07Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b1569.tar.gz
+mode	build_only
+tarball_sha256	250dfef2c3f56a7611706b418ef7546a6028d9785b7348636b12b7b75643335a
+tarball_commit	3e73d31d9cc0232882ce61c64742aff3ecfec416
+option_era	llama
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DLLAMA_METAL=ON -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	0.697
+build_s	6.859
+compile_s	7.556
+binary_bytes	1057912
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	built
+finished_at_utc	2026-10-15T06:00:17Z

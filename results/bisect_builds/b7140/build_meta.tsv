@@ -1,0 +1,32 @@
+tag	b7140
+release_commit	4902eebe33ed2341ef9bd7c80195bbd9d24f4d5f
+commit_date_utc	2025-11-24T06:16:56Z
+build_number	7140
+started_at_utc	2026-10-15T08:05:30Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b7140.tar.gz
+mode	build_only
+tarball_sha256	f369d97506d316f12e67aa38b6c9e4c83aa677a22174bbaf48c506841720e38b
+tarball_commit	4902eebe33ed2341ef9bd7c80195bbd9d24f4d5f
+option_era	ggml
+bench_src_dir	tools
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DGGML_CCACHE=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_TOOLS=ON
+configure_rc	0
+build_rc	0
+configure_s	3.816
+build_s	29.193
+compile_s	33.009
+binary_bytes	3785016
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	-nopo 1
+stage	built
+finished_at_utc	2026-10-15T08:06:10Z

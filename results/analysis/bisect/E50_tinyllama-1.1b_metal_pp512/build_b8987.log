@@ -1,0 +1,4 @@
+2026-10-14T23:59:48 [b8987] start (reps=5 jobs=8)
+2026-10-14T23:59:48 [b8987] build-only mode: no benchmark
+2026-10-15T00:00:27 [b8987] build ok in 31.888 s
+2026-10-15T00:00:28 [b8987] done stage=built -> <repo>/results/bisect_builds/b8987

@@ -1,0 +1,31 @@
+tag	b6276
+release_commit	f7207b0415986dd7f48447149da7de3a82338276
+commit_date_utc	2025-08-25T21:18:09Z
+build_number	6276
+started_at_utc	2026-10-12T18:42:41Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b6276.tar.gz
+tarball_sha256	39028bb9e2f2ea4360d57a318df2840fb1c34ae08b2db44f717faf94491338c1
+tarball_commit	f7207b0415986dd7f48447149da7de3a82338276
+option_era	ggml
+bench_src_dir	tools
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DGGML_CCACHE=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_TOOLS=ON
+configure_rc	0
+build_rc	0
+configure_s	3.123
+build_s	18.884
+compile_s	22.007
+binary_bytes	3476504
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	-nopo 1
+stage	benchmarked
+finished_at_utc	2026-10-12T18:47:26Z

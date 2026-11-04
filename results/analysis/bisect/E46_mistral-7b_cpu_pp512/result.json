@@ -1,0 +1,47 @@
+{
+ "event_id": "E46",
+ "series": "mistral-7b/cpu/pp512",
+ "label": "E46_mistral-7b_cpu_pp512",
+ "lo0": "b7100",
+ "hi0": "b7245",
+ "direction": "down",
+ "ref_lr": 0.26030837361007375,
+ "ref_source": "step 2 fixed phase (v11)",
+ "status": "located",
+ "pause_reason": "",
+ "note": "",
+ "lo": "b7141",
+ "hi": "b7142",
+ "lo_commit": "5f55c385cbff7bcee0901782dec6d01de53f4dfe",
+ "hi_commit": "dbb852b549adf29609ec53b518f7922a982f14b9",
+ "level": "release",
+ "measured_steps": 7,
+ "builds": 7,
+ "intermediate": 0,
+ "outside": 0,
+ "skipped": [],
+ "commits_est": 1,
+ "n_commits": 1,
+ "prs": [
+  "16739"
+ ],
+ "commits": [
+  {
+   "sha": "dbb852b549adf29609ec53b518f7922a982f14b9",
+   "date": "2025-11-24T13:08:11+02:00",
+   "author": "Alberto Cabrera Pérez",
+   "subject": "ggml-cpu: arm64: q4_K repack gemm and gemv implementations (i8mm) (#16739)",
+   "pr": "16739",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/16739",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/dbb852b549adf29609ec53b518f7922a982f14b9",
+   "n_files": 3,
+   "files": [
+    "ggml/src/ggml-cpu/arch-fallback.h",
+    "ggml/src/ggml-cpu/arch/arm/repack.cpp",
+    "ggml/src/ggml-cpu/repack.cpp"
+   ]
+  }
+ ],
+ "git_error": "",
+ "updated_at_utc": "2026-10-15T14:12:28Z"
+}

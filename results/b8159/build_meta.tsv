@@ -1,0 +1,31 @@
+tag	b8159
+release_commit	1ca3d1de153152645cf890b637c2c6450f1615e3
+commit_date_utc	2026-02-26T10:46:32Z
+build_number	8159
+started_at_utc	2026-10-12T19:49:39Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b8159.tar.gz
+tarball_sha256	eda62fc38ca04961ca3ebb36b9b2f1f537aecacce3e4b6e676654d4fadacbe7a
+tarball_commit	1ca3d1de153152645cf890b637c2c6450f1615e3
+option_era	ggml
+bench_src_dir	tools
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DGGML_CCACHE=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_TOOLS=ON
+configure_rc	0
+build_rc	0
+configure_s	4.016
+build_s	30.838
+compile_s	34.854
+binary_bytes	4445048
+dylib_bytes	0
+linked_libs	/opt/homebrew/opt/openssl@3/lib/libssl.3.dylib /opt/homebrew/opt/openssl@3/lib/libcrypto.3.dylib 
+cpu_no_op_offload_flag	-nopo 1
+stage	benchmarked
+finished_at_utc	2026-10-12T19:55:01Z

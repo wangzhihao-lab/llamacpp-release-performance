@@ -1,0 +1,65 @@
+{
+ "event_id": "E03",
+ "series": "tinyllama-1.1b/cpu/pp512",
+ "label": "E03_tinyllama-1.1b_cpu_pp512",
+ "lo0": "b1505",
+ "hi0": "b1561",
+ "direction": "down",
+ "ref_lr": 1.0375951517581337,
+ "ref_source": "step 2 fixed phase (v11)",
+ "status": "located",
+ "pause_reason": "",
+ "note": "",
+ "lo": "b1510",
+ "hi": "b1512",
+ "lo_commit": "4760e7cc0b68570d58f55e8dda469805d1759d0d",
+ "hi_commit": "3d68f364f15778dc326f5024f2e5af1ad6dfddef",
+ "level": "release",
+ "measured_steps": 5,
+ "builds": 5,
+ "intermediate": 0,
+ "outside": 0,
+ "skipped": [],
+ "commits_est": 2,
+ "n_commits": 2,
+ "prs": [
+  "4060"
+ ],
+ "commits": [
+  {
+   "sha": "3d68f364f15778dc326f5024f2e5af1ad6dfddef",
+   "date": "2023-11-13T16:55:52+02:00",
+   "author": "Georgi Gerganov",
+   "subject": "ggml : sync (im2col, GPU conv, 32-bit arm compat) (#4060)",
+   "pr": "4060",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/4060",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/3d68f364f15778dc326f5024f2e5af1ad6dfddef",
+   "n_files": 8,
+   "files": [
+    "ggml-cuda.cu",
+    "ggml-impl.h",
+    "ggml-metal.h",
+    "ggml-metal.m",
+    "ggml-metal.metal",
+    "ggml-quants.c",
+    "ggml.c",
+    "ggml.h"
+   ]
+  },
+  {
+   "sha": "c049b37d7baf558944501705b91ac89b26ee3e41",
+   "date": "2023-11-13T14:18:08+02:00",
+   "author": "Georgi Gerganov",
+   "subject": "readme : update hot topics",
+   "pr": "",
+   "pr_url": "",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/c049b37d7baf558944501705b91ac89b26ee3e41",
+   "n_files": 1,
+   "files": [
+    "README.md"
+   ]
+  }
+ ],
+ "git_error": "",
+ "updated_at_utc": "2026-10-15T14:12:24Z"
+}

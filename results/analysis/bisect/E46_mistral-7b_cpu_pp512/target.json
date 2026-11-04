@@ -1,0 +1,14 @@
+{
+ "event_id": "E46",
+ "lo": "b7100",
+ "hi": "b7245",
+ "model": "mistral-7b",
+ "backend": "cpu",
+ "test": "pp512",
+ "sign": -1,
+ "series": "mistral-7b/cpu/pp512",
+ "direction": "down",
+ "ref_lr": 0.26030837361007375,
+ "ref_source": "step 2 fixed phase (v11)",
+ "written_at_utc": "2026-10-15T07:24:37Z"
+}

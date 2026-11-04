@@ -1,0 +1,14 @@
+{
+ "event_id": "E01c",
+ "lo": "b1226",
+ "hi": "b1245",
+ "model": "tinyllama-1.1b",
+ "backend": "metal",
+ "test": "pp512",
+ "sign": 1,
+ "series": "tinyllama-1.1b/metal/pp512",
+ "direction": "up",
+ "ref_lr": 0.463,
+ "ref_source": "--ref-lr",
+ "written_at_utc": "2026-10-15T08:40:19Z"
+}

@@ -1,0 +1,14 @@
+{
+ "event_id": "E49",
+ "lo": "b8545",
+ "hi": "b8740",
+ "model": "tinyllama-1.1b",
+ "backend": "metal",
+ "test": "pp512",
+ "sign": 1,
+ "series": "tinyllama-1.1b/metal/pp512",
+ "direction": "up",
+ "ref_lr": 0.6397174217653223,
+ "ref_source": "step 2 fixed phase (v11)",
+ "written_at_utc": "2026-10-14T22:25:06Z"
+}

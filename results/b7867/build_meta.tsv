@@ -1,0 +1,31 @@
+tag	b7867
+release_commit	d4964a7c66c4ff935d86c9ac92abeb12073723bf
+commit_date_utc	2026-01-29T01:20:22Z
+build_number	7867
+started_at_utc	2026-10-12T19:38:52Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b7867.tar.gz
+tarball_sha256	86c11b9930e553c4f4471715f5690a29cce318b0548a99d349a8a74a08f626f1
+tarball_commit	d4964a7c66c4ff935d86c9ac92abeb12073723bf
+option_era	ggml
+bench_src_dir	tools
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DGGML_CCACHE=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_TOOLS=ON
+configure_rc	0
+build_rc	0
+configure_s	4.133
+build_s	31.229
+compile_s	35.362
+binary_bytes	4349816
+dylib_bytes	0
+linked_libs	/opt/homebrew/opt/openssl@3/lib/libssl.3.dylib /opt/homebrew/opt/openssl@3/lib/libcrypto.3.dylib 
+cpu_no_op_offload_flag	-nopo 1
+stage	benchmarked
+finished_at_utc	2026-10-12T19:44:16Z

@@ -1,0 +1,1542 @@
+{
+ "event_id": "E16R",
+ "series": "qwen2.5-1.5b/cpu/pp512",
+ "label": "E16R_qwen2.5-1.5b_cpu_pp512",
+ "lo0": "b3130",
+ "hi0": "b3222",
+ "direction": "up",
+ "ref_lr": 0.21463821833145236,
+ "ref_source": "step 2 fixed phase (v11)",
+ "status": "effect_lost",
+ "pause_reason": "",
+ "note": "L_hi-L_lo = +0.0657 (+6.8%); needs sign + and |.| >= 0.1073 (0.5 x reference 0.2146)",
+ "lo": "b3130",
+ "hi": "b3222",
+ "lo_commit": "4bfe50f741479c1df1c377260c3ff5702586719e",
+ "hi_commit": "48e6b92cc378c937e59719f2c0f482bf76c9ca81",
+ "level": "release",
+ "measured_steps": 1,
+ "builds": 0,
+ "intermediate": 0,
+ "outside": 0,
+ "skipped": [],
+ "commits_est": 92,
+ "n_commits": 92,
+ "prs": [
+  "8068",
+  "7950",
+  "8104",
+  "8095",
+  "8102",
+  "8100",
+  "8075",
+  "8090",
+  "8062",
+  "6942",
+  "8083",
+  "7458",
+  "5763",
+  "8017",
+  "7931",
+  "7975",
+  "8077",
+  "8066",
+  "7961",
+  "8067",
+  "8064",
+  "8052",
+  "8015",
+  "8058",
+  "7790",
+  "8022",
+  "7845",
+  "8034",
+  "7477",
+  "7754",
+  "8041",
+  "8040",
+  "8036",
+  "8003",
+  "8018",
+  "8021",
+  "8020",
+  "7996",
+  "7993",
+  "8004",
+  "6408",
+  "7530",
+  "7648",
+  "7751",
+  "7989",
+  "7985",
+  "7943",
+  "7835",
+  "7851",
+  "7982",
+  "7899",
+  "7977",
+  "7932",
+  "7896",
+  "7948",
+  "7853",
+  "7946",
+  "7953",
+  "7951",
+  "7957",
+  "7958",
+  "7955",
+  "7947",
+  "7514",
+  "7710",
+  "7940",
+  "7921",
+  "7935",
+  "7936",
+  "7644",
+  "7713",
+  "7918",
+  "7914",
+  "6210",
+  "7809",
+  "7904",
+  "7857",
+  "7856",
+  "7883",
+  "7894",
+  "7794",
+  "7582",
+  "7818",
+  "7880",
+  "7868",
+  "7879"
+ ],
+ "commits": [
+  {
+   "sha": "48e6b92cc378c937e59719f2c0f482bf76c9ca81",
+   "date": "2024-06-25T21:56:49+10:00",
+   "author": "Xuan Son Nguyen",
+   "subject": "Add chat template support for llama-cli (#8068)",
+   "pr": "8068",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8068",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/48e6b92cc378c937e59719f2c0f482bf76c9ca81",
+   "n_files": 7,
+   "files": [
+    "common/common.cpp",
+    "common/common.h",
+    "examples/main/main.cpp",
+    "examples/server/server.cpp",
+    "examples/server/utils.hpp",
+    "llama.cpp",
+    "tests/test-chat-template.cpp"
+   ]
+  },
+  {
+   "sha": "3791ad219323389106dc3fd80814eb5bbb7b80de",
+   "date": "2024-06-25T21:27:35+10:00",
+   "author": "HanishKVC",
+   "subject": "SimpleChat v3.1: Boolean chat request options in Settings UI, cache_prompt (#7950)",
+   "pr": "7950",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7950",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/3791ad219323389106dc3fd80814eb5bbb7b80de",
+   "n_files": 3,
+   "files": [
+    "examples/server/public_simplechat/readme.md",
+    "examples/server/public_simplechat/simplechat.js",
+    "examples/server/public_simplechat/simplechat_screens.webp"
+   ]
+  },
+  {
+   "sha": "f702a90e245499283d6de0b287701c723cda2a87",
+   "date": "2024-06-25T10:44:48+02:00",
+   "author": "HatsuneMikuUwU33",
+   "subject": "Update control vector help (#8104)",
+   "pr": "8104",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8104",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/f702a90e245499283d6de0b287701c723cda2a87",
+   "n_files": 1,
+   "files": [
+    "common/common.cpp"
+   ]
+  },
+  {
+   "sha": "083bacce14c1aaf9976aa40e8266cdc25ac749d3",
+   "date": "2024-06-25T10:19:20+08:00",
+   "author": "Meng, Hengyu",
+   "subject": "[SYCL] Re-enabled mul_mat_batched_sycl (#8095)",
+   "pr": "8095",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8095",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/083bacce14c1aaf9976aa40e8266cdc25ac749d3",
+   "n_files": 1,
+   "files": [
+    "ggml-sycl.cpp"
+   ]
+  },
+  {
+   "sha": "2df373ac40ea581ccca8a58c713f03ad9d4b658d",
+   "date": "2024-06-25T01:22:33+02:00",
+   "author": "Johannes Gäßler",
+   "subject": "CUDA: fix matrix multiplication algorithm choice (#8102)",
+   "pr": "8102",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8102",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/2df373ac40ea581ccca8a58c713f03ad9d4b658d",
+   "n_files": 1,
+   "files": [
+    "ggml-cuda.cu"
+   ]
+  },
+  {
+   "sha": "3b099bcd9cbf2434f90cbe40eba6fa2189ed1d02",
+   "date": "2024-06-24T22:15:33+02:00",
+   "author": "Johannes Gäßler",
+   "subject": "CUDA: fix MMQ writeback for int8 tensor cores (#8100)",
+   "pr": "8100",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8100",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/3b099bcd9cbf2434f90cbe40eba6fa2189ed1d02",
+   "n_files": 1,
+   "files": [
+    "ggml-cuda/mmq.cuh"
+   ]
+  },
+  {
+   "sha": "a818f3028d1497a51cb2b8eb7d993ad58784940e",
+   "date": "2024-06-24T17:43:42+02:00",
+   "author": "Johannes Gäßler",
+   "subject": "CUDA: use MMQ instead of cuBLAS by default (#8075)",
+   "pr": "8075",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8075",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/a818f3028d1497a51cb2b8eb7d993ad58784940e",
+   "n_files": 8,
+   "files": [
+    "CMakeLists.txt",
+    "Makefile",
+    "README.md",
+    "ggml-cuda.cu",
+    "ggml-cuda/common.cuh",
+    "ggml-cuda/mmq.cu",
+    "ggml-cuda/mmq.cuh",
+    "ggml-cuda/mmvq.cuh"
+   ]
+  },
+  {
+   "sha": "d62e4aaa02540c89be8b59426340b909d02bbc9e",
+   "date": "2024-06-24T14:13:39+02:00",
+   "author": "fairydreaming",
+   "subject": "gguf-py : fix tensor groups for encoder-decoder models in gguf-dump.py (#8090)",
+   "pr": "8090",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8090",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/d62e4aaa02540c89be8b59426340b909d02bbc9e",
+   "n_files": 1,
+   "files": [
+    "gguf-py/scripts/gguf-dump.py"
+   ]
+  },
+  {
+   "sha": "9a590c82262dd518137f85406e65e452fdf2aca3",
+   "date": "2024-06-24T12:41:23+02:00",
+   "author": "Johannes Gäßler",
+   "subject": "CUDA: optimize MMQ int8 tensor core performance (#8062)",
+   "pr": "8062",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8062",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/9a590c82262dd518137f85406e65e452fdf2aca3",
+   "n_files": 3,
+   "files": [
+    "ggml-cuda/common.cuh",
+    "ggml-cuda/mma.cuh",
+    "ggml-cuda/mmq.cuh"
+   ]
+  },
+  {
+   "sha": "52fc8705a0617452df08333e1161838726c322b4",
+   "date": "2024-06-24T19:42:03+10:00",
+   "author": "Christian Zhou-Zheng",
+   "subject": "Option to split during conversion (#6942)",
+   "pr": "6942",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/6942",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/52fc8705a0617452df08333e1161838726c322b4",
+   "n_files": 3,
+   "files": [
+    "convert-hf-to-gguf.py",
+    "gguf-py/gguf/constants.py",
+    "gguf-py/gguf/gguf_writer.py"
+   ]
+  },
+  {
+   "sha": "8cb508d0d5c024e12692370d85237b45469a004b",
+   "date": "2024-06-24T08:36:11+03:00",
+   "author": "slaren",
+   "subject": "disable publishing the full-rocm docker image (#8083)",
+   "pr": "8083",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8083",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/8cb508d0d5c024e12692370d85237b45469a004b",
+   "n_files": 1,
+   "files": [
+    ".github/workflows/docker.yml"
+   ]
+  },
+  {
+   "sha": "646ef4a9cfb6f40236d3b9ef07ac03700b6efcc7",
+   "date": "2024-06-24T08:30:24+03:00",
+   "author": "Yann Follet",
+   "subject": "embedding : more cli arguments (#7458)",
+   "pr": "7458",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7458",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/646ef4a9cfb6f40236d3b9ef07ac03700b6efcc7",
+   "n_files": 4,
+   "files": [
+    "common/common.cpp",
+    "common/common.h",
+    "examples/embedding/README.md",
+    "examples/embedding/embedding.cpp"
+   ]
+  },
+  {
+   "sha": "de0d6a68ac99f307fe889c48e21124bc3b7ca29a",
+   "date": "2024-06-24T07:06:05+02:00",
+   "author": "fairydreaming",
+   "subject": "gguf-py, convert-hf : model conversion support for T5 and FLAN-T5 model variants (#5763)",
+   "pr": "5763",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/5763",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/de0d6a68ac99f307fe889c48e21124bc3b7ca29a",
+   "n_files": 4,
+   "files": [
+    "convert-hf-to-gguf.py",
+    "gguf-py/gguf/constants.py",
+    "gguf-py/gguf/gguf_writer.py",
+    "gguf-py/gguf/tensor_mapping.py"
+   ]
+  },
+  {
+   "sha": "95f57bb5d5b18ef0beb2702a0d6c06e46804075c",
+   "date": "2024-06-24T03:07:59+02:00",
+   "author": "slaren",
+   "subject": "ggml : remove ggml_task_type and GGML_PERF (#8017)",
+   "pr": "8017",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8017",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/95f57bb5d5b18ef0beb2702a0d6c06e46804075c",
+   "n_files": 8,
+   "files": [
+    "CMakeLists.txt",
+    "Makefile",
+    "ggml-vulkan.cpp",
+    "ggml.c",
+    "ggml.h",
+    "llama.cpp",
+    "sgemm.cpp",
+    "sgemm.h"
+   ]
+  },
+  {
+   "sha": "e112b610a1a75cb7fa8351e1a933e2e7a755a5ce",
+   "date": "2024-06-23T21:27:57+03:00",
+   "author": "Eddie-Wang",
+   "subject": "llama : add support for BitnetForCausalLM (#7931)",
+   "pr": "7931",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7931",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/e112b610a1a75cb7fa8351e1a933e2e7a755a5ce",
+   "n_files": 4,
+   "files": [
+    "convert-hf-to-gguf.py",
+    "gguf-py/gguf/constants.py",
+    "gguf-py/gguf/tensor_mapping.py",
+    "llama.cpp"
+   ]
+  },
+  {
+   "sha": "6a2f298bd784403c5c33eebb822217ec5d9b5590",
+   "date": "2024-06-23T11:03:08-04:00",
+   "author": "Aarni Koskela",
+   "subject": "server : fix JSON-Scheme typo (#7975)",
+   "pr": "7975",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7975",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/6a2f298bd784403c5c33eebb822217ec5d9b5590",
+   "n_files": 1,
+   "files": [
+    "examples/server/public/index-new.html"
+   ]
+  },
+  {
+   "sha": "11318d9aa1f668aa10407a5cb9614371af32f3ce",
+   "date": "2024-06-23T15:39:45+02:00",
+   "author": "Daniel Bevenius",
+   "subject": "Fix typo in llama_set_embeddings comment (#8077)",
+   "pr": "8077",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8077",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/11318d9aa1f668aa10407a5cb9614371af32f3ce",
+   "n_files": 1,
+   "files": [
+    "llama.h"
+   ]
+  },
+  {
+   "sha": "b6b9a8e606da7764bd3649c2ea574979c85abd43",
+   "date": "2024-06-23T13:14:45+02:00",
+   "author": "slaren",
+   "subject": "fix CI failures (#8066)",
+   "pr": "8066",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8066",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/b6b9a8e606da7764bd3649c2ea574979c85abd43",
+   "n_files": 2,
+   "files": [
+    ".github/workflows/server.yml",
+    "tests/test-backend-ops.cpp"
+   ]
+  },
+  {
+   "sha": "45c0e2e4c1268c2d7c8c45536f15e3c9a731ecdc",
+   "date": "2024-06-23T10:21:25+02:00",
+   "author": "0cc4m",
+   "subject": "Refactor Vulkan backend to allow multiple contexts (#7961)",
+   "pr": "7961",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7961",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/45c0e2e4c1268c2d7c8c45536f15e3c9a731ecdc",
+   "n_files": 8,
+   "files": [
+    "ggml-vulkan-shaders.hpp",
+    "ggml-vulkan.cpp",
+    "vulkan-shaders/mul_mat_vec.comp",
+    "vulkan-shaders/mul_mat_vec_q2_k.comp",
+    "vulkan-shaders/mul_mat_vec_q3_k.comp",
+    "vulkan-shaders/mul_mat_vec_q4_k.comp",
+    "vulkan-shaders/mul_mat_vec_q5_k.comp",
+    "vulkan-shaders/mul_mat_vec_q6_k.comp"
+   ]
+  },
+  {
+   "sha": "b5a5f34efadec8d8f0057b35cb04742abfeb2ef5",
+   "date": "2024-06-22T14:28:18-04:00",
+   "author": "Clint Herron",
+   "subject": "Removing extra blank lines that were breaking Lint. (#8067)",
+   "pr": "8067",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8067",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/b5a5f34efadec8d8f0057b35cb04742abfeb2ef5",
+   "n_files": 1,
+   "files": [
+    "convert-hf-to-gguf.py"
+   ]
+  },
+  {
+   "sha": "3e58b0ee355f78be41cf5211b68426761339bc3c",
+   "date": "2024-06-22T18:11:30+02:00",
+   "author": "Xuan Son Nguyen",
+   "subject": "cvector: fix CI + correct help message (#8064)",
+   "pr": "8064",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8064",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/3e58b0ee355f78be41cf5211b68426761339bc3c",
+   "n_files": 4,
+   "files": [
+    ".editorconfig",
+    "common/common.cpp",
+    "examples/cvector-generator/README.md",
+    "examples/cvector-generator/cvector-generator.cpp"
+   ]
+  },
+  {
+   "sha": "adf480c3ab3abedc964c8ae381476257583ae134",
+   "date": "2024-06-22T17:19:37+02:00",
+   "author": "HatsuneMikuUwU33",
+   "subject": "cvector-generator: Moe Moe Fixie-Fixie for Lots of Formats~! ♡(ᐢ ᴥ ᐢ)♡ (#8052)",
+   "pr": "8052",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8052",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/adf480c3ab3abedc964c8ae381476257583ae134",
+   "n_files": 3,
+   "files": [
+    "examples/cvector-generator/cvector-generator.cpp",
+    "examples/cvector-generator/negative.txt",
+    "examples/cvector-generator/positive.txt"
+   ]
+  },
+  {
+   "sha": "3aa184a8c7c553b5dfcc142d919f3db695df297a",
+   "date": "2024-06-22T15:37:41+02:00",
+   "author": "0xspringtime",
+   "subject": "convert-hf : change assert to exception (#8015)",
+   "pr": "8015",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8015",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/3aa184a8c7c553b5dfcc142d919f3db695df297a",
+   "n_files": 1,
+   "files": [
+    "convert-hf-to-gguf.py"
+   ]
+  },
+  {
+   "sha": "5b48cd53a87928db0c6447f0c9dac4db5802102d",
+   "date": "2024-06-22T15:16:10+02:00",
+   "author": "ddh0",
+   "subject": "Update llama-quantize ppl/file size output from LLaMA-v1 to Llama-3 values (#8058)",
+   "pr": "8058",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8058",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/5b48cd53a87928db0c6447f0c9dac4db5802102d",
+   "n_files": 1,
+   "files": [
+    "examples/quantize/quantize.cpp"
+   ]
+  },
+  {
+   "sha": "c5a8d4b749352645afd4c024f85d6eca2ca72c6d",
+   "date": "2024-06-21T23:18:36-04:00",
+   "author": "Clint Herron",
+   "subject": "JSON Schema to GBNF integration tests (#7790)",
+   "pr": "7790",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7790",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/c5a8d4b749352645afd4c024f85d6eca2ca72c6d",
+   "n_files": 2,
+   "files": [
+    "Makefile",
+    "tests/test-grammar-integration.cpp"
+   ]
+  },
+  {
+   "sha": "557b653dc9ed91e8c313e87500e0050c775f81b6",
+   "date": "2024-06-21T10:28:20+02:00",
+   "author": "k.h.lai",
+   "subject": "vulkan: detect multiple devices by deviceUUID instead of deviceID (#8022)",
+   "pr": "8022",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8022",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/557b653dc9ed91e8c313e87500e0050c775f81b6",
+   "n_files": 1,
+   "files": [
+    "ggml-vulkan.cpp"
+   ]
+  },
+  {
+   "sha": "7d5e8777ae1d21af99d4f95be10db4870720da91",
+   "date": "2024-06-21T08:57:36+03:00",
+   "author": "Eve",
+   "subject": "ggml : AVX IQ quants (#7845)",
+   "pr": "7845",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7845",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/7d5e8777ae1d21af99d4f95be10db4870720da91",
+   "n_files": 1,
+   "files": [
+    "ggml-quants.c"
+   ]
+  },
+  {
+   "sha": "a927b0f3dd9a86ee042cd2bdcc8c9da4a855926b",
+   "date": "2024-06-21T08:51:28+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "llama : optimize long word tokenization with WPM (#8034)",
+   "pr": "8034",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8034",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/a927b0f3dd9a86ee042cd2bdcc8c9da4a855926b",
+   "n_files": 2,
+   "files": [
+    "llama.cpp",
+    "unicode.cpp"
+   ]
+  },
+  {
+   "sha": "80ea089d771f0c2d97afa8bead80ded412f600d7",
+   "date": "2024-06-21T08:38:22+03:00",
+   "author": "Douglas Hanley",
+   "subject": "llama : allow pooled embeddings on any model (#7477)",
+   "pr": "7477",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7477",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/80ea089d771f0c2d97afa8bead80ded412f600d7",
+   "n_files": 6,
+   "files": [
+    "common/common.cpp",
+    "examples/embedding/embedding.cpp",
+    "examples/gritlm/gritlm.cpp",
+    "examples/retrieval/retrieval.cpp",
+    "llama.cpp",
+    "llama.h"
+   ]
+  },
+  {
+   "sha": "0e64591e8290037db6412665a56354b789a0597e",
+   "date": "2024-06-21T08:30:58+03:00",
+   "author": "Shuichi Tsutsumi",
+   "subject": "swiftui : enable stream updating (#7754)",
+   "pr": "7754",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7754",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/0e64591e8290037db6412665a56354b789a0597e",
+   "n_files": 1,
+   "files": [
+    "examples/llama.swiftui/llama.swiftui/Models/LlamaState.swift"
+   ]
+  },
+  {
+   "sha": "b1ef562bc17fbf8ba436ddf2d89b78efd10d3e03",
+   "date": "2024-06-20T22:01:15+02:00",
+   "author": "Hamdoud Hakem",
+   "subject": "requirements : Bump torch and numpy for python3.12 (#8041)",
+   "pr": "8041",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8041",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/b1ef562bc17fbf8ba436ddf2d89b78efd10d3e03",
+   "n_files": 3,
+   "files": [
+    "requirements/requirements-convert-hf-to-gguf-update.txt",
+    "requirements/requirements-convert-hf-to-gguf.txt",
+    "requirements/requirements-convert-legacy-llama.txt"
+   ]
+  },
+  {
+   "sha": "17b291a6a581c47f24f99bad926b42617894f99f",
+   "date": "2024-06-20T21:59:59+02:00",
+   "author": "Hamdoud Hakem",
+   "subject": "convert-hf : Fix the encoding in the convert-hf-to-gguf-update.py (#8040)",
+   "pr": "8040",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8040",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/17b291a6a581c47f24f99bad926b42617894f99f",
+   "n_files": 1,
+   "files": [
+    "convert-hf-to-gguf-update.py"
+   ]
+  },
+  {
+   "sha": "abd894ad96a242043b8e197ec130d8649eead22e",
+   "date": "2024-06-20T16:40:13+02:00",
+   "author": "Johannes Gäßler",
+   "subject": "common: fix warning (#8036)",
+   "pr": "8036",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8036",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/abd894ad96a242043b8e197ec130d8649eead22e",
+   "n_files": 1,
+   "files": [
+    "common/common.cpp"
+   ]
+  },
+  {
+   "sha": "de391e4c803383bbea054b6edd016e78c024a74d",
+   "date": "2024-06-20T21:19:05+08:00",
+   "author": "luoyu-intel",
+   "subject": "[SYCL] Fix windows build and inference (#8003)",
+   "pr": "8003",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8003",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/de391e4c803383bbea054b6edd016e78c024a74d",
+   "n_files": 7,
+   "files": [
+    "CMakeLists.txt",
+    "CMakePresets.json",
+    "README-sycl.md",
+    "examples/sycl/win-build-sycl.bat",
+    "ggml-sycl.cpp",
+    "ggml-sycl/dpct/helper.hpp",
+    "ggml.h"
+   ]
+  },
+  {
+   "sha": "d50f8897a797a5a03f31228d1b5a7b8130ee1bc2",
+   "date": "2024-06-20T14:39:21+02:00",
+   "author": "Johannes Gäßler",
+   "subject": "CUDA: stream-k decomposition for MMQ (#8018)",
+   "pr": "8018",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8018",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/d50f8897a797a5a03f31228d1b5a7b8130ee1bc2",
+   "n_files": 4,
+   "files": [
+    "ggml-cuda.cu",
+    "ggml-cuda/common.cuh",
+    "ggml-cuda/mmq.cu",
+    "ggml-cuda/mmq.cuh"
+   ]
+  },
+  {
+   "sha": "2075a66a96cc1b04eabec7cf4b3051193d6f719e",
+   "date": "2024-06-20T08:32:01+03:00",
+   "author": "Michael de Gans",
+   "subject": "metal : fix `ggml_metal_supports_op` for BF16 (#8021)",
+   "pr": "8021",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8021",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/2075a66a96cc1b04eabec7cf4b3051193d6f719e",
+   "n_files": 1,
+   "files": [
+    "ggml-metal.m"
+   ]
+  },
+  {
+   "sha": "ba5899315283eb1df3902363daf79bdc5eefe426",
+   "date": "2024-06-20T09:57:10+10:00",
+   "author": "sasha0552",
+   "subject": "server : fix smart slot selection (#8020)",
+   "pr": "8020",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8020",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/ba5899315283eb1df3902363daf79bdc5eefe426",
+   "n_files": 1,
+   "files": [
+    "examples/server/server.cpp"
+   ]
+  },
+  {
+   "sha": "a7854743c5e6216a6178824a603aa9479728ddd5",
+   "date": "2024-06-19T22:10:42+02:00",
+   "author": "Michael de Gans",
+   "subject": "un-ignore `build-info.cmake` and `build-info.sh` (#7996)",
+   "pr": "7996",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7996",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/a7854743c5e6216a6178824a603aa9479728ddd5",
+   "n_files": 1,
+   "files": [
+    ".gitignore"
+   ]
+  },
+  {
+   "sha": "9c77ec1d74874ee22bdef8f110e8e8d41389abf2",
+   "date": "2024-06-19T15:04:15+02:00",
+   "author": "slaren",
+   "subject": "ggml : synchronize threads using barriers (#7993)",
+   "pr": "7993",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7993",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/9c77ec1d74874ee22bdef8f110e8e8d41389abf2",
+   "n_files": 2,
+   "files": [
+    ".github/workflows/server.yml",
+    "ggml.c"
+   ]
+  },
+  {
+   "sha": "a04a953cab583f0229e7b4b506346e3e9a85c8d0",
+   "date": "2024-06-19T13:04:36+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "codecov : remove (#8004)",
+   "pr": "8004",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/8004",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/a04a953cab583f0229e7b4b506346e3e9a85c8d0",
+   "n_files": 3,
+   "files": [
+    ".github/labeler.yml",
+    ".github/workflows/code-coverage.yml",
+    "codecov.yml"
+   ]
+  },
+  {
+   "sha": "623494a478134432fd2d7ee40135770a3340674f",
+   "date": "2024-06-19T09:11:51+08:00",
+   "author": "Meng, Hengyu",
+   "subject": "[SYCL] refactor (#6408)",
+   "pr": "6408",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/6408",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/623494a478134432fd2d7ee40135770a3340674f",
+   "n_files": 13,
+   "files": [
+    "ggml-sycl.cpp",
+    "ggml-sycl/backend.hpp",
+    "ggml-sycl/convert.cpp",
+    "ggml-sycl/convert.hpp",
+    "ggml-sycl/dequantize.hpp",
+    "ggml-sycl/dmmv.cpp",
+    "ggml-sycl/dmmv.hpp",
+    "ggml-sycl/mmq.cpp",
+    "ggml-sycl/mmq.hpp",
+    "ggml-sycl/mmvq.cpp",
+    "ggml-sycl/mmvq.hpp",
+    "ggml-sycl/presets.hpp",
+    "ggml-sycl/vecdotq.hpp"
+   ]
+  },
+  {
+   "sha": "37bef8943312d91183ff06d8f1214082a17344a5",
+   "date": "2024-06-18T18:40:52+02:00",
+   "author": "jaime-m-p",
+   "subject": "tokenizer : BPE fixes (#7530)",
+   "pr": "7530",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7530",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/37bef8943312d91183ff06d8f1214082a17344a5",
+   "n_files": 5,
+   "files": [
+    "llama.cpp",
+    "scripts/gen-unicode-data.py",
+    "tests/test-tokenizer-random.py",
+    "unicode-data.cpp",
+    "unicode.cpp"
+   ]
+  },
+  {
+   "sha": "91c188d6c296bd3384f2a02a83b71187aa3d18b3",
+   "date": "2024-06-18T22:19:45+10:00",
+   "author": "Sigbjørn Skjæret",
+   "subject": "Only use FIM middle token if it exists (#7648)",
+   "pr": "7648",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7648",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/91c188d6c296bd3384f2a02a83b71187aa3d18b3",
+   "n_files": 2,
+   "files": [
+    "examples/infill/infill.cpp",
+    "examples/server/server.cpp"
+   ]
+  },
+  {
+   "sha": "84f6de17f6a8602e7ff7f7c7bda36a73f510a2dd",
+   "date": "2024-06-18T22:18:32+10:00",
+   "author": "jojorne",
+   "subject": "Fix no gcc pragma on Windows (#7751)",
+   "pr": "7751",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7751",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/84f6de17f6a8602e7ff7f7c7bda36a73f510a2dd",
+   "n_files": 1,
+   "files": [
+    "sgemm.cpp"
+   ]
+  },
+  {
+   "sha": "61665277afde2add00c0d387acb94ed5feb95917",
+   "date": "2024-06-18T14:00:14+02:00",
+   "author": "Ulrich Drepper",
+   "subject": "Allow compiling with CUDA without CUDA runtime installed (#7989)",
+   "pr": "7989",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7989",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/61665277afde2add00c0d387acb94ed5feb95917",
+   "n_files": 1,
+   "files": [
+    "Makefile"
+   ]
+  },
+  {
+   "sha": "b96f9afb0d58b003ac8d1d0c94cd99393a3bc437",
+   "date": "2024-06-18T10:11:40+03:00",
+   "author": "Frank Mai",
+   "subject": "chore: clean useless beam search param (#7985)",
+   "pr": "7985",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7985",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/b96f9afb0d58b003ac8d1d0c94cd99393a3bc437",
+   "n_files": 1,
+   "files": [
+    "common/common.h"
+   ]
+  },
+  {
+   "sha": "1193778105c9a81bd38f72c61aaafbaf85dc9c04",
+   "date": "2024-06-18T09:57:41+03:00",
+   "author": "Abheek Gulati",
+   "subject": "readme : update UI list (#7943)",
+   "pr": "7943",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7943",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/1193778105c9a81bd38f72c61aaafbaf85dc9c04",
+   "n_files": 1,
+   "files": [
+    "README.md"
+   ]
+  },
+  {
+   "sha": "5326bcceeb7dd34f16d0fe61b134d1e074a8e65d",
+   "date": "2024-06-18T09:50:45+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "ggml : sync",
+   "pr": "",
+   "pr_url": "",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/5326bcceeb7dd34f16d0fe61b134d1e074a8e65d",
+   "n_files": 1,
+   "files": [
+    "scripts/sync-ggml.last"
+   ]
+  },
+  {
+   "sha": "e6ecc2be470e3c5c6c5c9d8b90aa83a1f7725084",
+   "date": "2024-06-18T09:50:40+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "whisper : use ggml_backend_sched (whisper/2239)",
+   "pr": "",
+   "pr_url": "",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/e6ecc2be470e3c5c6c5c9d8b90aa83a1f7725084",
+   "n_files": 2,
+   "files": [
+    "ggml-backend.c",
+    "ggml-backend.h"
+   ]
+  },
+  {
+   "sha": "a94e6ff8774b7c9f950d9545baf0ce35e8d1ed2f",
+   "date": "2024-06-17T21:08:46+02:00",
+   "author": "Ștefan-Gabriel Muscalu",
+   "subject": "update: support Qwen2-57B-A14B (#7835)",
+   "pr": "7835",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7835",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/a94e6ff8774b7c9f950d9545baf0ce35e8d1ed2f",
+   "n_files": 4,
+   "files": [
+    "convert-hf-to-gguf.py",
+    "gguf-py/gguf/constants.py",
+    "gguf-py/gguf/gguf_writer.py",
+    "llama.cpp"
+   ]
+  },
+  {
+   "sha": "5b6da187508f49a9fa9d95fa22ae804a0780d256",
+   "date": "2024-06-17T20:23:17+02:00",
+   "author": "Srihari-mcw",
+   "subject": "Make updates to type cast based on compiler instead of OS (#7851)",
+   "pr": "7851",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7851",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/5b6da187508f49a9fa9d95fa22ae804a0780d256",
+   "n_files": 1,
+   "files": [
+    "ggml-impl.h"
+   ]
+  },
+  {
+   "sha": "7c26775adb579e92b59c82e8084c07a1d0f75e9c",
+   "date": "2024-06-17T19:40:01+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "llama : disable FA if KV head size do not match (#7982)",
+   "pr": "7982",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7982",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/7c26775adb579e92b59c82e8084c07a1d0f75e9c",
+   "n_files": 1,
+   "files": [
+    "llama.cpp"
+   ]
+  },
+  {
+   "sha": "b473e95084c286780165568cf0f385f21141d68d",
+   "date": "2024-06-17T09:37:55-06:00",
+   "author": "Bryan Honof",
+   "subject": "Add Nix and Flox install instructions (#7899)",
+   "pr": "7899",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7899",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/b473e95084c286780165568cf0f385f21141d68d",
+   "n_files": 1,
+   "files": [
+    "README.md"
+   ]
+  },
+  {
+   "sha": "99052cd227c7182fcf53343d2e7d33bfa180a9cf",
+   "date": "2024-06-17T16:51:42+02:00",
+   "author": "slaren",
+   "subject": "sched : offload_op also requires supports_op (#7977)",
+   "pr": "7977",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7977",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/99052cd227c7182fcf53343d2e7d33bfa180a9cf",
+   "n_files": 1,
+   "files": [
+    "ggml-backend.c"
+   ]
+  },
+  {
+   "sha": "c637fcd34d135a9ff4f97d3a53ad03a910a4a31f",
+   "date": "2024-06-17T16:11:08+02:00",
+   "author": "Frank Mai",
+   "subject": "fix: divide 0 exception in mamba (#7932)",
+   "pr": "7932",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7932",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/c637fcd34d135a9ff4f97d3a53ad03a910a4a31f",
+   "n_files": 1,
+   "files": [
+    "llama.cpp"
+   ]
+  },
+  {
+   "sha": "6a2f0b3474d479bda4ac2ee7cfd5dcdcf0be1f79",
+   "date": "2024-06-17T16:10:15+02:00",
+   "author": "Markus Tavenrath",
+   "subject": "Implement non-mapped async IO for CUDA on Windows.  (#7896)",
+   "pr": "7896",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7896",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/6a2f0b3474d479bda4ac2ee7cfd5dcdcf0be1f79",
+   "n_files": 1,
+   "files": [
+    "llama.cpp"
+   ]
+  },
+  {
+   "sha": "21be9cab94e0b5b53cb6edeeebf8c8c799baad03",
+   "date": "2024-06-17T11:09:20+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "rpc : fix load/store misaligned addresses (#7948)",
+   "pr": "7948",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7948",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/21be9cab94e0b5b53cb6edeeebf8c8c799baad03",
+   "n_files": 1,
+   "files": [
+    "ggml-rpc.cpp"
+   ]
+  },
+  {
+   "sha": "006167aaf6b6aaa4daa52961035f7460af19f469",
+   "date": "2024-06-17T15:25:20+10:00",
+   "author": "Brian",
+   "subject": "gguf-dump.py: add --markdown dump output (#7853)",
+   "pr": "7853",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7853",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/006167aaf6b6aaa4daa52961035f7460af19f469",
+   "n_files": 1,
+   "files": [
+    "gguf-py/scripts/gguf-dump.py"
+   ]
+  },
+  {
+   "sha": "df68d4fa5dc929217d3e64d673e099d7a417b206",
+   "date": "2024-06-17T11:17:07+08:00",
+   "author": "Neo Zhang",
+   "subject": "[SYCL] Update README-sycl.md for Chapter \"Recommended release\" and \"News\" (#7946)",
+   "pr": "7946",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7946",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/df68d4fa5dc929217d3e64d673e099d7a417b206",
+   "n_files": 1,
+   "files": [
+    "README-sycl.md"
+   ]
+  },
+  {
+   "sha": "43b35e38ba371f9a7faa6dca4c5d1e8f698ffd87",
+   "date": "2024-06-17T00:23:04+02:00",
+   "author": "Calvin Laurenson",
+   "subject": "Add support for sqrt on CUDA (#7953)",
+   "pr": "7953",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7953",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/43b35e38ba371f9a7faa6dca4c5d1e8f698ffd87",
+   "n_files": 5,
+   "files": [
+    "examples/cvector-generator/pca.hpp",
+    "ggml-cuda.cu",
+    "ggml-cuda/unary.cu",
+    "ggml-cuda/unary.cuh",
+    "tests/test-backend-ops.cpp"
+   ]
+  },
+  {
+   "sha": "19b7a836f6658e18e973af532a5cc6ad6b3a27f8",
+   "date": "2024-06-16T20:32:49+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "cuda : fix bounds check for src0 rows in MMVQ kernel (whisper/2231)",
+   "pr": "",
+   "pr_url": "",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/19b7a836f6658e18e973af532a5cc6ad6b3a27f8",
+   "n_files": 1,
+   "files": [
+    "ggml-cuda/mmvq.cu"
+   ]
+  },
+  {
+   "sha": "b5fcf8ef5c29df53cfff60e180b4992a3b2332a6",
+   "date": "2024-06-16T20:32:49+03:00",
+   "author": "Hong Bo PENG",
+   "subject": "ggml : fix and optimize ppc64le (ggml/849)",
+   "pr": "",
+   "pr_url": "",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/b5fcf8ef5c29df53cfff60e180b4992a3b2332a6",
+   "n_files": 1,
+   "files": [
+    "ggml-quants.c"
+   ]
+  },
+  {
+   "sha": "398105ff4373eea385ea8e8625cb417b2ae51134",
+   "date": "2024-06-16T20:32:49+03:00",
+   "author": "Daniel Bevenius",
+   "subject": "ggml : remove duplicate include of ggml-common.h (ggml/853)",
+   "pr": "",
+   "pr_url": "",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/398105ff4373eea385ea8e8625cb417b2ae51134",
+   "n_files": 1,
+   "files": [
+    "ggml-quants.c"
+   ]
+  },
+  {
+   "sha": "bc6c457fa35f6791e9a2bb61108e7d49e8fc98bd",
+   "date": "2024-06-16T09:16:21-07:00",
+   "author": "Georgi Gerganov",
+   "subject": "flake.lock: Update (#7951)",
+   "pr": "7951",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7951",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/bc6c457fa35f6791e9a2bb61108e7d49e8fc98bd",
+   "n_files": 1,
+   "files": [
+    "flake.lock"
+   ]
+  },
+  {
+   "sha": "52399254b3bceda279b4ea9111a983e32310166e",
+   "date": "2024-06-16T14:51:40+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "unicode : avoid char32_t (#7957)",
+   "pr": "7957",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7957",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/52399254b3bceda279b4ea9111a983e32310166e",
+   "n_files": 3,
+   "files": [
+    "llama.cpp",
+    "unicode.cpp",
+    "unicode.h"
+   ]
+  },
+  {
+   "sha": "6fe1c627413725ddc1f9e323f6b13fe388c53e0a",
+   "date": "2024-06-16T14:51:18+03:00",
+   "author": "hopkins385",
+   "subject": "readme : update UI list [no ci] (#7958)",
+   "pr": "7958",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7958",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/6fe1c627413725ddc1f9e323f6b13fe388c53e0a",
+   "n_files": 1,
+   "files": [
+    "README.md"
+   ]
+  },
+  {
+   "sha": "cddaf028adc738b5a7ecc60809cb78e0ba0f97c1",
+   "date": "2024-06-16T14:50:12+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "ggml : fix handling of zero blocks in IQ quants (#7955)",
+   "pr": "7955",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7955",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/cddaf028adc738b5a7ecc60809cb78e0ba0f97c1",
+   "n_files": 1,
+   "files": [
+    "ggml-quants.c"
+   ]
+  },
+  {
+   "sha": "c8a82194a888f68f259e0d0fa96f3332ac7c5cb6",
+   "date": "2024-06-16T10:46:51+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "github : update pr template",
+   "pr": "",
+   "pr_url": "",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/c8a82194a888f68f259e0d0fa96f3332ac7c5cb6",
+   "n_files": 1,
+   "files": [
+    ".github/pull_request_template.md"
+   ]
+  },
+  {
+   "sha": "7c7836d9d4062d6858e3fb337b135c417ccee6ce",
+   "date": "2024-06-16T07:17:31+02:00",
+   "author": "0cc4m",
+   "subject": "Vulkan Shader Refactor, Memory Debugging Option (#7947)",
+   "pr": "7947",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7947",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/7c7836d9d4062d6858e3fb337b135c417ccee6ce",
+   "n_files": 54,
+   "files": [
+    "CMakeLists.txt",
+    "Makefile",
+    "ggml-vulkan-shaders.hpp",
+    "ggml-vulkan.cpp",
+    "ggml_vk_generate_shaders.py",
+    "vulkan-shaders/add.comp",
+    "vulkan-shaders/argsort.comp",
+    "vulkan-shaders/clamp.comp",
+    "vulkan-shaders/copy.comp",
+    "vulkan-shaders/dequant_f32.comp",
+    "vulkan-shaders/dequant_funcs.comp",
+    "vulkan-shaders/dequant_head.comp",
+    "vulkan-shaders/dequant_q2_k.comp",
+    "vulkan-shaders/dequant_q3_k.comp",
+    "vulkan-shaders/dequant_q4_0.comp",
+    "vulkan-shaders/dequant_q4_1.comp",
+    "vulkan-shaders/dequant_q4_k.comp",
+    "vulkan-shaders/dequant_q5_0.comp",
+    "vulkan-shaders/dequant_q5_1.comp",
+    "vulkan-shaders/dequant_q5_k.comp",
+    "vulkan-shaders/dequant_q6_k.comp",
+    "vulkan-shaders/dequant_q8_0.comp",
+    "vulkan-shaders/diag_mask_inf.comp",
+    "vulkan-shaders/div.comp",
+    "vulkan-shaders/gelu.comp",
+    "vulkan-shaders/generic_binary_head.comp",
+    "vulkan-shaders/generic_head.comp",
+    "vulkan-shaders/generic_unary_head.comp",
+    "vulkan-shaders/get_rows.comp",
+    "vulkan-shaders/get_rows_quant.comp",
+    "vulkan-shaders/mul.comp",
+    "vulkan-shaders/mul_mat_split_k_reduce.comp",
+    "vulkan-shaders/mul_mat_vec.comp",
+    "vulkan-shaders/mul_mat_vec_base.comp",
+    "vulkan-shaders/mul_mat_vec_nc.comp",
+    "vulkan-shaders/mul_mat_vec_p021.comp",
+    "vulkan-shaders/mul_mat_vec_q2_k.comp",
+    "vulkan-shaders/mul_mat_vec_q3_k.comp",
+    "vulkan-shaders/mul_mat_vec_q4_k.comp",
+    "vulkan-shaders/mul_mat_vec_q5_k.comp"
+   ]
+  },
+  {
+   "sha": "0c7b3595b9e5ad2355818e259f06b0dc3f0065b3",
+   "date": "2024-06-15T18:53:40+02:00",
+   "author": "Xuan Son Nguyen",
+   "subject": "Add `cvector-generator` example (#7514)",
+   "pr": "7514",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7514",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/0c7b3595b9e5ad2355818e259f06b0dc3f0065b3",
+   "n_files": 12,
+   "files": [
+    ".editorconfig",
+    "Makefile",
+    "common/common.cpp",
+    "common/common.h",
+    "examples/CMakeLists.txt",
+    "examples/cvector-generator/CMakeLists.txt",
+    "examples/cvector-generator/README.md",
+    "examples/cvector-generator/completions.txt",
+    "examples/cvector-generator/cvector-generator.cpp",
+    "examples/cvector-generator/negative.txt",
+    "examples/cvector-generator/pca.hpp",
+    "examples/cvector-generator/positive.txt"
+   ]
+  },
+  {
+   "sha": "7b2f4a7d193ef2475259bbe7656fcccfab4b1217",
+   "date": "2024-06-15T14:05:10+08:00",
+   "author": "Meng, Hengyu",
+   "subject": "[SYCL] remove global variables (#7710)",
+   "pr": "7710",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7710",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/7b2f4a7d193ef2475259bbe7656fcccfab4b1217",
+   "n_files": 9,
+   "files": [
+    "CMakeLists.txt",
+    "ggml-sycl.cpp",
+    "ggml-sycl.h",
+    "ggml-sycl/backend.hpp",
+    "ggml-sycl/common.cpp",
+    "ggml-sycl/common.hpp",
+    "ggml-sycl/dpct/helper.hpp",
+    "ggml-sycl/presets.hpp",
+    "llama.cpp"
+   ]
+  },
+  {
+   "sha": "f8ec8877b75774fc6c47559d529dac423877bcad",
+   "date": "2024-06-14T20:28:34+03:00",
+   "author": "olexiyb",
+   "subject": "ci : fix macos x86 build (#7940)",
+   "pr": "7940",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7940",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/f8ec8877b75774fc6c47559d529dac423877bcad",
+   "n_files": 1,
+   "files": [
+    ".github/workflows/build.yml"
+   ]
+  },
+  {
+   "sha": "76d66ee0be91e2bec93206e821ee1db8d023cff5",
+   "date": "2024-06-14T18:41:49+02:00",
+   "author": "Johannes Gäßler",
+   "subject": "CUDA: faster q2_K, q3_K MMQ + int8 tensor cores (#7921)",
+   "pr": "7921",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7921",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/76d66ee0be91e2bec93206e821ee1db8d023cff5",
+   "n_files": 6,
+   "files": [
+    "ggml-cuda.cu",
+    "ggml-cuda/argsort.cu",
+    "ggml-cuda/common.cuh",
+    "ggml-cuda/mmq.cuh",
+    "ggml-cuda/softmax.cu",
+    "ggml-cuda/vecdotq.cuh"
+   ]
+  },
+  {
+   "sha": "66ef1ceedf983773c8ceb4d925285d41d4e50e2a",
+   "date": "2024-06-14T17:14:09+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "metal : utilize max shared memory for mul_mat_id (#7935)",
+   "pr": "7935",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7935",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/66ef1ceedf983773c8ceb4d925285d41d4e50e2a",
+   "n_files": 1,
+   "files": [
+    "ggml-metal.m"
+   ]
+  },
+  {
+   "sha": "e65bbf606c61f49dc06c7ac060cd5ba7ae446025",
+   "date": "2024-06-14T16:47:41+03:00",
+   "author": "Radoslav Gerganov",
+   "subject": "llama-bench : fix RPC indication (#7936)",
+   "pr": "7936",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7936",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/e65bbf606c61f49dc06c7ac060cd5ba7ae446025",
+   "n_files": 1,
+   "files": [
+    "examples/llama-bench/llama-bench.cpp"
+   ]
+  },
+  {
+   "sha": "6fcd1331efbfbb89c8c96eba2321bb7b4d0c40e4",
+   "date": "2024-06-14T13:20:04+03:00",
+   "author": "Sigbjørn Skjæret",
+   "subject": "llama : more checks before assuming FIM tokens (#7644)",
+   "pr": "7644",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7644",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/6fcd1331efbfbb89c8c96eba2321bb7b4d0c40e4",
+   "n_files": 1,
+   "files": [
+    "llama.cpp"
+   ]
+  },
+  {
+   "sha": "41b9260f18eb7f325c952006ac46afc1d0d8ad2f",
+   "date": "2024-06-14T13:16:49+03:00",
+   "author": "Elaine",
+   "subject": "convert : add Poro-34B-chat tokenizer support (#7713)",
+   "pr": "7713",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7713",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/41b9260f18eb7f325c952006ac46afc1d0d8ad2f",
+   "n_files": 4,
+   "files": [
+    "convert-hf-to-gguf-update.py",
+    "convert-hf-to-gguf.py",
+    "llama.cpp",
+    "llama.h"
+   ]
+  },
+  {
+   "sha": "172c8256840ffd882ab9992ecedbb587d9b21f15",
+   "date": "2024-06-13T15:18:44+03:00",
+   "author": "Radoslav Gerganov",
+   "subject": "rpc : fix ggml_backend_rpc_supports_buft() (#7918)",
+   "pr": "7918",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7918",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/172c8256840ffd882ab9992ecedbb587d9b21f15",
+   "n_files": 1,
+   "files": [
+    "ggml-rpc.cpp"
+   ]
+  },
+  {
+   "sha": "a55eb1bf0fa2fd84147bdfd384391e029d988253",
+   "date": "2024-06-13T09:42:41+02:00",
+   "author": "Galunid",
+   "subject": "readme : Remove outdated instructions from README.md (#7914) [no ci]",
+   "pr": "7914",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7914",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/a55eb1bf0fa2fd84147bdfd384391e029d988253",
+   "n_files": 1,
+   "files": [
+    "README.md"
+   ]
+  },
+  {
+   "sha": "f578b86b2123d0f92afbaa98a031df4d4464e582",
+   "date": "2024-06-13T03:11:35+02:00",
+   "author": "slaren",
+   "subject": "move BLAS to a separate backend (#6210)",
+   "pr": "6210",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/6210",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/f578b86b2123d0f92afbaa98a031df4d4464e582",
+   "n_files": 17,
+   "files": [
+    "CMakeLists.txt",
+    "Makefile",
+    "examples/llama-bench/llama-bench.cpp",
+    "ggml-alloc.c",
+    "ggml-backend-impl.h",
+    "ggml-backend.c",
+    "ggml-backend.h",
+    "ggml-blas.cpp",
+    "ggml-blas.h",
+    "ggml-cuda.cu",
+    "ggml-kompute.cpp",
+    "ggml-metal.m",
+    "ggml-rpc.cpp",
+    "ggml-sycl.cpp",
+    "ggml-vulkan.cpp",
+    "ggml.c",
+    "llama.cpp"
+   ]
+  },
+  {
+   "sha": "1c641e6aac5c18b964e7b32d9dbbb4bf5301d0d7",
+   "date": "2024-06-13T00:41:52+01:00",
+   "author": "Olivier Chafik",
+   "subject": "`build`: rename main → llama-cli, server → llama-server, llava-cli → llama-llava-cli, etc... (#7809)",
+   "pr": "7809",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7809",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/1c641e6aac5c18b964e7b32d9dbbb4bf5301d0d7",
+   "n_files": 138,
+   "files": [
+    ".devops/cloud-v-pipeline",
+    ".devops/llama-cli-cuda.Dockerfile",
+    ".devops/llama-cli-intel.Dockerfile",
+    ".devops/llama-cli-rocm.Dockerfile",
+    ".devops/llama-cli-vulkan.Dockerfile",
+    ".devops/llama-cli.Dockerfile",
+    ".devops/llama-cpp-clblast.srpm.spec",
+    ".devops/llama-cpp-cuda.srpm.spec",
+    ".devops/llama-cpp.srpm.spec",
+    ".devops/llama-server-cuda.Dockerfile",
+    ".devops/llama-server-intel.Dockerfile",
+    ".devops/llama-server-rocm.Dockerfile",
+    ".devops/llama-server-vulkan.Dockerfile",
+    ".devops/llama-server.Dockerfile",
+    ".devops/main-cuda.Dockerfile",
+    ".devops/main-intel.Dockerfile",
+    ".devops/main-rocm.Dockerfile",
+    ".devops/main-vulkan.Dockerfile",
+    ".devops/main.Dockerfile",
+    ".devops/nix/apps.nix",
+    ".devops/nix/package.nix",
+    ".devops/server-cuda.Dockerfile",
+    ".devops/server-intel.Dockerfile",
+    ".devops/server-rocm.Dockerfile",
+    ".devops/server-vulkan.Dockerfile",
+    ".devops/server.Dockerfile",
+    ".devops/tools.sh",
+    ".dockerignore",
+    ".github/ISSUE_TEMPLATE/01-bug-low.yml",
+    ".github/ISSUE_TEMPLATE/02-bug-medium.yml",
+    ".github/ISSUE_TEMPLATE/03-bug-high.yml",
+    ".github/ISSUE_TEMPLATE/04-bug-critical.yml",
+    ".github/workflows/bench.yml",
+    ".github/workflows/build.yml",
+    ".github/workflows/docker.yml",
+    ".github/workflows/server.yml",
+    ".gitignore",
+    "Makefile",
+    "README-sycl.md",
+    "README.md"
+   ]
+  },
+  {
+   "sha": "963552903f51043ee947a8deeaaa7ec00bc3f1a4",
+   "date": "2024-06-12T17:41:51+02:00",
+   "author": "Johannes Gäßler",
+   "subject": "CUDA: fix broken oob check for FA vec f32 kernel (#7904)",
+   "pr": "7904",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7904",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/963552903f51043ee947a8deeaaa7ec00bc3f1a4",
+   "n_files": 1,
+   "files": [
+    "ggml-cuda/fattn-vec-f32.cuh"
+   ]
+  },
+  {
+   "sha": "a9cae48003dfc4fe95b8f5c81682fc6e63425235",
+   "date": "2024-06-12T16:00:22+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "tests : add non-cont unary tests (#7857)",
+   "pr": "7857",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7857",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/a9cae48003dfc4fe95b8f5c81682fc6e63425235",
+   "n_files": 8,
+   "files": [
+    "ggml-cuda.cu",
+    "ggml-cuda/unary.cu",
+    "ggml-kompute.cpp",
+    "ggml-metal.m",
+    "ggml-sycl.cpp",
+    "ggml-vulkan.cpp",
+    "ggml.c",
+    "tests/test-backend-ops.cpp"
+   ]
+  },
+  {
+   "sha": "bfaa676b0841617d4ef3596e63aca6be1a8eb1b5",
+   "date": "2024-06-12T15:24:20+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "ggml : improve ggml_is_contiguous logic (#7856)",
+   "pr": "7856",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7856",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/bfaa676b0841617d4ef3596e63aca6be1a8eb1b5",
+   "n_files": 1,
+   "files": [
+    "ggml.c"
+   ]
+  },
+  {
+   "sha": "704a35b183748954013bd875bbbfdd9eaca14e62",
+   "date": "2024-06-12T14:42:29+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "server : restore numeric prompts (#7883)",
+   "pr": "7883",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7883",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/704a35b183748954013bd875bbbfdd9eaca14e62",
+   "n_files": 1,
+   "files": [
+    "examples/server/server.cpp"
+   ]
+  },
+  {
+   "sha": "dcf752707d96eb305f546526c7bc5d01f0831130",
+   "date": "2024-06-12T19:05:35+10:00",
+   "author": "Meng, Hengyu",
+   "subject": "update intel docker oneapi-basekit to 2024.1.1-devel-ubuntu22.04 (#7894)",
+   "pr": "7894",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7894",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/dcf752707d96eb305f546526c7bc5d01f0831130",
+   "n_files": 2,
+   "files": [
+    ".devops/main-intel.Dockerfile",
+    ".devops/server-intel.Dockerfile"
+   ]
+  },
+  {
+   "sha": "f2b5764beb35583295e2475479c18f249b139b58",
+   "date": "2024-06-12T11:18:16+10:00",
+   "author": "Patrice Ferlet",
+   "subject": "Fix a typo and add Fedora 40 pacakge to install for Vulkan (#7794) [no ci]",
+   "pr": "7794",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7794",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/f2b5764beb35583295e2475479c18f249b139b58",
+   "n_files": 1,
+   "files": [
+    "README.md"
+   ]
+  },
+  {
+   "sha": "73bac2b11d7d3e20982fc9ee607625836387db8b",
+   "date": "2024-06-11T21:26:05+02:00",
+   "author": "k.h.lai",
+   "subject": "vulkan: select only one device for single gpu with multiple drivers (#7582)",
+   "pr": "7582",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7582",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/73bac2b11d7d3e20982fc9ee607625836387db8b",
+   "n_files": 1,
+   "files": [
+    "ggml-vulkan.cpp"
+   ]
+  },
+  {
+   "sha": "ef52d1d16afc695d798396cdd13594ea5e45a9dd",
+   "date": "2024-06-11T21:20:29+02:00",
+   "author": "0cc4m",
+   "subject": "Update Vulkan RoPE implementation (#7818)",
+   "pr": "7818",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7818",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/ef52d1d16afc695d798396cdd13594ea5e45a9dd",
+   "n_files": 4,
+   "files": [
+    "ggml-alloc.c",
+    "ggml-vulkan-shaders.hpp",
+    "ggml-vulkan.cpp",
+    "ggml_vk_generate_shaders.py"
+   ]
+  },
+  {
+   "sha": "14f83526cd27f638c856ea6eff08110b9860eb2a",
+   "date": "2024-06-12T02:18:58+10:00",
+   "author": "Deven Mistry",
+   "subject": "fix broken link in pr template (#7880) [no ci]",
+   "pr": "7880",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7880",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/14f83526cd27f638c856ea6eff08110b9860eb2a",
+   "n_files": 1,
+   "files": [
+    ".github/pull_request_template.md"
+   ]
+  },
+  {
+   "sha": "6fe42d073f0554eada93ac9d40574025aeedb703",
+   "date": "2024-06-11T17:43:41+03:00",
+   "author": "Brian",
+   "subject": "github: move PR template to .github/ root (#7868)",
+   "pr": "7868",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7868",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/6fe42d073f0554eada93ac9d40574025aeedb703",
+   "n_files": 2,
+   "files": [
+    ".github/PULL_REQUEST_TEMPLATE/pull_request_template.md",
+    ".github/pull_request_template.md"
+   ]
+  },
+  {
+   "sha": "148995e5e57b313cce2672f75610db58c6327a51",
+   "date": "2024-06-11T14:45:40+02:00",
+   "author": "Johannes Gäßler",
+   "subject": "llama-bench: more compact markdown tables (#7879)",
+   "pr": "7879",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7879",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/148995e5e57b313cce2672f75610db58c6327a51",
+   "n_files": 1,
+   "files": [
+    "examples/llama-bench/llama-bench.cpp"
+   ]
+  }
+ ],
+ "git_error": "",
+ "updated_at_utc": "2026-10-15T19:42:40Z"
+}

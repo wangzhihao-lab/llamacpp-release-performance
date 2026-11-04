@@ -1,0 +1,32 @@
+tag	b1222
+release_commit	35f73049af6c676a106a5a990a819ae0bc3fcd7d
+commit_date_utc	2023-09-14T16:14:44Z
+build_number	1222
+started_at_utc	2026-10-15T06:28:28Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b1222.tar.gz
+mode	build_only
+tarball_sha256	5daec60fff449628c7958975e452dc7554aa6fc0de5412fc50e81b394b06cd97
+tarball_commit	35f73049af6c676a106a5a990a819ae0bc3fcd7d
+option_era	llama
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DLLAMA_METAL=ON -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	0.677
+build_s	5.699
+compile_s	6.376
+binary_bytes	950136
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	built
+finished_at_utc	2026-10-15T06:28:38Z

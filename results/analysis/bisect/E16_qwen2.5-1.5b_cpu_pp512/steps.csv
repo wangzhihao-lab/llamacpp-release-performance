@@ -1,0 +1,3 @@
+step,level,lo,mid,hi,n_candidates,mid_pos,mid_commit,build,n_lo,n_mid,n_hi,ts_lo,ts_mid,ts_hi,d,d_over_ref,f,verdict,decision,note,fixed_equivalent,finished_at_utc
+1,release,b3130,b3177,b3222,65,33,b96f9afb0d58b003ac8d1d0c94cd99393a3bc437,reused,2,2,2,421.5966,515.2358,515.9222,0.20191,0.892,0.9934,new,hi=mid,,1,2026-10-15T14:16:34Z
+2,release,b3130,b3152,b3177,32,16,7b2f4a7d193ef2475259bbe7656fcccfab4b1217,reused,2,2,2,477.5544,523.6810,529.2430,0.10277,0.454,,effect_lost,stop,L_hi-L_lo = +0.1028 (+10.8%); needs sign + and |.| >= 0.1132 (0.5 x reference 0.2265),1,2026-10-15T14:20:27Z

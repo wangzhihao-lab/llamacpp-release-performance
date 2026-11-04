@@ -1,0 +1,7 @@
+model	model_file	backend	param_set	n_prompt	n_gen	reps	extra_args	json_file	log_file	exit_code	wall_s	load1_before	waited_s	started_at_utc	idle_pct_before
+tinyllama-1.1b	<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf	metal	main	512	128	5	-ngl 99	tinyllama-1.1b_metal.json	tinyllama-1.1b_metal.log	0	7.751	4.39	0	2026-10-12T18:52:51Z	87.92
+tinyllama-1.1b	<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf	cpu	main	512	128	5	-ngl 0 -t 8 -nopo 1	tinyllama-1.1b_cpu.json	tinyllama-1.1b_cpu.log	0	16.849	3.78	0	2026-10-12T18:53:11Z	89.67
+mistral-7b	<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf	metal	main	512	128	5	-ngl 99	mistral-7b_metal.json	mistral-7b_metal.log	0	50.417	4.20	0	2026-10-12T18:53:39Z	96.58
+mistral-7b	<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf	cpu	main	512	128	5	-ngl 0 -t 8 -nopo 1	mistral-7b_cpu.json	mistral-7b_cpu.log	0	88.314	2.24	0	2026-10-12T18:54:41Z	95.72
+qwen2.5-1.5b	<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf	metal	main	512	128	5	-ngl 99	qwen2.5-1.5b_metal.json	qwen2.5-1.5b_metal.log	0	13.629	5.55	0	2026-10-12T18:56:21Z	96.17
+qwen2.5-1.5b	<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf	cpu	main	512	128	5	-ngl 0 -t 8 -nopo 1	qwen2.5-1.5b_cpu.json	qwen2.5-1.5b_cpu.log	0	22.319	4.05	0	2026-10-12T18:56:46Z	96.22

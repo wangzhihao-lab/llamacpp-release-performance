@@ -1,0 +1,36 @@
+[ 36%] Building C object CMakeFiles/ggml.dir/ggml.c.o
+[ 36%] Building C object CMakeFiles/ggml.dir/ggml-metal.m.o
+[ 36%] Building C object CMakeFiles/ggml.dir/ggml-alloc.c.o
+[ 36%] Building C object CMakeFiles/ggml.dir/k_quants.c.o
+<repo>/src/ca51b68765799/ggml.c:11319:17: warning: 'cblas_sgemm' is deprecated: first deprecated in macOS 13.3 - An updated CBLAS interface supporting ILP64 is available.  Please compile with -DACCELERATE_NEW_LAPACK to access the new headers and -DACCELERATE_LAPACK_ILP64 for ILP64 support. [-Wdeprecated-declarations]
+ 11319 |                 cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasTrans,
+       |                 ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/vecLib.framework/Headers/cblas.h:610:6: note: 'cblas_sgemm' has been explicitly marked deprecated here
+  610 | void cblas_sgemm(const enum CBLAS_ORDER __Order,
+      |      ^
+<repo>/src/ca51b68765799/ggml.c:18355:17: warning: data argument not used by format string [-Wformat-extra-args]
+ 18351 |         GGML_PRINT(" - %3d: [ %5" PRId64 ", %5" PRId64 "] %8s\n",
+       |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 18352 |                 i,
+       |                 ~~
+ 18353 |                 node->ne[0], node->ne[1],
+       |                 ~~~~~~~~~~~~~~~~~~~~~~~~~
+ 18354 |                 ggml_op_name(node->op),
+       |                 ~~~~~~~~~~~~~~~~~~~~~~~
+ 18355 |                 ggml_get_name(node));
+       |                 ^~~~~~~~~~~~~~~~~~~~
+<repo>/src/ca51b68765799/ggml.c:190:32: note: expanded from macro 'GGML_PRINT'
+  190 | #define GGML_PRINT(...) printf(__VA_ARGS__)
+      |                                ^~~~~~~~~~~
+2 warnings generated.
+[ 36%] Built target ggml
+[ 45%] Building CXX object CMakeFiles/llama.dir/llama.cpp.o
+[ 54%] Linking CXX static library libllama.a
+[ 54%] Built target llama
+[ 63%] Building CXX object common/CMakeFiles/common.dir/console.cpp.o
+[ 81%] Building CXX object common/CMakeFiles/common.dir/common.cpp.o
+[ 81%] Building CXX object common/CMakeFiles/common.dir/grammar-parser.cpp.o
+[ 81%] Built target common
+[ 90%] Building CXX object examples/llama-bench/CMakeFiles/llama-bench.dir/llama-bench.cpp.o
+[100%] Linking CXX executable ../../bin/llama-bench
+[100%] Built target llama-bench

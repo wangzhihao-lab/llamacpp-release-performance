@@ -1,0 +1,32 @@
+tag	b1579
+release_commit	954e22858c5cea1dc03e9172d3879402af2b5990
+commit_date_utc	2023-11-30T21:40:23Z
+build_number	1579
+started_at_utc	2026-10-15T05:54:43Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b1579.tar.gz
+mode	build_only
+tarball_sha256	220aa1e7d7d6ea5a12861c2ac81cba8d06182340148b0c2f4fbc57702e551c24
+tarball_commit	954e22858c5cea1dc03e9172d3879402af2b5990
+option_era	llama
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DLLAMA_METAL=ON -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	0.729
+build_s	6.899
+compile_s	7.628
+binary_bytes	1133272
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	built
+finished_at_utc	2026-10-15T05:54:53Z

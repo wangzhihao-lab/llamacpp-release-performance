@@ -1,0 +1,14 @@
+# Created when the study is rerun; not part of the package
+/models/
+/src/
+/bins/
+/build/
+/repo/
+/logs/
+/paper/
+/scripts/analysis/bin/
+/results.published/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.DS_Store

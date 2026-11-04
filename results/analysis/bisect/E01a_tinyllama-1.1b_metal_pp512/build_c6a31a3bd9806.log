@@ -1,0 +1,4 @@
+2026-10-26T07:37:55 [c6a31a3bd9806] start (reps=5 jobs=8)
+2026-10-26T07:37:55 [c6a31a3bd9806] build-only mode: no benchmark
+2026-10-26T07:38:04 [c6a31a3bd9806] build ok in 6.265 s
+2026-10-26T07:38:05 [c6a31a3bd9806] done stage=built -> <repo>/results/bisect_builds/c6a31a3bd9806

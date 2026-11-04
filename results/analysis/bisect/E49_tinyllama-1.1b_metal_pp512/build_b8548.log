@@ -1,0 +1,4 @@
+2026-10-14T15:46:39 [b8548] start (reps=5 jobs=8)
+2026-10-14T15:46:39 [b8548] build-only mode: no benchmark
+2026-10-14T15:47:47 [b8548] build ok in 29.634 s
+2026-10-14T15:47:48 [b8548] done stage=built -> <repo>/results/bisect_builds/b8548

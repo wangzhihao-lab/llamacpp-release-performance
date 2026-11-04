@@ -1,0 +1,46 @@
+{
+ "event_id": "E01a",
+ "series": "tinyllama-1.1b/metal/pp512",
+ "label": "E01a_tinyllama-1.1b_metal_pp512",
+ "lo0": "b1137",
+ "hi0": "b1183",
+ "direction": "up",
+ "ref_lr": 0.444,
+ "ref_source": "--ref-lr",
+ "status": "located",
+ "pause_reason": "",
+ "note": "",
+ "lo": "c6a31a3bd9806",
+ "hi": "cca82cf7bac0c",
+ "lo_commit": "6a31a3bd9806c85ed08266f6ab65181da0f30d03",
+ "hi_commit": "ca82cf7bac0c91d03e3d320b3a865dd006f854ac",
+ "level": "commit",
+ "measured_steps": 8,
+ "builds": 8,
+ "intermediate": 0,
+ "outside": 0,
+ "skipped": [],
+ "commits_est": null,
+ "n_commits": 1,
+ "prs": [
+  "2959"
+ ],
+ "commits": [
+  {
+   "sha": "ca82cf7bac0c91d03e3d320b3a865dd006f854ac",
+   "date": "2023-09-03T11:06:22+03:00",
+   "author": "Kawrakow",
+   "subject": "metal : more optimizations (#2959)",
+   "pr": "2959",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/2959",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/ca82cf7bac0c91d03e3d320b3a865dd006f854ac",
+   "n_files": 2,
+   "files": [
+    "ggml-metal.m",
+    "ggml-metal.metal"
+   ]
+  }
+ ],
+ "git_error": "",
+ "updated_at_utc": "2026-10-26T14:45:19Z"
+}

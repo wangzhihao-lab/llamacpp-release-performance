@@ -1,0 +1,633 @@
+{
+ "event_id": "VE01",
+ "tag_old": "b1137",
+ "tag_new": "b1245",
+ "class": "V",
+ "problems": [],
+ "groups": [
+  {
+   "tag_a": "b1137",
+   "tag_b": "b1245",
+   "model": "qwen2.5-1.5b",
+   "backend": "cpu",
+   "series": [
+    "qwen2.5-1.5b/cpu/pp512",
+    "qwen2.5-1.5b/cpu/tg128"
+   ],
+   "fixed_a": [
+    "-ngl",
+    "0",
+    "-t",
+    "8",
+    "-b",
+    "512"
+   ],
+   "fixed_b": [
+    "-ngl",
+    "0",
+    "-t",
+    "8",
+    "-b",
+    "512"
+   ],
+   "notes": [],
+   "equivalent": true,
+   "runs": [
+    {
+     "phase": "warmup",
+     "round": 0,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "warmup_r0_A_b1137_qwen2.5-1.5b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 0.05800000000000001
+    },
+    {
+     "phase": "fixed",
+     "round": 1,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r1_A_b1137_qwen2.5-1.5b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 0.058
+    },
+    {
+     "phase": "fixed",
+     "round": 1,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r1_B_b1245_qwen2.5-1.5b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 0.056
+    },
+    {
+     "phase": "fixed",
+     "round": 2,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r2_B_b1245_qwen2.5-1.5b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 0.056
+    },
+    {
+     "phase": "fixed",
+     "round": 2,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r2_A_b1137_qwen2.5-1.5b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 0.058
+    },
+    {
+     "phase": "fixed",
+     "round": 3,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r3_A_b1137_qwen2.5-1.5b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 0.058
+    },
+    {
+     "phase": "fixed",
+     "round": 3,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r3_B_b1245_qwen2.5-1.5b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8",
+      "-b",
+      "512"
+     ],
+     "est_s": 0.056
+    },
+    {
+     "phase": "default",
+     "round": 1,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "default_r1_A_b1137_qwen2.5-1.5b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8"
+     ],
+     "est_s": 0.029
+    },
+    {
+     "phase": "default",
+     "round": 1,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "default_r1_B_b1245_qwen2.5-1.5b_cpu",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "0",
+      "-t",
+      "8"
+     ],
+     "est_s": 0.028
+    }
+   ]
+  },
+  {
+   "tag_a": "b1137",
+   "tag_b": "b1245",
+   "model": "qwen2.5-1.5b",
+   "backend": "metal",
+   "series": [
+    "qwen2.5-1.5b/metal/pp512",
+    "qwen2.5-1.5b/metal/tg128"
+   ],
+   "fixed_a": [
+    "-ngl",
+    "99",
+    "-t",
+    "4",
+    "-b",
+    "512"
+   ],
+   "fixed_b": [
+    "-ngl",
+    "99",
+    "-t",
+    "4",
+    "-b",
+    "512"
+   ],
+   "notes": [],
+   "equivalent": true,
+   "runs": [
+    {
+     "phase": "warmup",
+     "round": 0,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "warmup_r0_A_b1137_qwen2.5-1.5b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 0.066
+    },
+    {
+     "phase": "fixed",
+     "round": 1,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r1_A_b1137_qwen2.5-1.5b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 0.066
+    },
+    {
+     "phase": "fixed",
+     "round": 1,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r1_B_b1245_qwen2.5-1.5b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 0.066
+    },
+    {
+     "phase": "fixed",
+     "round": 2,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r2_B_b1245_qwen2.5-1.5b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 0.066
+    },
+    {
+     "phase": "fixed",
+     "round": 2,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r2_A_b1137_qwen2.5-1.5b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 0.066
+    },
+    {
+     "phase": "fixed",
+     "round": 3,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "fixed_r3_A_b1137_qwen2.5-1.5b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 0.066
+    },
+    {
+     "phase": "fixed",
+     "round": 3,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "fixed_r3_B_b1245_qwen2.5-1.5b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "10",
+      "-o",
+      "json",
+      "-ngl",
+      "99",
+      "-t",
+      "4",
+      "-b",
+      "512"
+     ],
+     "est_s": 0.066
+    },
+    {
+     "phase": "default",
+     "round": 1,
+     "side": "A",
+     "tag": "b1137",
+     "stem": "default_r1_A_b1137_qwen2.5-1.5b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1137"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1137/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "99"
+     ],
+     "est_s": 0.033
+    },
+    {
+     "phase": "default",
+     "round": 1,
+     "side": "B",
+     "tag": "b1245",
+     "stem": "default_r1_B_b1245_qwen2.5-1.5b_metal",
+     "env": {
+      "GGML_METAL_PATH_RESOURCES": "<repo>/bins/b1245"
+     },
+     "argv": [
+      "/usr/bin/arch",
+      "-arm64",
+      "<repo>/bins/b1245/llama-bench",
+      "-m",
+      "<models>/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "-p",
+      "512",
+      "-n",
+      "128",
+      "-r",
+      "5",
+      "-o",
+      "json",
+      "-ngl",
+      "99"
+     ],
+     "est_s": 0.033
+    }
+   ]
+  }
+ ]
+}

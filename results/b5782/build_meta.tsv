@@ -1,0 +1,31 @@
+tag	b5782
+release_commit	c839a2da1a0d4275c3a98f70c3a7627487573a46
+commit_date_utc	2025-06-30T09:48:24Z
+build_number	5782
+started_at_utc	2026-10-12T18:23:06Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b5782.tar.gz
+tarball_sha256	1c02649536a05f913ba98e867b418a6d2f331e36c93a2531a9cf692f95e83ff1
+tarball_commit	c839a2da1a0d4275c3a98f70c3a7627487573a46
+option_era	ggml
+bench_src_dir	tools
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DGGML_CCACHE=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_TOOLS=ON
+configure_rc	0
+build_rc	0
+configure_s	3.269
+build_s	18.567
+compile_s	21.836
+binary_bytes	3200808
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	-nopo 1
+stage	benchmarked
+finished_at_utc	2026-10-12T18:28:01Z

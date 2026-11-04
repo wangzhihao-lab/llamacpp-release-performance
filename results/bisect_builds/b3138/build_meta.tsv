@@ -1,0 +1,32 @@
+tag	b3138
+release_commit	704a35b183748954013bd875bbbfdd9eaca14e62
+commit_date_utc	2024-06-12T11:42:29Z
+build_number	3138
+started_at_utc	2026-10-15T08:36:21Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b3138.tar.gz
+mode	build_only
+tarball_sha256	f120ab5a3ff6a85646f46cbf7d8f95d08c4dd8061c4bcde05ac18f55d701d5a5
+tarball_commit	704a35b183748954013bd875bbbfdd9eaca14e62
+option_era	llama
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DLLAMA_METAL=ON -DLLAMA_CCACHE=OFF -DLLAMA_METAL_EMBED_LIBRARY=ON -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	0.958
+build_s	10.904
+compile_s	11.862
+binary_bytes	2952632
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	built
+finished_at_utc	2026-10-15T08:36:39Z

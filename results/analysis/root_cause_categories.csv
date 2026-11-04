@@ -1,0 +1,5 @@
+category,name,events
+Metal,Metal kernels and capability probes,E01;E49;E50
+Blas,BLAS dispatch on the CPU,E03;E04;E16
+Thread,CPU thread runtime,E19
+Repack,Weight repacking on the CPU,E46

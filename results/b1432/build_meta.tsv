@@ -1,0 +1,28 @@
+tag	b1432
+release_commit	6d459cbfbe5a011dfca94f9550527a504b6f9aa1
+commit_date_utc	2023-10-27T21:33:53Z
+build_number	1432
+started_at_utc	2026-10-12T14:08:56Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b1432.tar.gz
+tarball_sha256	2c0580d374e1c5f3e7f9e2368dea644340c1b419ebc3a3c058c88b13b2c2206d
+tarball_commit	6d459cbfbe5a011dfca94f9550527a504b6f9aa1
+option_era	llama
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DLLAMA_METAL=ON -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	2
+configure_s	0.710
+build_s	5.376
+compile_s	6.086
+binary_bytes	
+stage	build_failed
+finished_at_utc	2026-10-12T14:09:04Z

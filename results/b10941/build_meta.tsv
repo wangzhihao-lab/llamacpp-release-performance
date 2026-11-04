@@ -1,0 +1,31 @@
+tag	b10941
+release_commit	4a89937354190cef5a97baf8eeb17336105eb72d
+commit_date_utc	2026-09-13T10:05:28Z
+build_number	10941
+started_at_utc	2026-10-12T21:03:39Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b10941.tar.gz
+tarball_sha256	7eb92b6e329773b116e67ae2e08a19ad94debd6bf8ddb920e15148616dfd9773
+tarball_commit	4a89937354190cef5a97baf8eeb17336105eb72d
+option_era	ggml
+bench_src_dir	tools
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DGGML_CCACHE=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_TOOLS=ON
+configure_rc	0
+build_rc	0
+configure_s	4.171
+build_s	28.928
+compile_s	33.099
+binary_bytes	11793160
+dylib_bytes	0
+linked_libs	/opt/homebrew/opt/openssl@3/lib/libssl.3.dylib /opt/homebrew/opt/openssl@3/lib/libcrypto.3.dylib 
+cpu_no_op_offload_flag	-nopo 1
+stage	benchmarked
+finished_at_utc	2026-10-12T21:08:38Z

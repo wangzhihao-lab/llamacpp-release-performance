@@ -1,0 +1,14 @@
+{
+ "event_id": "E49",
+ "lo": "b8545",
+ "hi": "b8740",
+ "model": "qwen2.5-1.5b",
+ "backend": "metal",
+ "test": "pp512",
+ "sign": 1,
+ "series": "qwen2.5-1.5b/metal/pp512",
+ "direction": "up",
+ "ref_lr": 0.5907894458706124,
+ "ref_source": "step 2 fixed phase (v11)",
+ "written_at_utc": "2026-10-14T22:50:44Z"
+}

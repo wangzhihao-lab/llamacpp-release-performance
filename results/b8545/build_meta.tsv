@@ -1,0 +1,31 @@
+tag	b8545
+release_commit	7ca0c9cca72061806ae48c9a90ef1311b2259a2c
+commit_date_utc	2026-03-26T22:06:33Z
+build_number	8545
+started_at_utc	2026-10-12T20:00:27Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b8545.tar.gz
+tarball_sha256	cbdcb3dc0f458a6415ea6709867fd5ef7f4248e94a22b4a0ecf0bc6b40479531
+tarball_commit	7ca0c9cca72061806ae48c9a90ef1311b2259a2c
+option_era	ggml
+bench_src_dir	tools
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DGGML_CCACHE=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_TOOLS=ON
+configure_rc	0
+build_rc	0
+configure_s	3.958
+build_s	32.991
+compile_s	36.949
+binary_bytes	6244488
+dylib_bytes	0
+linked_libs	/opt/homebrew/opt/openssl@3/lib/libssl.3.dylib /opt/homebrew/opt/openssl@3/lib/libcrypto.3.dylib 
+cpu_no_op_offload_flag	-nopo 1
+stage	benchmarked
+finished_at_utc	2026-10-12T20:05:52Z

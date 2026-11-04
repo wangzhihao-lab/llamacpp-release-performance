@@ -1,0 +1,28 @@
+ggml_metal_init: allocating
+ggml_metal_init: found device: Apple M5
+ggml_metal_init: picking default device: Apple M5
+ggml_metal_init: default.metallib not found, loading from source
+ggml_metal_init: loading '<repo>/build/b1505/bin/ggml-metal.metal'
+ggml_metal_init: GPU name:   Apple M5
+ggml_metal_init: GPU family: MTLGPUFamilyApple10 (1010)
+ggml_metal_init: hasUnifiedMemory              = true
+ggml_metal_init: recommendedMaxWorkingSetSize  = 25559.05 MB
+ggml_metal_init: maxTransferRate               = built-in GPU
+ggml_metal_add_buffer: allocated 'data            ' buffer, size =  4166.08 MB, ( 4166.77 / 25559.05)
+ggml_metal_add_buffer: allocated 'kv              ' buffer, size =    64.02 MB, ( 4230.78 / 25559.05)
+ggml_metal_add_buffer: allocated 'alloc           ' buffer, size =    73.02 MB, ( 4303.80 / 25559.05)
+ggml_metal_free: deallocating
+ggml_metal_init: allocating
+ggml_metal_init: found device: Apple M5
+ggml_metal_init: picking default device: Apple M5
+ggml_metal_init: default.metallib not found, loading from source
+ggml_metal_init: loading '<repo>/build/b1505/bin/ggml-metal.metal'
+ggml_metal_init: GPU name:   Apple M5
+ggml_metal_init: GPU family: MTLGPUFamilyApple10 (1010)
+ggml_metal_init: hasUnifiedMemory              = true
+ggml_metal_init: recommendedMaxWorkingSetSize  = 25559.05 MB
+ggml_metal_init: maxTransferRate               = built-in GPU
+ggml_metal_add_buffer: allocated 'data            ' buffer, size =  4166.08 MB, ( 4167.77 / 25559.05)
+ggml_metal_add_buffer: allocated 'kv              ' buffer, size =    16.02 MB, ( 4183.78 / 25559.05)
+ggml_metal_add_buffer: allocated 'alloc           ' buffer, size =    20.08 MB, ( 4203.86 / 25559.05)
+ggml_metal_free: deallocating

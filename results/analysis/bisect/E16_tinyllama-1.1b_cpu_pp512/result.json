@@ -1,0 +1,280 @@
+{
+ "event_id": "E16",
+ "series": "tinyllama-1.1b/cpu/pp512",
+ "label": "E16_tinyllama-1.1b_cpu_pp512",
+ "lo0": "b3130",
+ "hi0": "b3222",
+ "direction": "up",
+ "ref_lr": 0.15733868670137863,
+ "ref_source": "step 2 fixed phase (v11)",
+ "status": "effect_lost",
+ "pause_reason": "",
+ "note": "L_hi-L_lo = +0.0391 (+4.0%); needs sign + and |.| >= 0.0787 (0.5 x reference 0.1573)",
+ "lo": "b3130",
+ "hi": "b3143",
+ "lo_commit": "4bfe50f741479c1df1c377260c3ff5702586719e",
+ "hi_commit": "f578b86b2123d0f92afbaa98a031df4d4464e582",
+ "level": "release",
+ "measured_steps": 4,
+ "builds": 4,
+ "intermediate": 0,
+ "outside": 0,
+ "skipped": [],
+ "commits_est": 13,
+ "n_commits": 13,
+ "prs": [
+  "6210",
+  "7809",
+  "7904",
+  "7857",
+  "7856",
+  "7883",
+  "7894",
+  "7794",
+  "7582",
+  "7818",
+  "7880",
+  "7868",
+  "7879"
+ ],
+ "commits": [
+  {
+   "sha": "f578b86b2123d0f92afbaa98a031df4d4464e582",
+   "date": "2024-06-13T03:11:35+02:00",
+   "author": "slaren",
+   "subject": "move BLAS to a separate backend (#6210)",
+   "pr": "6210",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/6210",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/f578b86b2123d0f92afbaa98a031df4d4464e582",
+   "n_files": 17,
+   "files": [
+    "CMakeLists.txt",
+    "Makefile",
+    "examples/llama-bench/llama-bench.cpp",
+    "ggml-alloc.c",
+    "ggml-backend-impl.h",
+    "ggml-backend.c",
+    "ggml-backend.h",
+    "ggml-blas.cpp",
+    "ggml-blas.h",
+    "ggml-cuda.cu",
+    "ggml-kompute.cpp",
+    "ggml-metal.m",
+    "ggml-rpc.cpp",
+    "ggml-sycl.cpp",
+    "ggml-vulkan.cpp",
+    "ggml.c",
+    "llama.cpp"
+   ]
+  },
+  {
+   "sha": "1c641e6aac5c18b964e7b32d9dbbb4bf5301d0d7",
+   "date": "2024-06-13T00:41:52+01:00",
+   "author": "Olivier Chafik",
+   "subject": "`build`: rename main → llama-cli, server → llama-server, llava-cli → llama-llava-cli, etc... (#7809)",
+   "pr": "7809",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7809",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/1c641e6aac5c18b964e7b32d9dbbb4bf5301d0d7",
+   "n_files": 138,
+   "files": [
+    ".devops/cloud-v-pipeline",
+    ".devops/llama-cli-cuda.Dockerfile",
+    ".devops/llama-cli-intel.Dockerfile",
+    ".devops/llama-cli-rocm.Dockerfile",
+    ".devops/llama-cli-vulkan.Dockerfile",
+    ".devops/llama-cli.Dockerfile",
+    ".devops/llama-cpp-clblast.srpm.spec",
+    ".devops/llama-cpp-cuda.srpm.spec",
+    ".devops/llama-cpp.srpm.spec",
+    ".devops/llama-server-cuda.Dockerfile",
+    ".devops/llama-server-intel.Dockerfile",
+    ".devops/llama-server-rocm.Dockerfile",
+    ".devops/llama-server-vulkan.Dockerfile",
+    ".devops/llama-server.Dockerfile",
+    ".devops/main-cuda.Dockerfile",
+    ".devops/main-intel.Dockerfile",
+    ".devops/main-rocm.Dockerfile",
+    ".devops/main-vulkan.Dockerfile",
+    ".devops/main.Dockerfile",
+    ".devops/nix/apps.nix",
+    ".devops/nix/package.nix",
+    ".devops/server-cuda.Dockerfile",
+    ".devops/server-intel.Dockerfile",
+    ".devops/server-rocm.Dockerfile",
+    ".devops/server-vulkan.Dockerfile",
+    ".devops/server.Dockerfile",
+    ".devops/tools.sh",
+    ".dockerignore",
+    ".github/ISSUE_TEMPLATE/01-bug-low.yml",
+    ".github/ISSUE_TEMPLATE/02-bug-medium.yml",
+    ".github/ISSUE_TEMPLATE/03-bug-high.yml",
+    ".github/ISSUE_TEMPLATE/04-bug-critical.yml",
+    ".github/workflows/bench.yml",
+    ".github/workflows/build.yml",
+    ".github/workflows/docker.yml",
+    ".github/workflows/server.yml",
+    ".gitignore",
+    "Makefile",
+    "README-sycl.md",
+    "README.md"
+   ]
+  },
+  {
+   "sha": "963552903f51043ee947a8deeaaa7ec00bc3f1a4",
+   "date": "2024-06-12T17:41:51+02:00",
+   "author": "Johannes Gäßler",
+   "subject": "CUDA: fix broken oob check for FA vec f32 kernel (#7904)",
+   "pr": "7904",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7904",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/963552903f51043ee947a8deeaaa7ec00bc3f1a4",
+   "n_files": 1,
+   "files": [
+    "ggml-cuda/fattn-vec-f32.cuh"
+   ]
+  },
+  {
+   "sha": "a9cae48003dfc4fe95b8f5c81682fc6e63425235",
+   "date": "2024-06-12T16:00:22+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "tests : add non-cont unary tests (#7857)",
+   "pr": "7857",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7857",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/a9cae48003dfc4fe95b8f5c81682fc6e63425235",
+   "n_files": 8,
+   "files": [
+    "ggml-cuda.cu",
+    "ggml-cuda/unary.cu",
+    "ggml-kompute.cpp",
+    "ggml-metal.m",
+    "ggml-sycl.cpp",
+    "ggml-vulkan.cpp",
+    "ggml.c",
+    "tests/test-backend-ops.cpp"
+   ]
+  },
+  {
+   "sha": "bfaa676b0841617d4ef3596e63aca6be1a8eb1b5",
+   "date": "2024-06-12T15:24:20+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "ggml : improve ggml_is_contiguous logic (#7856)",
+   "pr": "7856",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7856",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/bfaa676b0841617d4ef3596e63aca6be1a8eb1b5",
+   "n_files": 1,
+   "files": [
+    "ggml.c"
+   ]
+  },
+  {
+   "sha": "704a35b183748954013bd875bbbfdd9eaca14e62",
+   "date": "2024-06-12T14:42:29+03:00",
+   "author": "Georgi Gerganov",
+   "subject": "server : restore numeric prompts (#7883)",
+   "pr": "7883",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7883",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/704a35b183748954013bd875bbbfdd9eaca14e62",
+   "n_files": 1,
+   "files": [
+    "examples/server/server.cpp"
+   ]
+  },
+  {
+   "sha": "dcf752707d96eb305f546526c7bc5d01f0831130",
+   "date": "2024-06-12T19:05:35+10:00",
+   "author": "Meng, Hengyu",
+   "subject": "update intel docker oneapi-basekit to 2024.1.1-devel-ubuntu22.04 (#7894)",
+   "pr": "7894",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7894",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/dcf752707d96eb305f546526c7bc5d01f0831130",
+   "n_files": 2,
+   "files": [
+    ".devops/main-intel.Dockerfile",
+    ".devops/server-intel.Dockerfile"
+   ]
+  },
+  {
+   "sha": "f2b5764beb35583295e2475479c18f249b139b58",
+   "date": "2024-06-12T11:18:16+10:00",
+   "author": "Patrice Ferlet",
+   "subject": "Fix a typo and add Fedora 40 pacakge to install for Vulkan (#7794) [no ci]",
+   "pr": "7794",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7794",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/f2b5764beb35583295e2475479c18f249b139b58",
+   "n_files": 1,
+   "files": [
+    "README.md"
+   ]
+  },
+  {
+   "sha": "73bac2b11d7d3e20982fc9ee607625836387db8b",
+   "date": "2024-06-11T21:26:05+02:00",
+   "author": "k.h.lai",
+   "subject": "vulkan: select only one device for single gpu with multiple drivers (#7582)",
+   "pr": "7582",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7582",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/73bac2b11d7d3e20982fc9ee607625836387db8b",
+   "n_files": 1,
+   "files": [
+    "ggml-vulkan.cpp"
+   ]
+  },
+  {
+   "sha": "ef52d1d16afc695d798396cdd13594ea5e45a9dd",
+   "date": "2024-06-11T21:20:29+02:00",
+   "author": "0cc4m",
+   "subject": "Update Vulkan RoPE implementation (#7818)",
+   "pr": "7818",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7818",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/ef52d1d16afc695d798396cdd13594ea5e45a9dd",
+   "n_files": 4,
+   "files": [
+    "ggml-alloc.c",
+    "ggml-vulkan-shaders.hpp",
+    "ggml-vulkan.cpp",
+    "ggml_vk_generate_shaders.py"
+   ]
+  },
+  {
+   "sha": "14f83526cd27f638c856ea6eff08110b9860eb2a",
+   "date": "2024-06-12T02:18:58+10:00",
+   "author": "Deven Mistry",
+   "subject": "fix broken link in pr template (#7880) [no ci]",
+   "pr": "7880",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7880",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/14f83526cd27f638c856ea6eff08110b9860eb2a",
+   "n_files": 1,
+   "files": [
+    ".github/pull_request_template.md"
+   ]
+  },
+  {
+   "sha": "6fe42d073f0554eada93ac9d40574025aeedb703",
+   "date": "2024-06-11T17:43:41+03:00",
+   "author": "Brian",
+   "subject": "github: move PR template to .github/ root (#7868)",
+   "pr": "7868",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7868",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/6fe42d073f0554eada93ac9d40574025aeedb703",
+   "n_files": 2,
+   "files": [
+    ".github/PULL_REQUEST_TEMPLATE/pull_request_template.md",
+    ".github/pull_request_template.md"
+   ]
+  },
+  {
+   "sha": "148995e5e57b313cce2672f75610db58c6327a51",
+   "date": "2024-06-11T14:45:40+02:00",
+   "author": "Johannes Gäßler",
+   "subject": "llama-bench: more compact markdown tables (#7879)",
+   "pr": "7879",
+   "pr_url": "https://github.com/ggml-org/llama.cpp/pull/7879",
+   "commit_url": "https://github.com/ggml-org/llama.cpp/commit/148995e5e57b313cce2672f75610db58c6327a51",
+   "n_files": 1,
+   "files": [
+    "examples/llama-bench/llama-bench.cpp"
+   ]
+  }
+ ],
+ "git_error": "",
+ "updated_at_utc": "2026-10-15T08:40:18Z"
+}

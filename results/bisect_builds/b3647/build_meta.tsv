@@ -1,0 +1,32 @@
+tag	b3647
+release_commit	0ab30f8d82fc7156b750c194d64a887e80cbfb82
+commit_date_utc	2024-08-30T18:08:10Z
+build_number	3647
+started_at_utc	2026-10-15T06:42:37Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b3647.tar.gz
+mode	build_only
+tarball_sha256	03514a396f1366e5f03e181f5f3b9b3a4a595a715b1c505fb6af7674a177a4ed
+tarball_commit	0ab30f8d82fc7156b750c194d64a887e80cbfb82
+option_era	ggml
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DGGML_CCACHE=OFF -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	1.062
+build_s	11.387
+compile_s	12.449
+binary_bytes	3077576
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	built
+finished_at_utc	2026-10-15T06:42:54Z

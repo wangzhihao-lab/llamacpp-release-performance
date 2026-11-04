@@ -1,0 +1,31 @@
+tag	b2761
+release_commit	f4ab2a41476600a98067a9474ea8f9e6db41bcfa
+commit_date_utc	2024-04-29T13:58:41Z
+build_number	2761
+started_at_utc	2026-10-12T15:26:09Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b2761.tar.gz
+tarball_sha256	bdaa2036129c12bccf513fbf374f1d90b77f06545eaa979d445348b9c1daac45
+tarball_commit	f4ab2a41476600a98067a9474ea8f9e6db41bcfa
+option_era	llama
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DLLAMA_METAL=ON -DLLAMA_CCACHE=OFF -DLLAMA_METAL_EMBED_LIBRARY=ON -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	0.796
+build_s	10.772
+compile_s	11.568
+binary_bytes	2709432
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	benchmarked
+finished_at_utc	2026-10-12T15:31:22Z

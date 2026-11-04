@@ -1,0 +1,33 @@
+[
+  {
+    "build_commit": "unknown",
+    "build_number": 0,
+    "cuda": false,
+    "opencl": false,
+    "metal": true,
+    "gpu_blas": false,
+    "blas": true,
+    "cpu_info": "",
+    "gpu_info": "",
+    "model_filename": "<models>/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
+    "model_type": "llama 7B mostly Q4_K - Medium",
+    "model_size": 4367704064,
+    "model_n_params": 7241732096,
+    "n_batch": 512,
+    "n_threads": 8,
+    "f16_kv": true,
+    "n_gpu_layers": 0,
+    "main_gpu": 0,
+    "mul_mat_q": true,
+    "tensor_split": "0.00",
+    "n_prompt": 0,
+    "n_gen": 128,
+    "test_time": "2026-10-28T14:58:23Z",
+    "avg_ns": 6550015316,
+    "stddev_ns": 536470945,
+    "avg_ts": 19.648506,
+    "stddev_ts": 1.628477,
+    "samples_ns": [ 5881586833, 6155895083, 6581326625, 6975159792, 7156108250 ],
+    "samples_ts": [ 21.7628, 20.7931, 19.449, 18.3508, 17.8868 ]
+  }
+]

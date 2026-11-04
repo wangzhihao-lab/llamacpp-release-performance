@@ -1,0 +1,32 @@
+tag	b8931
+release_commit	9725a313be0528214c4a02fed906ddaf7b3f712e
+commit_date_utc	2026-04-25T12:15:03Z
+build_number	8931
+started_at_utc	2026-10-15T07:21:09Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b8931.tar.gz
+mode	build_only
+tarball_sha256	6dda6d13aad3ce213ed1c0e8c51a5f44131e59c86a56f76a4aadcf4bb138247e
+tarball_commit	9725a313be0528214c4a02fed906ddaf7b3f712e
+option_era	ggml
+bench_src_dir	tools
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DGGML_CCACHE=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_TOOLS=ON
+configure_rc	0
+build_rc	0
+configure_s	3.943
+build_s	26.092
+compile_s	30.035
+binary_bytes	6300264
+dylib_bytes	0
+linked_libs	/opt/homebrew/opt/openssl@3/lib/libssl.3.dylib /opt/homebrew/opt/openssl@3/lib/libcrypto.3.dylib 
+cpu_no_op_offload_flag	-nopo 1
+stage	built
+finished_at_utc	2026-10-15T07:21:47Z

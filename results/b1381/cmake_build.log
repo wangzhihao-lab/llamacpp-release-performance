@@ -1,0 +1,27 @@
+[  7%] Building C object CMakeFiles/ggml.dir/ggml-metal.m.o
+[ 14%] Building C object CMakeFiles/ggml.dir/ggml-alloc.c.o
+[ 21%] Building C object CMakeFiles/ggml.dir/k_quants.c.o
+[ 28%] Building C object CMakeFiles/ggml.dir/ggml.c.o
+[ 35%] Building C object CMakeFiles/ggml.dir/ggml-backend.c.o
+<repo>/src/b1381/ggml-metal.m:121:25: warning: unused variable 'msl_library_source' [-Wunused-const-variable]
+  121 | static NSString * const msl_library_source = @"see metal.metal";
+      |                         ^~~~~~~~~~~~~~~~~~
+1 warning generated.
+[ 35%] Built target ggml
+[ 42%] Building CXX object CMakeFiles/llama.dir/llama.cpp.o
+[ 50%] Linking CXX static library libllama.a
+[ 50%] Built target llama
+[ 64%] Building CXX object common/CMakeFiles/common.dir/common.cpp.o
+[ 71%] Building CXX object common/CMakeFiles/common.dir/grammar-parser.cpp.o
+[ 78%] Building CXX object common/CMakeFiles/common.dir/sampling.cpp.o
+[ 78%] Building CXX object common/CMakeFiles/common.dir/console.cpp.o
+[ 85%] Building CXX object common/CMakeFiles/common.dir/train.cpp.o
+<repo>/src/b1381/common/common.cpp:1106:55: error: expected expression
+ 1106 |     fprintf(stream, "build_number: %d\n", BUILD_NUMBER);
+      |                                                       ^
+1 error generated.
+make[3]: *** [common/CMakeFiles/common.dir/common.cpp.o] Error 1
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [common/CMakeFiles/common.dir/all] Error 2
+make[1]: *** [examples/llama-bench/CMakeFiles/llama-bench.dir/rule] Error 2
+make: *** [llama-bench] Error 2

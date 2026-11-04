@@ -1,0 +1,15 @@
+log,graphs,mul_mat_by_backend,buffers
+path_S19_mistral-7b_A_b3643.log,3,"{'BLAS': 253, 'CPU': 36}",CPU 4165.37 MiB; KV 64.00 MiB; output 0.12 MiB; compute 81.01 MiB
+path_S19_mistral-7b_B_b3644.log,3,"{'BLAS': 253, 'CPU': 36}",CPU 4165.37 MiB; KV 64.00 MiB; output 0.12 MiB; compute 81.01 MiB
+path_S46_mistral-7b_A_b7141.log,4,"{'BLAS': 253, 'CPU': 36}",CPU_Mapped 4165.37 MiB; output 0.12 MiB; KV 64.00 MiB; compute 113.01 MiB
+path_S46_mistral-7b_B_b7142.log,4,"{'CPU': 226, 'BLAS': 63}",CPU_Mapped 4165.37 MiB; CPU_REPACK 3204.00 MiB; output 0.12 MiB; KV 64.00 MiB; compute 113.01 MiB
+path_S46_mistral-7b_C_b7142-norepack.log,4,"{'BLAS': 253, 'CPU': 36}",CPU_Mapped 4165.37 MiB; output 0.12 MiB; KV 64.00 MiB; compute 113.01 MiB
+path_S46_mistral-7b_C_b7142_ot.log,4,"{'CPU': 226, 'BLAS': 63}",CPU_Mapped 4165.37 MiB; CPU_REPACK 3204.00 MiB; output 0.12 MiB; KV 64.00 MiB; compute 113.01 MiB
+path_S46_qwen2.5-1.5b_A_b7141.log,4,"{'BLAS': 221, 'CPU': 32}",CPU_Mapped 1059.89 MiB; output 0.58 MiB; KV 14.00 MiB; compute 299.75 MiB
+path_S46_qwen2.5-1.5b_B_b7142.log,4,"{'CPU': 198, 'BLAS': 55}",CPU_Mapped 1059.89 MiB; CPU_REPACK 596.53 MiB; output 0.58 MiB; KV 14.00 MiB; compute 299.75 MiB
+path_S46_qwen2.5-1.5b_C_b7142-norepack.log,4,"{'BLAS': 221, 'CPU': 32}",CPU_Mapped 1059.89 MiB; output 0.58 MiB; KV 14.00 MiB; compute 299.75 MiB
+path_S46_qwen2.5-1.5b_C_b7142_ot.log,4,"{'CPU': 198, 'BLAS': 55}",CPU_Mapped 1059.89 MiB; CPU_REPACK 596.53 MiB; output 0.58 MiB; KV 14.00 MiB; compute 299.75 MiB
+path_S46_tinyllama-1.1b_A_b7141.log,4,"{'BLAS': 173, 'CPU': 26}",CPU_Mapped 636.18 MiB; output 0.12 MiB; KV 11.00 MiB; compute 66.50 MiB
+path_S46_tinyllama-1.1b_B_b7142.log,4,"{'CPU': 157, 'BLAS': 42}",CPU_Mapped 636.18 MiB; CPU_REPACK 455.06 MiB; output 0.12 MiB; KV 11.00 MiB; compute 66.50 MiB
+path_S46_tinyllama-1.1b_C_b7142-norepack.log,4,"{'BLAS': 173, 'CPU': 26}",CPU_Mapped 636.18 MiB; output 0.12 MiB; KV 11.00 MiB; compute 66.50 MiB
+path_S46_tinyllama-1.1b_C_b7142_ot.log,4,"{'CPU': 157, 'BLAS': 42}",CPU_Mapped 636.18 MiB; CPU_REPACK 455.06 MiB; output 0.12 MiB; KV 11.00 MiB; compute 66.50 MiB

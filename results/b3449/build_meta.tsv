@@ -1,0 +1,31 @@
+tag	b3449
+release_commit	de280085e7917dbb7f5753de5842ff4455f82a81
+commit_date_utc	2024-07-23T21:48:37Z
+build_number	3449
+started_at_utc	2026-10-12T16:11:05Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b3449.tar.gz
+tarball_sha256	9a4e998ae38d69c0b7b81fa6900465409255d0f62e731efa25c883e1ed035e4c
+tarball_commit	de280085e7917dbb7f5753de5842ff4455f82a81
+option_era	ggml
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DGGML_CCACHE=OFF -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	1.070
+build_s	13.613
+compile_s	14.683
+binary_bytes	3112248
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	benchmarked
+finished_at_utc	2026-10-12T16:16:40Z

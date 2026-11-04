@@ -1,0 +1,4 @@
+2026-10-14T15:28:53 [b8590] start (reps=5 jobs=8)
+2026-10-14T15:28:53 [b8590] build-only mode: no benchmark
+2026-10-14T15:29:28 [b8590] build ok in 29.920 s
+2026-10-14T15:29:29 [b8590] done stage=built -> <repo>/results/bisect_builds/b8590

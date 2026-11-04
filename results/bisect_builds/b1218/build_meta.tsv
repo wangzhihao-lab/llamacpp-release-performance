@@ -1,0 +1,32 @@
+tag	b1218
+release_commit	84e723653ca99d51a74b454984acf2c077468561
+commit_date_utc	2023-09-13T06:50:46Z
+build_number	1218
+started_at_utc	2026-10-15T06:25:06Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b1218.tar.gz
+mode	build_only
+tarball_sha256	ed1fabd14215aa8690872455db40b3046bc9b5839e427f49e551d35751f7ef91
+tarball_commit	84e723653ca99d51a74b454984acf2c077468561
+option_era	llama
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DLLAMA_METAL=ON -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	0.596
+build_s	5.709
+compile_s	6.305
+binary_bytes	950280
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	built
+finished_at_utc	2026-10-15T06:25:15Z

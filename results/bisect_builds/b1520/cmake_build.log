@@ -1,0 +1,26 @@
+[  5%] Generating build details from Git
+[ 11%] Building C object CMakeFiles/ggml.dir/ggml.c.o
+[ 17%] Building C object CMakeFiles/ggml.dir/ggml-alloc.c.o
+[ 23%] Building C object CMakeFiles/ggml.dir/ggml-backend.c.o
+[ 29%] Building C object CMakeFiles/ggml.dir/ggml-quants.c.o
+[ 35%] Building C object CMakeFiles/ggml.dir/ggml-metal.m.o
+-- Found Git: /usr/bin/git (found version "2.50.1 (Apple Git-155)")
+fatal: not a git repository (or any of the parent directories): .git
+fatal: not a git repository (or any of the parent directories): .git
+[ 41%] Building CXX object common/CMakeFiles/build_info.dir/build-info.cpp.o
+[ 41%] Built target build_info
+[ 41%] Built target ggml
+[ 47%] Building CXX object CMakeFiles/llama.dir/llama.cpp.o
+[ 52%] Linking CXX static library libllama.a
+[ 52%] Built target llama
+[ 58%] Building CXX object common/CMakeFiles/common.dir/common.cpp.o
+[ 64%] Building CXX object common/CMakeFiles/common.dir/train.cpp.o
+[ 76%] Building CXX object common/CMakeFiles/common.dir/console.cpp.o
+[ 76%] Building CXX object common/CMakeFiles/common.dir/sampling.cpp.o
+[ 82%] Building CXX object common/CMakeFiles/common.dir/grammar-parser.cpp.o
+[ 88%] Linking CXX static library libcommon.a
+[ 88%] Built target common
+[ 94%] Building CXX object examples/llama-bench/CMakeFiles/llama-bench.dir/llama-bench.cpp.o
+[100%] Linking CXX executable ../../bin/llama-bench
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[100%] Built target llama-bench

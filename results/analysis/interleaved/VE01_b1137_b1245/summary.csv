@@ -1,0 +1,5 @@
+event_id,step1_class,tag_a,tag_b,series,listed,fixed_equivalent,fixed_notes,runs_unsettled,step1_lr,step1_delta,campaign_a,campaign_b,fixed_n_a,fixed_n_b,fixed_lr,fixed_tau,fixed_pass,fixed_reversed,fixed_complete,fixed_round_signs,default_n_a,default_n_b,default_lr,default_tau,default_pass,default_reversed,default_complete,default_round_signs,repro_a,repro_b,verdict
+VE01,V,b1137,b1245,qwen2.5-1.5b/cpu/pp512,1,1,,0,0.0,0.0,0.0,0.0,0,0,,,False,False,False,,0,0,,,False,False,False,,,,incomplete
+VE01,V,b1137,b1245,qwen2.5-1.5b/cpu/tg128,1,1,,0,0.0,0.0,0.0,0.0,0,0,,,False,False,False,,0,0,,,False,False,False,,,,incomplete
+VE01,V,b1137,b1245,qwen2.5-1.5b/metal/pp512,1,1,,0,0.0,0.0,0.0,0.0,0,0,,,False,False,False,,0,0,,,False,False,False,,,,incomplete
+VE01,V,b1137,b1245,qwen2.5-1.5b/metal/tg128,1,1,,0,0.0,0.0,0.0,0.0,0,0,,,False,False,False,,0,0,,,False,False,False,,,,incomplete

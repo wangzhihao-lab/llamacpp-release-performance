@@ -1,0 +1,31 @@
+tag	b7738
+release_commit	d98b548120eecf98f0f6eaa1ba7e29b3afda9f2e
+commit_date_utc	2026-01-14T19:29:35Z
+build_number	7738
+started_at_utc	2026-10-12T19:33:29Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b7738.tar.gz
+tarball_sha256	d68137d15555f55184a0d31254e4d869af6c28bb6aacbce45179770dbffb3bc6
+tarball_commit	d98b548120eecf98f0f6eaa1ba7e29b3afda9f2e
+option_era	ggml
+bench_src_dir	tools
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DGGML_CCACHE=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_TOOLS=ON
+configure_rc	0
+build_rc	0
+configure_s	4.169
+build_s	30.454
+compile_s	34.623
+binary_bytes	4230712
+dylib_bytes	0
+linked_libs	/opt/homebrew/opt/openssl@3/lib/libssl.3.dylib /opt/homebrew/opt/openssl@3/lib/libcrypto.3.dylib 
+cpu_no_op_offload_flag	-nopo 1
+stage	benchmarked
+finished_at_utc	2026-10-12T19:38:51Z

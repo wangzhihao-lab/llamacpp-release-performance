@@ -1,0 +1,21 @@
+12:28:01 start warm_r1
+12:29:08 end warm_r1 rc=0
+12:29:28 start r1_b1137_n128
+12:30:38 end r1_b1137_n128 rc=0
+12:30:58 start r1_b1245_n128
+12:32:15 end r1_b1245_n128 rc=0
+12:32:35 start r1_b1245_n0
+12:33:16 end r1_b1245_n0 rc=0
+12:33:36 start r1_b1137_n0
+12:34:12 end r1_b1137_n0 rc=0
+12:34:33 start warm_r2
+12:35:43 end warm_r2 rc=0
+12:36:03 start r2_b1137_n0
+12:36:45 end r2_b1137_n0 rc=0
+12:37:05 start r2_b1245_n0
+12:37:43 end r2_b1245_n0 rc=0
+12:38:03 start r2_b1245_n128
+12:39:19 end r2_b1245_n128 rc=0
+12:39:39 start r2_b1137_n128
+12:40:51 end r2_b1137_n128 rc=0
+done

@@ -1,0 +1,31 @@
+tag	b3610
+release_commit	8455340b874aa90d5f70104c99ed2778d9e31c36
+commit_date_utc	2024-08-21T07:32:58Z
+build_number	3610
+started_at_utc	2026-10-12T16:22:19Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b3610.tar.gz
+tarball_sha256	d7c3b695259310f29f3769978f1df86b5da7fa5f3fa4cf42e893358f96c3c89d
+tarball_commit	8455340b874aa90d5f70104c99ed2778d9e31c36
+option_era	ggml
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DGGML_CCACHE=OFF -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	1.071
+build_s	14.089
+compile_s	15.160
+binary_bytes	3005416
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	benchmarked
+finished_at_utc	2026-10-12T16:28:12Z

@@ -1,0 +1,32 @@
+tag	b3152
+release_commit	7b2f4a7d193ef2475259bbe7656fcccfab4b1217
+commit_date_utc	2024-06-15T06:05:10Z
+build_number	3152
+started_at_utc	2026-10-15T08:28:21Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b3152.tar.gz
+mode	build_only
+tarball_sha256	21cf7459adcf8691eedf8daaec8d5dc41c25f1617ceacdd2c1f7500442d73ac9
+tarball_commit	7b2f4a7d193ef2475259bbe7656fcccfab4b1217
+option_era	llama
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DLLAMA_METAL=ON -DLLAMA_CCACHE=OFF -DLLAMA_METAL_EMBED_LIBRARY=ON -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	1.076
+build_s	10.741
+compile_s	11.817
+binary_bytes	2956280
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	built
+finished_at_utc	2026-10-15T08:28:37Z

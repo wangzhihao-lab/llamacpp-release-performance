@@ -1,0 +1,2 @@
+step,level,lo,mid,hi,n_candidates,mid_pos,mid_commit,build,n_lo,n_mid,n_hi,ts_lo,ts_mid,ts_hi,d,d_over_ref,f,verdict,decision,note,fixed_equivalent,finished_at_utc
+1,release,b3130,b3177,b3222,65,33,b96f9afb0d58b003ac8d1d0c94cd99393a3bc437,reused,4,4,4,482.7946,528.3893,515.5804,0.06570,0.306,,effect_lost,stop,L_hi-L_lo = +0.0657 (+6.8%); needs sign + and |.| >= 0.1073 (0.5 x reference 0.2146),1,2026-10-15T19:42:40Z

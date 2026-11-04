@@ -1,0 +1,31 @@
+tag	b4942
+release_commit	fbdfefe74e736f1a3687283c25ac21b11ba07b2e
+commit_date_utc	2025-03-22T22:28:19Z
+build_number	4942
+started_at_utc	2026-10-12T17:48:17Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b4942.tar.gz
+tarball_sha256	5784b40ac9fb635eae87586958b6f6d5a42d49d80841e929028d60a0f883746a
+tarball_commit	fbdfefe74e736f1a3687283c25ac21b11ba07b2e
+option_era	ggml
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DGGML_CCACHE=OFF -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	3.169
+build_s	15.104
+compile_s	18.273
+binary_bytes	2730312
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	benchmarked
+finished_at_utc	2026-10-12T17:53:47Z

@@ -1,0 +1,32 @@
+tag	b1533
+release_commit	5ad387e994dde77a47ec547a4a65f7611dc325f4
+commit_date_utc	2023-11-17T16:01:38Z
+build_number	1533
+started_at_utc	2026-10-15T05:20:17Z
+host_model	Mac17,4
+cpu	Apple M5
+macos	27.0
+compiler	Apple clang version 17.0.0 (clang-1700.6.3.2)
+cmake	cmake version 4.4.0
+power	Now drawing from 'AC Power'
+reps	5
+jobs	8
+cpu_threads	8
+source_url	https://github.com/ggml-org/llama.cpp/archive/refs/tags/b1533.tar.gz
+mode	build_only
+tarball_sha256	6a204bf61d632776e3eb46f2e6574c0dd8602f5baf58aecee5ae36325654045d
+tarball_commit	5ad387e994dde77a47ec547a4a65f7611dc325f4
+option_era	llama
+bench_src_dir	examples
+cmake_args	-DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_CURL=OFF -DLLAMA_METAL=ON -DLLAMA_BUILD_EXAMPLES=ON
+configure_rc	0
+build_rc	0
+configure_s	0.961
+build_s	6.998
+compile_s	7.959
+binary_bytes	1056456
+dylib_bytes	0
+linked_libs	
+cpu_no_op_offload_flag	unsupported
+stage	built
+finished_at_utc	2026-10-15T05:20:28Z

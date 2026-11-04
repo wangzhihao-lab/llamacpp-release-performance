@@ -1,0 +1,14 @@
+{
+ "event_id": "E03",
+ "lo": "b1505",
+ "hi": "b1561",
+ "model": "tinyllama-1.1b",
+ "backend": "cpu",
+ "test": "pp512",
+ "sign": -1,
+ "series": "tinyllama-1.1b/cpu/pp512",
+ "direction": "down",
+ "ref_lr": 1.0375951517581337,
+ "ref_source": "step 2 fixed phase (v11)",
+ "written_at_utc": "2026-10-15T05:20:16Z"
+}

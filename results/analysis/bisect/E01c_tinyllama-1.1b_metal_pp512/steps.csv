@@ -1,0 +1,5 @@
+step,level,lo,mid,hi,n_candidates,mid_pos,mid_commit,build,n_lo,n_mid,n_hi,ts_lo,ts_mid,ts_hi,d,d_over_ref,f,verdict,decision,note,fixed_equivalent,finished_at_utc
+1,commit,b1226,cc2ab6fe661af,b1245,18,9,c2ab6fe661af9834ca6dd75f14e2439938cc22ac,built,2,2,2,852.1876,854.4580,1352.5992,0.46198,0.998,0.0058,old,lo=mid,,1,2026-10-15T08:44:30Z
+2,commit,cc2ab6fe661af,c8c00b7a6ff38,b1245,9,5,8c00b7a6ff38e27fa1e471452b8a480913772c2a,built,2,2,2,856.8417,1358.7748,1359.0200,0.46127,0.996,0.9996,new,hi=mid,,1,2026-10-15T08:48:21Z
+3,commit,cc2ab6fe661af,ca51b68765799,c8c00b7a6ff38,4,2,a51b68765799e75e17c7622f376bfbeb66f1bd70,built,2,2,2,853.8435,1360.1400,1359.4124,0.46506,1.004,1.0012,new,hi=mid,,1,2026-10-15T08:51:38Z
+4,commit,cc2ab6fe661af,c76164fe2e65c,ca51b68765799,1,1,76164fe2e65c058e9ee2c3afd0ad6b182ca57e25,built,2,2,2,856.2937,856.2832,1355.1298,0.45904,0.991,-0.0000,old,lo=mid,,1,2026-10-15T08:54:59Z

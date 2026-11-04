@@ -1,0 +1,14 @@
+{
+ "event_id": "E49",
+ "lo": "b8545",
+ "hi": "b8740",
+ "model": "mistral-7b",
+ "backend": "metal",
+ "test": "pp512",
+ "sign": 1,
+ "series": "mistral-7b/metal/pp512",
+ "direction": "up",
+ "ref_lr": 0.46268916452006703,
+ "ref_source": "step 2 fixed phase (v11)",
+ "written_at_utc": "2026-10-14T23:12:23Z"
+}

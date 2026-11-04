@@ -1,0 +1,21 @@
+[ 25%] Building C object CMakeFiles/ggml.dir/ggml-alloc.c.o
+[ 25%] Building C object CMakeFiles/ggml.dir/ggml.c.o
+[ 25%] Building C object CMakeFiles/ggml.dir/ggml-metal.m.o
+[ 33%] Building C object CMakeFiles/ggml.dir/k_quants.c.o
+[ 33%] Built target ggml
+[ 41%] Building CXX object CMakeFiles/llama.dir/llama.cpp.o
+[ 50%] Linking CXX static library libllama.a
+[ 50%] Built target llama
+[ 83%] Building CXX object common/CMakeFiles/common.dir/train.cpp.o
+[ 83%] Building CXX object common/CMakeFiles/common.dir/grammar-parser.cpp.o
+[ 83%] Building CXX object common/CMakeFiles/common.dir/console.cpp.o
+[ 83%] Building CXX object common/CMakeFiles/common.dir/common.cpp.o
+<repo>/src/b1296/common/common.cpp:1199:55: error: expected expression
+ 1199 |     fprintf(stream, "build_number: %d\n", BUILD_NUMBER);
+      |                                                       ^
+1 error generated.
+make[3]: *** [common/CMakeFiles/common.dir/common.cpp.o] Error 1
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [common/CMakeFiles/common.dir/all] Error 2
+make[1]: *** [examples/llama-bench/CMakeFiles/llama-bench.dir/rule] Error 2
+make: *** [llama-bench] Error 2

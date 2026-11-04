@@ -1,0 +1,4 @@
+2026-10-15T01:32:27 [b3143] start (reps=5 jobs=8)
+2026-10-15T01:32:27 [b3143] build-only mode: no benchmark
+2026-10-15T01:32:44 [b3143] build ok in 11.794 s
+2026-10-15T01:32:44 [b3143] done stage=built -> <repo>/results/bisect_builds/b3143

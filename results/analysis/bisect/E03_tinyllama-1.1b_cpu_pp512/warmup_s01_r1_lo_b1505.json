@@ -1,0 +1,33 @@
+[
+  {
+    "build_commit": "unknown",
+    "build_number": 0,
+    "cuda": false,
+    "opencl": false,
+    "metal": true,
+    "gpu_blas": false,
+    "blas": true,
+    "cpu_info": "",
+    "gpu_info": "",
+    "model_filename": "<models>/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
+    "model_type": "llama ?B mostly Q4_K - Medium",
+    "model_size": 667078656,
+    "model_n_params": 1100048384,
+    "n_batch": 512,
+    "n_threads": 8,
+    "f16_kv": true,
+    "n_gpu_layers": 0,
+    "main_gpu": 0,
+    "mul_mat_q": true,
+    "tensor_split": "0.00",
+    "n_prompt": 512,
+    "n_gen": 0,
+    "test_time": "2026-10-15T05:20:50Z",
+    "avg_ns": 1151425520,
+    "stddev_ns": 8529948,
+    "avg_ts": 444.688183,
+    "stddev_ts": 3.298745,
+    "samples_ns": [ 1163991541, 1135522375, 1148666417, 1153035500, 1147615500, 1152546500, 1145873416, 1146314458, 1161339125, 1159350375 ],
+    "samples_ts": [ 439.866, 450.894, 445.734, 444.045, 446.142, 444.234, 446.821, 446.649, 440.87, 441.627 ]
+  }
+]
