@@ -2089,6 +2089,61 @@ def load_window_macros(root: Path, cand: pd.DataFrame, ev: pd.DataFrame, vis: pd
 # --------------------------------------------------------------------------------------------
 
 
+def long_term_macros(root: Path, vis_raw: pd.DataFrame, excluded: tuple[tuple[str, str], ...], cand: pd.DataFrame,
+                     cps: pd.DataFrame, confirmed: list[str], src_vis: str, src_cp: str) -> list[Macro]:
+    """Long-term change per series against the confirmed events, and change points inside confirmed events.
+
+    The long-term factor of a series is the median campaign throughput of its last three sampled
+    releases over that of its first three.  A change point counts for a confirmed event when both of
+    its releases lie inside the interval of the event.
+
+    Raises:
+        ValueError: If a tg128 series has a confirmed change, which the text rules out.
+    """
+    frames = [pd.read_csv(f) for f in sorted((root / "results").glob("b*/records.csv"))]
+    key = "mistral-7b/cpu/pp512"
+    if not frames:
+        logger.warning("no campaign records; long-term macros skipped")
+        return []
+    rec = pd.concat(frames)
+    if not {"param_set", "avg_ts"} <= set(rec.columns):
+        logger.warning("campaign records without throughput; long-term macros skipped")
+        return []
+    rec = rec[(rec["status"] == "ok") & (rec["param_set"] == "main")].copy()
+    rec["bn"] = rec["tag"].str[1:].astype(int)
+    rec["series"] = rec["model"] + "/" + rec["backend"] + "/" + rec["test"]
+    vis = apply_exclusions(vis_raw, excluded)
+    factors: dict[str, float] = {}
+    products: dict[str, float] = {}
+    for s, g in rec.groupby("series"):
+        g = g.sort_values("bn")
+        factors[str(s)] = float(g["avg_ts"].iloc[-3:].median() / g["avg_ts"].iloc[:3].median())
+        v = vis[(vis.series == s) & vis.state.isin(["up", "down"])]
+        products[str(s)] = math.exp(float(np.log1p(v.lr_pct / 100).sum()))
+    if key not in factors:
+        logger.warning("series %s missing; long-term macros skipped", key)
+        return []
+    tg = {s: f for s, f in factors.items() if s.endswith("/tg128")}
+    if any(abs(products[s] - 1) > 1e-9 for s in tg):
+        raise ValueError("a tg128 series has a confirmed change")
+    src = "results/<tag>/records.csv"
+    hits = []
+    for e in confirmed:
+        row = cand[cand.event_id == e]
+        if row.empty:
+            continue
+        lo, hi = int(row.b_old.iloc[0]), int(row.b_new.iloc[0])
+        hits.append(int(((cps.b_left_end >= lo) & (cps.b_right_start <= hi)).sum()))
+    return [
+        Macro("netMistralCpuPp", f"{factors[key]:.2f}", src, f"{key}: median of the last 3 over the first 3 sampled releases"),
+        Macro("netConfMistralCpuPp", f"{products[key]:.2f}", src_vis, f"{key}: product of its confirmed changes"),
+        Macro("netTgMin", f"{min(tg.values()):.2f}", src, "smallest long-term factor of the tg128 series"),
+        Macro("netTgMax", f"{max(tg.values()):.2f}", src, "largest long-term factor of the tg128 series"),
+        Macro("nCpInConfirmed", str(sum(hits)), src_cp, "change points inside the interval of a confirmed event"),
+        Macro("nConfirmedWithCp", str(sum(h > 0 for h in hits)), src_cp, "confirmed events with a change point inside"),
+    ]
+
+
 def compute_all(root: Path, excluded: tuple[tuple[str, str], ...], scripts: Path = SCRIPTS) -> list[Macro]:
     """Compute every macro from the result files under ``root``.
 
@@ -2148,6 +2203,7 @@ def compute_all(root: Path, excluded: tuple[tuple[str, str], ...], scripts: Path
     macros += load_window_macros(root, cand, ev, apply_exclusions(vis, excluded))
     macros += cost_macros(root, float(argparse_default(scripts / "analysis" / "step2_interleaved.py", "--cooldown")))
     macros += switch_macros(root, se)
+    macros += long_term_macros(root, vis, excluded, cand, pd.read_csv(paths["cps"]), confirmed, r["vis"], r["cps"])
     vals = {m.name: m.value for m in macros}
     if vals.get("sensFloorBindings", "0") != "0":  # the text says the floors changed nothing
         raise ValueError(f"a floor decides {vals['sensFloorBindings']} judgments; revise the threshold text")

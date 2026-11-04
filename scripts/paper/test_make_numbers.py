@@ -762,3 +762,21 @@ def test_switch_macros(tmp_path: Path) -> None:
     assert v["swFourFirstPct"] == "+16" and v["swFourFirstZ"] == "2.97"
     assert v["swRoundsLong"] == "6" and v["swRoundsShort"] == "3" and "pollDefaultNewest" not in v
     assert mn.switch_macros(tmp_path / "elsewhere", se) == []
+
+
+def test_long_term_macros(tmp_path: Path) -> None:
+    head = "tag,model,backend,test,status,param_set,avg_ts\n"
+    for i, tag in enumerate(("b1", "b2", "b3", "b4", "b5", "b6")):
+        d = tmp_path / "results" / tag
+        d.mkdir(parents=True)
+        (d / "records.csv").write_text(head + f"{tag},mistral-7b,cpu,pp512,ok,main,{10 * (1 + i // 3)}\n"
+                                       + f"{tag},mistral-7b,cpu,tg128,ok,main,{5 + i // 3}\n"
+                                       + f"{tag},tinyllama-1.1b,cpu,tg128,ok,main,8\n")
+    vis = mn.pd.DataFrame({"event_id": ["E01"], "series": ["mistral-7b/cpu/pp512"], "state": ["down"],
+                           "lr_pct": [-50.0], "z": [-5.0], "source": ["E01"]})
+    cand = mn.pd.DataFrame({"event_id": ["E01"], "b_old": [1], "b_new": [3]})
+    cps = mn.pd.DataFrame({"b_left_end": [1, 4], "b_right_start": [2, 5]})
+    v = _values(mn.long_term_macros(tmp_path, vis, (), cand, cps, ["E01"], "v", "c"))
+    assert v["netMistralCpuPp"] == "2.00" and v["netConfMistralCpuPp"] == "0.50"
+    assert v["netTgMin"] == "1.00" and v["netTgMax"] == "1.20"
+    assert v["nCpInConfirmed"] == "1" and v["nConfirmedWithCp"] == "1"
