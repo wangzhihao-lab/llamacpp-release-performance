@@ -465,6 +465,13 @@ def test_default_phase_macros(tmp_path: Path) -> None:
     assert mn.default_phase_macros(tmp_path / "missing.csv", 3.0, "x") == []
 
 
+def test_latest_rows_prefers_the_repeat() -> None:
+    frame = pd.DataFrame({"exp": ["F", "FR", "FS", "F"], "series": ["a", "a", "a", "b"], "v": [1, 2, 3, 4]})
+    assert list(mn.latest_rows(frame, ("F", "FR", "FS")).v) == [3, 4]
+    cells = pd.DataFrame({"exp": ["GE16", "GE16R", "GE19"], "event_id": ["E16", "E16", "E19"], "series": ["a", "a", "a"], "v": [1, 2, 3]})
+    assert list(mn.latest_rows(cells, ("GE16", "GE19", "GE16R")).v) == [2, 3]
+
+
 def test_category_macros(tmp_path: Path) -> None:
     p = tmp_path / "root_cause_categories.csv"
     p.write_text(CATEGORY_CSV)

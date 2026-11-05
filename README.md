@@ -17,6 +17,7 @@ py scripts/analysis/step2b_judge.py --drop-round1-unwarmed --suffix _norm1
 py scripts/analysis/step2b_judge.py --exclude-windows results/analysis/load_windows.tsv --suffix _nowin
 py scripts/analysis/load_window_check.py
 py scripts/analysis/step3b_switch_controls.py --summarize-only
+py scripts/analysis/step3c_alone_controls.py --summarize-only
 py scripts/analysis/step4_visibility.py
 py scripts/paper/make_numbers.py
 py scripts/paper/make_figures.py
@@ -24,7 +25,7 @@ py scripts/paper/make_fig_overview.py
 py scripts/paper/make_fig_flow.py
 ```
 
-The first six commands rewrite the derived tables under `results/analysis/` from the stored runs, with the same content. `make_numbers.py` writes `paper/numbers.tex` (and creates `paper/`): 788 LaTeX macros, one for every measured number of the paper, each preceded by a comment that names its source file and computation. `make_figures.py` writes the data figures, `make_fig_overview.py` the study overview and `make_fig_flow.py` the code paths and the decision flow to `paper/figs/`, as PDF and SVG; the last two read `paper/numbers.tex`, so `make_numbers.py` comes first. The figures use Times New Roman when the font is installed.
+The first seven commands rewrite the derived tables under `results/analysis/` from the stored runs, with the same content. `make_numbers.py` writes `paper/numbers.tex` (and creates `paper/`): 818 LaTeX macros, one for every measured number of the paper, each preceded by a comment that names its source file and computation. `make_figures.py` writes the data figures, `make_fig_overview.py` the study overview and `make_fig_flow.py` the code paths and the decision flow to `paper/figs/`, as PDF and SVG; the last two read `paper/numbers.tex`, so `make_numbers.py` comes first. The figures use Times New Roman when the font is installed.
 
 ## Contents
 
@@ -91,7 +92,7 @@ The paper numbers its steps by what they do, and the scripts by the order of the
 | 1. Build and benchmark each release once | `build_bench.sh`, `run_campaign.sh` |
 | 2. Detect changes | `step0_effective_config.py`, `step1_candidate_events.py`, `step1b_changepoints.py` |
 | 3. Re-measure side by side | `step2_interleaved.py`, `step2b_judge.py` |
-| 4. Bisect to commits | `step3_bisect.py`, `step3b_switch_controls.py` |
+| 4. Bisect to commits | `step3_bisect.py`, `step3b_switch_controls.py`, `step3c_alone_controls.py` |
 | 5. Check visibility on all series | `make_visibility_events.py`, `step2_interleaved.py`, `step4_visibility.py` |
 | 6. Find the smallest covering set | `step4_visibility.py` |
 
@@ -112,6 +113,7 @@ The paper numbers its steps by what they do, and the scripts by the order of the
 | Bisection | yes | 16 bisections: 622 runs, 2.8 h benchmarking, 60 builds of 17 s (median) |
 | Queue as a whole (re-measurement, judgment and 14 of the bisections) | yes | 30.9 h from 2026-10-14 14:01 UTC to 2026-10-15 20:58 UTC |
 | Switch controls (`step3b`) | yes | 117 runs: 0.8 h benchmarking, with a pause of 20 s between runs |
+| tg128 alone, first against last (`step3c`) | yes | 360 runs: 1.8 h benchmarking, with a pause of 20 s between runs |
 | E01 harness check | yes | 13 min |
 | Judgment (`step2b`), each variant | no | About 10 s |
 | Load windows, step 3b tables, visibility tables | no | Under 5 s each |

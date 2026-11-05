@@ -1,0 +1,54 @@
+ggml_metal_init: allocating
+ggml_metal_init: loading '<repo>/bins/b1137/ggml-metal.metal'
+ggml_metal_init: loaded kernel_add                            0x1055ba0a0 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_add_row                        0x1055bb960 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul                            0x1055bcbe0 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_row                        0x1055bdea0 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_scale                          0x1055beaa0 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_silu                           0x1055bf760 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_relu                           0x1055c0120 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_gelu                           0x1055c0ae0 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_soft_max                       0x1055c0e60 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_diag_mask_inf                 0x7cf4f08000 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_get_rows_f16                  0x7cf4f08380 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_get_rows_q4_0                 0x7cf4f08700 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_get_rows_q4_1                 0x7cf4f08a80 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_get_rows_q8_0                 0x7cf4f08e00 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_get_rows_q2_K                 0x7cf4f09180 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_get_rows_q3_K                 0x7cf4f09500 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_get_rows_q4_K                 0x7cf4f09880 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_get_rows_q5_K                 0x7cf4f09c00 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_get_rows_q6_K                 0x7cf4f09f80 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_rms_norm                      0x7cf4f0a300 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_norm                          0x7cf4f0a680 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mat_f16_f32               0x7cf4f0aa00 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mat_q4_0_f32              0x7cf4f0ad80 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mat_q4_1_f32              0x7cf4f0b100 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mat_q8_0_f32              0x7cf4f0b480 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mat_q2_K_f32              0x7cf4f0b800 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mat_q3_K_f32              0x7cf4f0bb80 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mat_q4_K_f32              0x7cf4f0c000 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mat_q5_K_f32              0x7cf4f0c380 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mat_q6_K_f32              0x7cf4f0c700 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mm_f16_f32                0x7cf4f0ca80 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mm_q4_0_f32               0x7cf4f0ce00 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mm_q8_0_f32               0x7cf4f0d180 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mm_q4_1_f32               0x7cf4f0d500 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mm_q2_K_f32               0x7cf4f0d880 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mm_q3_K_f32               0x7cf4f0dc00 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mm_q4_K_f32               0x7cf4f0df80 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mm_q5_K_f32               0x7cf4f0e300 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_mul_mm_q6_K_f32               0x7cf4f0e680 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_rope                          0x7cf4f0ea00 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_alibi_f32                     0x7cf4f0ed80 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_cpy_f32_f16                   0x7cf4f0f100 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_cpy_f32_f32                   0x7cf4f0f480 | th_max = 1024 | th_width =   32
+ggml_metal_init: loaded kernel_cpy_f16_f16                   0x7cf4f0f800 | th_max = 1024 | th_width =   32
+ggml_metal_init: recommendedMaxWorkingSetSize  = 25559.05 MB
+ggml_metal_init: hasUnifiedMemory              = true
+ggml_metal_init: maxTransferRate               = built-in GPU
+ggml_metal_add_buffer: allocated 'data            ' buffer, size =  4166.08 MB, ( 4166.77 / 25559.05)
+ggml_metal_add_buffer: allocated 'eval            ' buffer, size =     1.48 MB, ( 4168.25 / 25559.05)
+ggml_metal_add_buffer: allocated 'kv              ' buffer, size =    18.00 MB, ( 4186.25 / 25559.05)
+ggml_metal_add_buffer: allocated 'alloc           ' buffer, size =    20.02 MB, ( 4206.27 / 25559.05)
+ggml_metal_free: deallocating

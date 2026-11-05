@@ -184,6 +184,17 @@ Run (a timed measurement; stop other work on the machine first):
 nohup nice -n 5 uv run --no-project --with pandas --with numpy python3 -I scripts/analysis/step3b_switch_controls.py > results/analysis/switch/nohup.out 2>&1 &
 ```
 
+
+## Step 3c: tg128 alone and first against last release, `step3c_alone_controls.py`
+
+In the re-measurements tg128 followed pp512 in one process. The `G` groups measure tg128 alone on the sampled pair of each confirmed event, on the event's own back end. The `F` groups measure the first sampled release a model loads against the newest one on all twelve series, each test in a process of its own. Both use four rounds (AB, BA, AB, BA), a warm-up run of arm A, a 20 s pause and the wait for a quiet machine of step 2. Seven groups were repeated after 300 s of idle time (`GE16R`, `GE19R`, `GE46R`, `FR`, `FS`): those of Qwen2.5 CPU tg128, which had followed a Mistral-7B CPU group while the machine was still cooling, and first-to-last groups on the CPU that other load had disturbed. A repeat replaces its group, and the first groups stay in the tables.
+
+Outputs in `results/analysis/alone/`: one directory per group, `cells.csv`, `first_last.csv`, the same two without the runs that overlap `load_windows.tsv` (`*_nowin.csv`) and `MEMO.md`. `step4_visibility.py` takes the cells of `cells.csv` into the matrix.
+
+```
+nice -n 10 uv run --no-project --with pandas --with numpy python3 -B -I scripts/analysis/step3c_alone_controls.py
+```
+
 ## Steps 4 and 5: visibility and the smallest covering set, `step4_visibility.py`
 
 ```

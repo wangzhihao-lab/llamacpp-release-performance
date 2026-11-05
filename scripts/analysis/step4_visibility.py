@@ -9,7 +9,9 @@ sources, in this order of preference: the protocol-v1.2 re-measurement of the ev
 step-2 measurement of the event, and the visibility re-test (``V<event>``).  Two cells that were
 re-tested on their own in step 3b (T04 = E04 on mistral-7b/cpu/tg128
 with tg128 alone, T50 = E50 on mistral-7b/metal/pp512, six rounds each) take that re-test instead,
-as fixed before it ran (``results/analysis/switch/comparisons.csv``, arms A -> B).
+as fixed before it ran (``results/analysis/switch/comparisons.csv``, arms A -> B).  The tg128 cells of
+each event on its own back end take the measurement of tg128 alone of step 3c
+(``results/analysis/alone/cells.csv``), a repeat over the first group.
 
 Every cell uses the judge's own thresholds, two-sided: ``up``/``down`` when |lr| >= ln(1 + min_rel)
 and |z| >= z_min in the fixed configuration (lr = ln of newer over older throughput), ``none``
@@ -48,6 +50,7 @@ SERIES = tuple(f"{m}/{b}/{t}" for b in BACKENDS for m in MODELS for t in TESTS)
 SHORT = {"tinyllama-1.1b": "tiny", "qwen2.5-1.5b": "qwen", "mistral-7b": "mistral"}
 RETESTS = {("E04", "mistral-7b/cpu/tg128"): "T04", ("E50", "mistral-7b/metal/pp512"): "T50"}
 SWITCH_CMP = ANALYSIS / "switch" / "comparisons.csv"
+ALONE_CELLS = ANALYSIS / "alone" / "cells.csv"
 
 
 def short(series: str) -> str:
@@ -131,6 +134,31 @@ def apply_retests(vis: pd.DataFrame, path: Path, min_rel: float, z_min: float) -
     return out
 
 
+def apply_alone(vis: pd.DataFrame, path: Path, min_rel: float, z_min: float) -> pd.DataFrame:
+    """Replace tg128 cells by their measurement alone (step 3c); a repeat (GE..R) wins over the first group.
+
+    Args:
+        vis: Output of :func:`apply_retests`.
+        path: results/analysis/alone/cells.csv.
+        min_rel: Practical floor.
+        z_min: z threshold.
+
+    Returns:
+        A copy of ``vis`` with those cells replaced (source GE.. or GE..R).
+    """
+    out = vis.copy()
+    if not path.is_file():
+        return out
+    cells = pd.read_csv(path)
+    cells = cells[(cells.n_a >= 2) & (cells.n_b >= 2)].sort_values("exp", key=lambda c: c.str.endswith("R"))
+    for r in cells.itertuples():  # repeats come last and overwrite
+        visible = abs(r.lr) >= math.log1p(min_rel) and abs(r.z) >= z_min
+        state = ("up" if r.lr > 0 else "down") if visible else "none"
+        mask = (out.event_id == r.event_id) & (out.series == r.series)
+        out.loc[mask, ["state", "lr_pct", "z", "source"]] = [state, math.expm1(r.lr) * 100, r.z, r.exp]
+    return out
+
+
 def matrix_md(vis: pd.DataFrame) -> str:
     """Markdown matrix: events as rows, series as columns, '+12%' / '-23%' for visible cells."""
     head = "| Event | " + " | ".join(short(s) for s in SERIES) + " |"
@@ -176,6 +204,7 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     events = confirmed_events(pd.read_csv(ep))
     vis = apply_retests(visibility(pd.read_csv(sp), events, ns.min_rel, ns.z_min), SWITCH_CMP, ns.min_rel, ns.z_min)
+    vis = apply_alone(vis, ALONE_CELLS, ns.min_rel, ns.z_min)
     vis.to_csv(ns.out / "step4_visibility.csv", index=False)
     seen = vis[vis.state.isin(["up", "down"])].groupby("event_id").series.count()
     (ns.out / "step4_visibility.md").write_text(

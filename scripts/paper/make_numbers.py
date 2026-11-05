@@ -2196,6 +2196,7 @@ def load_window_macros(root: Path, cand: pd.DataFrame, ev: pd.DataFrame, vis: pd
         logger.warning("load-window files missing (%s); macros skipped", ", ".join(str(f) for f in missing))
         return []
     windows = pd.read_csv(files[0], sep="\t")
+    windows = windows[windows.start_utc < STEP_3C_START]  # step 3c reports its own windows
     runs = pd.read_csv(files[1], sep="\t")
     steps = pd.read_csv(files[2])
     evn, sen = pd.read_csv(files[3]), pd.read_csv(files[4])
@@ -2511,6 +2512,106 @@ def review_case_macros(an: Path, se: pd.DataFrame, vis: pd.DataFrame, excluded: 
     return out
 
 
+STEP_3C_START = "2026-11-05"
+
+
+def latest_rows(frame: pd.DataFrame, order: tuple[str, ...]) -> pd.DataFrame:
+    """One row per series and event: the group latest in ``order`` (a repeat over the first measurement).
+
+    Args:
+        frame: Table with the columns exp and series, and event_id for the cells of step 3c.
+        order: Experiment ids, later ones win.
+
+    Returns:
+        The rows kept, in the order of ``frame``.
+    """
+    rank = frame.exp.map(lambda e: order.index(e) if e in order else -1)
+    keys = ["series", "event_id"] if "event_id" in frame else ["series"]
+    keep = frame.assign(rank=rank).sort_values("rank").groupby(keys).tail(1)
+    return frame.loc[sorted(keep.index)]
+
+
+def alone_macros(root: Path) -> list[Macro]:
+    """Numbers of step 3c: tg128 alone on the confirmed events, and first against last release.
+
+    Args:
+        root: Project root.
+
+    Returns:
+        Macros; none (with a warning) when the tables are missing.
+    """
+    base = root / "results" / "analysis" / "alone"
+    paths = [base / n for n in ("cells.csv", "cells_nowin.csv", "first_last.csv")]
+    switch = root / "results" / "analysis" / "switch" / "comparisons.csv"
+    if not all(p.is_file() for p in paths) or not switch.is_file():
+        logger.warning("step 3c tables missing; macros skipped")
+        return []
+    src_c, src_f = "results/analysis/alone/cells.csv", "results/analysis/alone/first_last.csv"
+    cells = pd.read_csv(paths[0])
+    final = latest_rows(cells, tuple(sorted(set(cells.exp), key=lambda e: e.endswith("R"))))
+    t04 = pd.read_csv(switch).query("exp == 'T04' and x == 'A' and y == 'B'").iloc[0]
+    pct = [*final.pct.abs(), abs(float(t04.pct))]
+    mde = [100 * math.expm1(3 * float(s)) for s in [*final.se, t04.se]]
+    meets = int(final.meets_rule.sum()) + int(bool(t04.meets_rule))
+    nowin = pd.read_csv(paths[1])
+    ends = latest_rows(pd.read_csv(paths[2]), ("F", "FR", "FS")).set_index("series")
+
+    def pick(kind: str, test: str) -> pd.DataFrame:
+        return ends[[s.split("/")[1] == kind and s.endswith(test) for s in ends.index]]
+
+    metal, cpu = pick("metal", "pp512"), pick("cpu", "pp512")
+    tg = ends[[s.endswith("tg128") for s in ends.index]]
+    top = tg.factor.sub(1).abs().idxmax()
+    out = [
+        Macro("altCells", str(len(pct)), src_c, "tg128-alone cells, T04 included"),
+        Macro("altMeets", str(meets), src_c, "cells that meet the rule"),
+        Macro("altMeetsNoWin", str(int(nowin.meets_rule.sum())), "results/analysis/alone/cells_nowin.csv",
+              "the same without runs overlapping load windows"),
+        Macro("altMaxPct", str(round(max(pct))), src_c, "largest absolute change of a cell (%)"),
+        Macro("altMdeMin", str(round(min(mde))), src_c, "smallest confirmable change exp(3 SE) - 1, min (%)"),
+        Macro("altMdeMax", str(round(max(mde))), src_c, "same, max (%)"),
+        Macro("flMetalMin", f"{metal.factor.min():.1f}", src_f, "first to last release, Metal pp512, smallest factor"),
+        Macro("flMetalMax", f"{metal.factor.max():.1f}", src_f, "same, largest factor"),
+        Macro("flMetalProdMin", f"{metal['product'].min():.1f}", src_f, "product of the confirmed events, Metal pp512, smallest"),
+        Macro("flMetalProdMax", f"{metal['product'].max():.1f}", src_f, "same, largest"),
+        Macro("flCpuMin", f"{cpu.factor.min():.2f}", src_f, "first to last release, CPU pp512, smallest factor"),
+        Macro("flCpuMax", f"{cpu.factor.max():.2f}", src_f, "same, largest factor"),
+        Macro("flCpuProdMin", f"{cpu['product'].min():.2f}", src_f, "product of the confirmed events, CPU pp512, smallest"),
+        Macro("flCpuProdMax", f"{cpu['product'].max():.2f}", src_f, "same, largest"),
+        Macro("flCpuZMin", f"{cpu.z_d.abs().min():.1f}", src_f, "|z| of the gap between factor and product, CPU pp512, smallest"),
+        Macro("flCpuZMax", f"{cpu.z_d.abs().max():.1f}", src_f, "same, largest"),
+        Macro("flTgMin", f"{tg.factor.min():.2f}", src_f, "first to last release, tg128, smallest factor"),
+        Macro("flTgMax", f"{tg.factor.max():.2f}", src_f, "same, largest factor"),
+        Macro("flTgTopZ", f"{abs(float(tg.loc[top, 'z'])):.1f}", src_f, f"|z| of the largest tg128 change ({top})"),
+        Macro("flTgMeets", str(int(tg.meets_rule.sum())), src_f, "tg128 series that meet the rule"),
+        Macro("flUnexplainedWord", number_word(int(ends.unexplained.sum())).lower(), src_f, "series whose gap to the product meets the rule"),
+        Macro("flMistralCpu", f"{ends.loc['mistral-7b/cpu/pp512', 'factor']:.2f}", src_f, "first to last release, Mistral-7B CPU pp512"),
+    ]
+    ends_nowin = latest_rows(pd.read_csv(base / "first_last_nowin.csv"), ("F", "FR", "FS")).set_index("series")
+    out += [Macro("flNoWinTinyZ", f"{ends_nowin.loc['tinyllama-1.1b/cpu/pp512', 'z_d']:.1f}", "results/analysis/alone/first_last_nowin.csv",
+                  "|z| of the gap on TinyLlama CPU pp512 without runs overlapping load windows"),
+            Macro("flNoWinQwenZ", f"{ends_nowin.loc['qwen2.5-1.5b/cpu/pp512', 'z_d']:.1f}", "results/analysis/alone/first_last_nowin.csv",
+                  "the same on Qwen2.5 CPU pp512")]
+    repeats = {*final.exp[final.exp.str.endswith("R")], *(f"FS{s}" for s in ends.index[ends.exp == "FS"])}
+    windows = pd.read_csv(root / "results" / "analysis" / "load_windows.tsv", sep="\t")
+    out += [Macro("altRepeatedWordCap", number_word(len(repeats)), src_c, "groups repeated after idle minutes"),
+            Macro("altLoadWindows", str(int((windows.start_utc >= STEP_3C_START).sum())), "results/analysis/load_windows.tsv",
+                  "windows of other load during step 3c")]
+
+    def spread(group: str) -> float:
+        path = base / group / "runs.tsv"
+        runs = pd.read_csv(path, sep="\t")
+        vals = [run_value(path.parent, j, "tg128") for j in runs[runs.phase == "fixed"].json_file]
+        return 100 * (max(vals) / min(vals) - 1)
+
+    after = [spread(f"{e}_qwen2.5-1.5b_cpu_tg128") for e in ("GE16", "GE19", "GE46", "F")]
+    idle = [spread(f"{e}_qwen2.5-1.5b_cpu_tg128") for e in ("GE16R", "GE19R", "GE46R")]
+    return out + [Macro("coolRiseMin", str(round(min(after))), src_c, "range of run medians in a Qwen2.5 CPU tg128 group after a Mistral-7B group, min (%)"),
+                  Macro("coolRiseMax", str(round(max(after))), src_c, "same, max (%)"),
+                  Macro("coolIdleMin", str(round(min(idle))), src_c, "same after idle minutes, min (%)"),
+                  Macro("coolIdleMax", str(round(max(idle))), src_c, "same, max (%)")]
+
+
 def compute_all(root: Path, excluded: tuple[tuple[str, str], ...], scripts: Path = SCRIPTS) -> list[Macro]:
     """Compute every macro from the result files under ``root``.
 
@@ -2580,6 +2681,7 @@ def compute_all(root: Path, excluded: tuple[tuple[str, str], ...], scripts: Path
     macros += warm_first_run_macros(root)
     macros += default_phase_macros(il / "noise_model_v11.csv", 3.0, _rel(il / "noise_model_v11.csv", root))
     macros += sampling_gap_macros(root)
+    macros += alone_macros(root)
     macros += review_case_macros(an, se, vis, excluded, r["se"], r["vis"])
     vals = {m.name: m.value for m in macros}
     if vals.get("sensFloorBindings", "0") != "0":  # the text says the floors changed nothing
