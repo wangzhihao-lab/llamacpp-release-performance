@@ -296,7 +296,7 @@ def fig_motivation(root: Path, out: Path) -> dict[str, object]:
     axa.set_title("(a) Measured once per release", loc="left", fontsize=7, pad=3)
 
     gl.hollow_arrow(ax, 5.42, 6.22, pb + ph / 2 + 0.05)
-    ax.text(5.82, pb + ph / 2 - 0.25, "re-measure\nside by side", ha="center", va="top", fontsize=6.0, fontweight="bold",
+    ax.text(5.82, pb + ph / 2 - 0.25, "re-measure\nin alternation", ha="center", va="top", fontsize=6.0, fontweight="bold",
             color=gl.INK, linespacing=1.1)
 
     # (b) the same release pairs side by side
@@ -548,7 +548,7 @@ def boundary_text(res: dict) -> str:
 
 
 def fig_bisection(root: Path, out: Path) -> list[dict[str, object]]:
-    """Step plots of three bisections: per-run throughput of lo, mid and hi, and the candidates left.
+    """Step plots of three bisections: per-run throughput of lo, mid and hi, and the tags left.
 
     One row of panels; each step's tick label gives the step and, below it, the candidate releases
     left before it.  The boundaries are in Table 3 of the paper, not in the figure.
@@ -586,7 +586,7 @@ def fig_bisection(root: Path, out: Path) -> list[dict[str, object]]:
         ax.set_title(f"({'abc'[j]}) {res['event_id']}, {'Metal' if backend == 'metal' else 'CPU'} {test}", loc="left")
         ax.set_xticks(list(steps.step), [f"{int(s)}\n{int(n)}" for s, n in zip(steps.step, steps.n_candidates)])
         ax.set_xlim(0.5, int(steps.step.max()) + 0.6)
-        ax.set_xlabel("Step (candidates left)")
+        ax.set_xlabel("Step (tags left)")
         if j == 0:
             ax.set_ylabel("Throughput (tokens/s)")
         summ.append({"label": label, "event": res["event_id"], "series": res["series"], "lo": res["lo"],

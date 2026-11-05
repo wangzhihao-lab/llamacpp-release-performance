@@ -89,7 +89,7 @@ def build_nodes(m: dict[str, str]) -> dict[str, Node]:
         "d1": Node("data", f"{m['nRecords']} records\nof {m['nTagsBuilt']} releases", 1.95),
         "s2": Node("step", "2. Detect\nchanges", 1.75),
         "d2": Node("data", f"{m['nCandidates']} + {m['nChangepointEvents']}\ncandidate\nchanges", 1.8),
-        "s3": Node("step", "3. Re-measure\nside by side", 2.1),
+        "s3": Node("step", "3. Re-measure\nin alternation", 2.1),
         "d3": Node("data", f"{m['nConfirmed']} confirmed\nchanges", 1.8, "RQ1"),
         "s4": Node("step", "4. Bisect to\ncommits", 1.8),
         "d4": Node("data", f"{m['nEventsLocated']} located,\n\u2264 {m['bisectMaxBoundaryCommits']} commits\neach", 1.8,

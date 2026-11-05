@@ -444,6 +444,27 @@ def test_coding_agreement_macros(tmp_path: Path) -> None:
     assert mn.coding_agreement_macros(tmp_path / "missing.csv", ["E01"], tmp_path) == []
 
 
+def test_session_spread_macros(tmp_path: Path) -> None:
+    il = tmp_path / "results" / "analysis" / "interleaved"
+    for name, value in (("E01_a_b", 100.0), ("E02_a_c", 150.0)):
+        d = il / name
+        d.mkdir(parents=True)
+        (d / "x.json").write_text(json.dumps([{"n_prompt": 512, "n_gen": 0, "samples_ts": [value]}]))
+        (d / "runs.tsv").write_text("exit_code\tphase\ttag\tmodel\tbackend\tjson_file\n0\tfixed\tb1\tm\tcpu\tx.json\n0\twarmup\tb1\tm\tcpu\t\n")
+    v = _values(mn.session_spread_macros(tmp_path))
+    assert v["sessionCases"] == "1" and v["sessionMedianPct"] == "50" and v["sessionTwentyPct"] == "100"
+    assert v["sessionWarmCases"] == "1"
+    assert mn.session_spread_macros(tmp_path / "none") == []
+
+
+def test_default_phase_macros(tmp_path: Path) -> None:
+    p = tmp_path / "noise.csv"
+    p.write_text("sigma_default\n0.1\n0.2\n")
+    v = _values(mn.default_phase_macros(p, 3.0, "noise.csv"))
+    assert v == {"defaultMdeMin": "53", "defaultMdeMax": "134"}
+    assert mn.default_phase_macros(tmp_path / "missing.csv", 3.0, "x") == []
+
+
 def test_category_macros(tmp_path: Path) -> None:
     p = tmp_path / "root_cause_categories.csv"
     p.write_text(CATEGORY_CSV)

@@ -637,6 +637,7 @@ def visibility_macros(vis_raw: pd.DataFrame, excluded: tuple[tuple[str, str], ..
             Macro(f"coverMinSeries{suffix}", str(cv["k"]), src,
                   f"smallest number of series whose visible events cover all detectable events (exhaustive), {note}"),
             Macro(f"coverMinSeriesWord{suffix}", number_word(int(cv["k"])).lower(), src, "the same count as a word"),
+            Macro(f"coverMinSeriesWordCap{suffix}", number_word(int(cv["k"])).capitalize(), src, "the same word, capitalized"),
             Macro(f"coverNOptimal{suffix}", str(len(cv["best"])), src, f"number of series sets of that size, {note}"),
             Macro(f"coverSingleMax{suffix}", str(cv["single_max"]), src,
                   f"most events seen by one series ({cv['single_series']}), {note}"),
@@ -1515,7 +1516,7 @@ def power_macros(noise: pd.DataFrame, series_df: pd.DataFrame, noise_ids: dict[s
         out += [Macro("aaHalfWidthMin", str(round(float(hw.min()))), src_se,
                       f"min over A/A series of exp({_num(z)} fixed_se) - 1 (%): half-width of the +-z SE interval"),
                 Macro("aaHalfWidthMax", str(round(float(hw.max()))), src_se, "same, max"),
-                Macro("aaFpUpperPct", str(round(100 * (1 - 0.05 ** (1 / n)))), src_se,
+                Macro("aaFpUpperPct", str(math.ceil(100 * (1 - 0.05 ** (1 / n)))), src_se,
                       f"exact one-sided 95% upper bound on the per-series false-positive rate after 0 of {n}: "
                       f"1 - 0.05^(1/{n}) (%)")]
     mde_lr = dict(zip(lab, z * noise.sigma_fixed.astype(float) * k))  # MDE of each series in log space
@@ -2156,6 +2157,7 @@ def cost_macros(root: Path, cooldown_s: float) -> list[Macro]:
               "median over events of the summed wall_s of successful runs, minutes"),
         Macro("nBisectRunsAll", str(len(b)), src_b, "rows of the bisection run logs, warm-ups included"),
         Macro("bisectRunHours", f"{b.wall_s.sum() / 3600:.1f}", src_b, "sum of wall_s, hours, one decimal"),
+        Macro("bisectCooldownHours", f"{len(b) * cooldown_s / 3600:.1f}", src_b, "runs x the pause between runs, hours, one decimal"),
         Macro("bisectBuildSeconds", str(round(float(built.seconds.median()))), src_b,
               "median build time of the successful builds, seconds"),
     ]
@@ -2310,6 +2312,205 @@ def long_term_macros(root: Path, vis_raw: pd.DataFrame, excluded: tuple[tuple[st
     ]
 
 
+SESSION_EXAMPLE = ("b6424", "tinyllama-1.1b", "metal", "pp512")
+
+
+def session_spread_macros(root: Path) -> list[Macro]:
+    """Spread of one binary between events, at the fixed configuration.
+
+    A case is (tag, model, backend, test) measured in at least two events. Its spread is the largest event mean over
+    the smallest, minus one. Interleaving compares two binaries within one event, so this is what a single pass cannot
+    separate from a change of the code. Cases measured with a warm-up are also reported alone.
+
+    Args:
+        root: Project root.
+
+    Returns:
+        Macros; none (with a warning) when the run logs are missing.
+    """
+    rows = []
+    for f in sorted((root / "results" / "analysis" / "interleaved").glob("*/runs.tsv")):
+        runs = pd.read_csv(f, sep="\t")
+        runs = runs[runs.exit_code == 0]
+        warmed = set(map(tuple, runs.loc[runs.phase == "warmup", ["model", "backend"]].drop_duplicates().to_numpy()))
+        for (tag, model, backend), g in runs[runs.phase == "fixed"].groupby(["tag", "model", "backend"]):
+            for test in TESTS:
+                vals = [run_value(f.parent, j, test) for j in g.json_file]
+                vals = [v for v in vals if not math.isnan(v)]
+                if vals:
+                    rows.append({"event": f.parent.name.split("_")[0], "tag": tag, "model": model, "backend": backend,
+                                 "test": test, "mean": float(np.mean(vals)), "warmed": (model, backend) in warmed})
+    if not rows:
+        logger.warning("no fixed-phase runs; session macros skipped")
+        return []
+    df = pd.DataFrame(rows)
+
+    def spread(frame: pd.DataFrame) -> pd.Series:
+        g = frame.groupby(["tag", "model", "backend", "test"])
+        keep = g.event.nunique() >= 2
+        return (g["mean"].max() / g["mean"].min() - 1)[keep]
+
+    every, warm = spread(df), spread(df[df.warmed])
+    src = "results/analysis/interleaved/*/runs.tsv + llama-bench JSON"
+    example = df[(df.tag == SESSION_EXAMPLE[0]) & (df.model == SESSION_EXAMPLE[1]) & (df.backend == SESSION_EXAMPLE[2]) & (df.test == SESSION_EXAMPLE[3])]
+    shown = []
+    if len(example) >= 2:
+        low, high = example.loc[example["mean"].idxmin()], example.loc[example["mean"].idxmax()]
+        shown = [Macro("sessionExampleTag", SESSION_EXAMPLE[0], src, "binary of the example of a shift between events"),
+                 Macro("sessionExampleLow", f"{low['mean']:,.0f}", src, f"tokens/s in {low.event}"),
+                 Macro("sessionExampleLowEvent", low.event, src, "event of the lower mean"),
+                 Macro("sessionExampleHigh", f"{high['mean']:,.0f}", src, f"tokens/s in {high.event}"),
+                 Macro("sessionExampleHighEvent", high.event, src, "event of the higher mean")]
+    return shown + [
+        Macro("sessionCases", str(len(every)), src, "binary x series measured in at least two events"),
+        Macro("sessionMedianPct", str(round(100 * float(every.median()))), src, "median spread between events, percent"),
+        Macro("sessionTwentyPct", str(round(100 * float((every >= 0.20).mean()))), src, "share of cases with a spread of 20% or more"),
+        Macro("sessionWarmCases", str(len(warm)), src, "same, warm-up groups only"),
+        Macro("sessionWarmMedianPct", str(round(100 * float(warm.median()))), src, "median spread, warm-up groups only, percent"),
+    ]
+
+
+def warm_first_run_macros(root: Path) -> list[Macro]:
+    """How far the first measured run of a group lies from the later runs, with and without warm-up.
+
+    Args:
+        root: Project root.
+
+    Returns:
+        Shares of first runs more than BIAS_BAND from the mean of the other runs of the same side, and the median
+        deviation and share of the Mistral-7B first runs.
+    """
+    rows = []
+    for f in sorted((root / "results" / "analysis" / "interleaved").glob("*/runs.tsv")):
+        runs = pd.read_csv(f, sep="\t")
+        runs = runs[runs.exit_code == 0]
+        for (model, _), g in runs.groupby(["model", "backend"]):
+            fx = g[g.phase == "fixed"].sort_values("started_at_utc")
+            if len(fx) < 2:
+                continue
+            first = fx.iloc[0]
+            same = fx[(fx.side == first.side) & (fx.json_file != first.json_file)]
+            for test in TESTS:
+                v = run_value(f.parent, first.json_file, test)
+                rest = [x for x in (run_value(f.parent, j, test) for j in same.json_file) if not math.isnan(x)]
+                if not math.isnan(v) and rest:
+                    rows.append({"model": model, "warmed": bool((g.phase == "warmup").any()), "dev": v / float(np.mean(rest)) - 1.0})
+    df = pd.DataFrame(rows, columns=["model", "warmed", "dev"])
+    if df.warmed.nunique() < 2:
+        logger.warning("first-run groups missing; warm-up macros skipped")
+        return []
+    df["far"] = df.dev.abs() > BIAS_BAND
+    big = df[df.model == "mistral-7b"]
+    src = "results/analysis/interleaved/*/runs.tsv + llama-bench JSON"
+    if big.warmed.nunique() < 2:
+        big = df
+
+    def pct(x: float) -> str:
+        return str(round(100 * float(x)))
+    return [
+        Macro("firstFarWarmPct", pct(df[df.warmed].far.mean()), src, f"share of first runs more than {BIAS_BAND:.0%} off, with warm-up"),
+        Macro("firstFarColdPct", pct(df[~df.warmed].far.mean()), src, "same, without warm-up"),
+        Macro("firstMistralFarWarmPct", pct(big[big.warmed].far.mean()), src, "same, Mistral-7B, with warm-up"),
+        Macro("firstMistralColdMedianPct", signed_pct(100 * float(big[~big.warmed].dev.median())), src, "median deviation, Mistral-7B, no warm-up"),
+        Macro("firstMistralWarmMedianPct", signed_pct(100 * float(big[big.warmed].dev.median())), src, "median deviation, Mistral-7B, with warm-up"),
+    ]
+
+
+def default_phase_macros(path: Path, z: float, src: str) -> list[Macro]:
+    """Smallest change the default phase can confirm, with one run per side.
+
+    Args:
+        path: noise_model_v11.csv.
+        z: Judge z threshold.
+        src: Display path of the file.
+
+    Returns:
+        Macros defaultMdeMin and defaultMdeMax.
+    """
+    if not path.is_file():
+        logger.warning("%s missing; default-phase macros skipped", path)
+        return []
+    s = pd.read_csv(path).sigma_default.astype(float).dropna()
+    mde = np.expm1(z * s * math.sqrt(2.0)) * 100
+    return [Macro("defaultMdeMin", str(round(float(mde.min()))), src, "smallest confirmable change, default phase, min (%)"),
+            Macro("defaultMdeMax", str(round(float(mde.max()))), src, "same, max (%)")]
+
+
+def sampling_gap_macros(root: Path) -> list[Macro]:
+    """Longest gap between adjacent built releases, and the release pair where flash attention became automatic.
+
+    Args:
+        root: Project root.
+
+    Returns:
+        Macros on the sampling gap and the default change; the second part is skipped when records lack the column.
+    """
+    prog = pd.read_csv(root / "results" / "progress.csv")
+    prog = prog[prog.status == "ok"].reset_index(drop=True)
+    built = list(prog.tag)
+    gaps = pd.to_datetime(prog.commit_date_utc, utc=True).diff().dt.total_seconds() / 86400
+    i = int(gaps.idxmax())
+    src = "results/progress.csv, results/<tag>/records.csv"
+    out = [Macro("sampleGapDays", str(round(float(gaps.iloc[i]))), src, f"longest gap between built releases ({built[i - 1]} to {built[i]})"),
+           Macro("sampleGapFrom", built[i - 1], src, "release before the longest gap"),
+           Macro("sampleGapTo", built[i], src, "release after the longest gap")]
+    flash: dict[str, set[str]] = {}
+    for tag in built:
+        frame = pd.read_csv(root / "results" / tag / "records.csv")
+        if "flash_attn" in frame:
+            flash[tag] = set(frame.flash_attn.astype(str))
+    pair = next(((a, b) for a, b in zip(built, built[1:]) if "False" in flash.get(a, set()) and "-1" in flash.get(b, set())), None)
+    if pair is None:
+        logger.warning("no change of the flash attention default found")
+        return out
+    return out + [Macro("flashOldTag", pair[0], src, "last sampled release with flash attention off by default"),
+                  Macro("flashNewTag", pair[1], src, "first sampled release with flash attention automatic")]
+
+
+def review_case_macros(an: Path, se: pd.DataFrame, vis: pd.DataFrame, excluded: tuple[tuple[str, str], ...], src_se: str,
+                       src_vis: str) -> list[Macro]:
+    """Values cited when the text compares measurements of the same releases.
+
+    Args:
+        an: results/analysis.
+        se: Judge series table.
+        vis: Raw visibility frame.
+        excluded: Excluded cells.
+        src_se: Display path of the judge table.
+        src_vis: Display path of the visibility table.
+
+    Returns:
+        Macros for E14R, the first measurement of E16 and the first bisection step of E49 on Mistral-7B.
+    """
+    out: list[Macro] = []
+    repeat = _judge_row(se, "E14R", "qwen2.5-1.5b/metal/pp512")
+    first = _judge_row(se, "E16", "mistral-7b/cpu/pp512")
+    if repeat is not None:
+        out += [Macro("eFourteenRepeatPct", signed_pct(100 * (math.exp(float(repeat.fixed_lr)) - 1)), src_se, "exp(fixed_lr) - 1 of E14R, Qwen2.5 Metal pp512"),
+                Macro("eFourteenRepeatZ", signed_num(float(repeat.fixed_z)), src_se, "fixed_z of the same row")]
+    if first is not None:
+        out += [Macro("eSixteenFirstPct", signed_pct(100 * (math.exp(float(first.fixed_lr)) - 1)), src_se, "exp(fixed_lr) - 1 of E16 (not E16R), Mistral-7B CPU pp512"),
+                Macro("eSixteenFirstZ", signed_num(float(first.fixed_z)), src_se, "fixed_z of the same row")]
+        alt = apply_exclusions(vis, excluded)
+        alt.loc[(alt.event_id == "E16") & (alt.series == "mistral-7b/cpu/pp512"), "state"] = "not_visible"
+        out.append(Macro("coverSizeFirstESixteen", str(cover(alt)["k"]), src_vis, "smallest covering set with the first measurement of E16"))
+    steps = an / "bisect" / "E49_mistral-7b_metal_pp512" / "steps.csv"
+    if steps.is_file():
+        s = pd.read_csv(steps).iloc[0]
+        out.append(Macro("eFortyNineMistralStepOnePct", signed_pct(100 * (float(s.ts_hi) / float(s.ts_lo) - 1)), _rel(steps, an.parent.parent),
+                         f"first bisection step, {s.lo} vs {s.hi}, Mistral-7B Metal pp512"))
+    fifty_two = _judge_row(se, "E52", "tinyllama-1.1b/cpu/pp512")
+    if fifty_two is not None:
+        out += [Macro("eFiftyTwoDefaultPct", signed_pct(100 * (math.exp(float(fifty_two.default_lr)) - 1)), src_se, "exp(default_lr) - 1 of E52, TinyLlama CPU pp512"),
+                Macro("eFiftyTwoDefaultZ", signed_num(float(fifty_two.default_z)), src_se, "default_z of the same row")]
+    first_steps = [pd.read_csv(p).iloc[0] for p in sorted((an / "bisect").glob("E49_*_metal_pp512/steps.csv"))]
+    if first_steps:
+        gains = [100 * (float(s.ts_hi) / float(s.ts_lo) - 1) for s in first_steps]
+        out += [Macro("eFortyNineStepOneMinPct", str(round(min(gains))), "results/analysis/bisect/E49_*/steps.csv", "first bisection step, smallest of the three series (%)"),
+                Macro("eFortyNineStepOneMaxPct", str(round(max(gains))), "results/analysis/bisect/E49_*/steps.csv", "first bisection step, largest of the three series (%)")]
+    return out
+
+
 def compute_all(root: Path, excluded: tuple[tuple[str, str], ...], scripts: Path = SCRIPTS) -> list[Macro]:
     """Compute every macro from the result files under ``root``.
 
@@ -2375,6 +2576,11 @@ def compute_all(root: Path, excluded: tuple[tuple[str, str], ...], scripts: Path
     macros += cost_macros(root, float(argparse_default(scripts / "analysis" / "step2_interleaved.py", "--cooldown")))
     macros += switch_macros(root, se)
     macros += long_term_macros(root, vis, excluded, cand, pd.read_csv(paths["cps"]), confirmed, r["vis"], r["cps"])
+    macros += session_spread_macros(root)
+    macros += warm_first_run_macros(root)
+    macros += default_phase_macros(il / "noise_model_v11.csv", 3.0, _rel(il / "noise_model_v11.csv", root))
+    macros += sampling_gap_macros(root)
+    macros += review_case_macros(an, se, vis, excluded, r["se"], r["vis"])
     vals = {m.name: m.value for m in macros}
     if vals.get("sensFloorBindings", "0") != "0":  # the text says the floors changed nothing
         raise ValueError(f"a floor decides {vals['sensFloorBindings']} judgments; revise the threshold text")

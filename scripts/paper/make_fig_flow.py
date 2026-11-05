@@ -116,8 +116,8 @@ def draw(m: dict[str, str]) -> plt.Figure:
     xc_d2, w_d2, h_d2 = 12.13, 2.96, 1.92
     box(ax, x_start, ROW_TOP, w_start, h, "A change in a\nbenchmark history",
         f"{m['nCandidates']} + {m['nChangepointEvents']} events here", gl.tint(LIGHT_BLUE, 0.3))
-    box(ax, x_rem, ROW_TOP, w_rem, h, "Re-measure side by side",
-        f"ABBA order, warm-up, A/A run;\nmedian {m['remeasureEventMinutes']} min per event")
+    box(ax, x_rem, ROW_TOP, w_rem, h, "Re-measure in alternation",
+        f"Alternating runs, warm-up, A/A;\nmedian {m['remeasureEventMinutes']} min of runs per event")
     diamond(ax, xc_d1, ROW_TOP, w_d1, h_d1, "Confirmed\nby the rule?")
     box(ax, x_bis, ROW_TOP, w_bis, h, "Bisect to commits",
         f"{m['nConfirmed']} events, {m['bisectBuildsTotal']} builds,\nmedian {m['bisectBuildSeconds']} s per build")
