@@ -2459,7 +2459,7 @@ def sampling_gap_macros(root: Path) -> list[Macro]:
         frame = pd.read_csv(root / "results" / tag / "records.csv")
         if "flash_attn" in frame:
             flash[tag] = set(frame.flash_attn.astype(str))
-    pair = next(((a, b) for a, b in zip(built, built[1:]) if "False" in flash.get(a, set()) and "-1" in flash.get(b, set())), None)
+    pair = next(((a, b) for a, b in itertools.pairwise(built) if "False" in flash.get(a, set()) and "-1" in flash.get(b, set())), None)
     if pair is None:
         logger.warning("no change of the flash attention default found")
         return out
