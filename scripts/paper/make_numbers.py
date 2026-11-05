@@ -17,7 +17,7 @@ Sources (all relative to the project root):
 * first-run deviation of the groups measured without warm-up: ``results/analysis/interleaved/*/runs.tsv`` and the
   llama-bench JSON files next to it (same computation as Figure 4b);
 * release dates: ``data/releases.csv``; tensor-API probe result per sampled release: ``results/<tag>/llama-bench_help.txt``;
-* root-cause categories: ``results/analysis/root_cause_categories.csv``;
+* root-cause categories: ``results/analysis/root_cause_categories.csv`` and ``root_cause_coding.csv``;
 * power and sensitivity: ``interleaved/noise_model_v11.csv`` (MDE), the judge series file re-judged with
   ``scripts/analysis/step2b_judge.confirms`` (threshold sensitivity), campaign ``results/<tag>/runs.tsv`` with
   the default-phase re-runs (drift), ``bisect/E01cpu_*`` and ``harness_check_E01/`` (E01 CPU re-checks);
@@ -1363,6 +1363,30 @@ def lifetime_macros(root: Path, runs: pd.DataFrame) -> list[Macro]:
 CATEGORY_KEYS: tuple[str, ...] = ("Metal", "Blas", "Thread", "Repack")
 
 
+def coding_agreement_macros(path: Path, confirmed: list[str], root: Path) -> list[Macro]:
+    """Agreement of the two root-cause classifications.
+
+    Reads ``root_cause_coding.csv``, one row per located pull request with the columns event, pr,
+    first and second, the last two naming the category each author chose.
+
+    Raises:
+        ValueError: If the events of the file differ from the confirmed events.
+    """
+    if not path.is_file():
+        logger.warning("%s missing; coding macros skipped", path)
+        return []
+    df = pd.read_csv(path)
+    events = sorted(set(df["event"]), key=_event_key)
+    if events != sorted(confirmed, key=_event_key):
+        raise ValueError(f"coded events {events} differ from confirmed events {sorted(confirmed)}")
+    total = len(df)
+    agree = int((df["first"] == df["second"]).sum())
+    text = f"all {number_word(total).lower()}" if agree == total else f"{agree} of the {total}"
+    src = _rel(path, root)
+    return [Macro("nCodedChanges", str(total), src, "located pull requests classified by two authors"),
+            Macro("codedAgreeText", text, src, "rows with first == second, in words")]
+
+
 def category_macros(path: Path, confirmed: list[str], root: Path) -> list[Macro]:
     """Number of confirmed events per root-cause category.
 
@@ -2344,6 +2368,7 @@ def compute_all(root: Path, excluded: tuple[tuple[str, str], ...], scripts: Path
     macros += bias_macros(first_run_bias(root), "results/analysis/interleaved/*/runs.tsv + llama-bench JSON")
     macros += lifetime_macros(root, runs)
     macros += category_macros(an / "root_cause_categories.csv", confirmed, root)
+    macros += coding_agreement_macros(an / "root_cause_coding.csv", confirmed, root)
     macros += review_macros(root, scripts, cand, cpev, ev, se, pd.read_csv(paths["ctl"]), vis, excluded, confirmed,
                             runs)
     macros += load_window_macros(root, cand, ev, apply_exclusions(vis, excluded))

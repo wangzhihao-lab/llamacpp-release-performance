@@ -432,6 +432,18 @@ Repack,Weight repacking on the CPU,E46
 """
 
 
+def test_coding_agreement_macros(tmp_path: Path) -> None:
+    p = tmp_path / "coding.csv"
+    p.write_text("event,pr,first,second\nE01,2959,Metal,Metal\nE03,4060,Blas,Blas\n")
+    v = _values(mn.coding_agreement_macros(p, ["E01", "E03"], tmp_path))
+    assert v == {"nCodedChanges": "2", "codedAgreeText": "all two"}
+    p.write_text("event,pr,first,second\nE01,2959,Metal,Metal\nE03,4060,Blas,Thread\n")
+    assert _values(mn.coding_agreement_macros(p, ["E01", "E03"], tmp_path))["codedAgreeText"] == "1 of the 2"
+    with pytest.raises(ValueError, match="differ"):
+        mn.coding_agreement_macros(p, ["E01"], tmp_path)
+    assert mn.coding_agreement_macros(tmp_path / "missing.csv", ["E01"], tmp_path) == []
+
+
 def test_category_macros(tmp_path: Path) -> None:
     p = tmp_path / "root_cause_categories.csv"
     p.write_text(CATEGORY_CSV)

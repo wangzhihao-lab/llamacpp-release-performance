@@ -24,7 +24,7 @@ py scripts/paper/make_fig_overview.py
 py scripts/paper/make_fig_flow.py
 ```
 
-The first six commands rewrite the derived tables under `results/analysis/` from the stored runs, with the same content. `make_numbers.py` writes `paper/numbers.tex` (and creates `paper/`): 751 LaTeX macros, one for every measured number of the paper, each preceded by a comment that names its source file and computation. `make_figures.py` writes the data figures, `make_fig_overview.py` the study overview and `make_fig_flow.py` the code paths and the decision flow to `paper/figs/`, as PDF and SVG; the last two read `paper/numbers.tex`, so `make_numbers.py` comes first. The figures use Times New Roman when the font is installed.
+The first six commands rewrite the derived tables under `results/analysis/` from the stored runs, with the same content. `make_numbers.py` writes `paper/numbers.tex` (and creates `paper/`): 753 LaTeX macros, one for every measured number of the paper, each preceded by a comment that names its source file and computation. `make_figures.py` writes the data figures, `make_fig_overview.py` the study overview and `make_fig_flow.py` the code paths and the decision flow to `paper/figs/`, as PDF and SVG; the last two read `paper/numbers.tex`, so `make_numbers.py` comes first. The figures use Times New Roman when the font is installed.
 
 ## Contents
 
@@ -51,13 +51,13 @@ Where the results of the paper are:
 |---|---|
 | Sections 3.1 and 3.2, Table 2 | `results/progress.csv`, `results/<tag>/`, `effective_config.csv`, `config_changes.csv` |
 | RQ1 | `candidate_events.csv`, `changepoints.csv`, `changepoint_events.csv`, `control_events.csv`, `remeasure_events.csv`, `interleaved/` (`judge_v11_series.csv`, `judge_v11_events.csv`, `noise_model_v11.csv`, the `_norm1` tables, one directory per event) |
-| RQ2, Tables 3 and 4 | `bisect/` (one directory per bisection with `result.json`, `steps.csv`, `log.md`), `switch/`, `root_cause_categories.csv` |
+| RQ2, Tables 3 and 4 | `bisect/` (one directory per bisection with `result.json`, `steps.csv`, `log.md`), `switch/`, `root_cause_categories.csv`, `root_cause_coding.csv` |
 | RQ3 | `visibility_events.csv`, `step4_visibility.csv`, `step4_visibility.md` |
 | RQ4 | `step5_test_matrix.md` |
 | Section 5.2, Table 6 | `pr_reported.csv`, the numbers quoted from the pull-request threads, with where they stand |
 | Section 6 | `load_windows.tsv`, `load_window_runs.tsv`, `load_window_bisect_steps.csv`, `interleaved/judge_v11_*_nowin.csv`, `harness_check_E01/` |
 
-`control_events.csv`, `remeasure_events.csv`, `load_windows.tsv` and `root_cause_categories.csv` are inputs of the scripts, not outputs, and `pr_reported.csv` is a record for readers that no script uses. `root_cause_categories.csv` holds the grouping of the confirmed events that results from reading the boundary commits (Section 4.2 of the paper).
+`control_events.csv`, `remeasure_events.csv`, `load_windows.tsv`, `root_cause_categories.csv` and `root_cause_coding.csv` are inputs of the scripts, not outputs, and `pr_reported.csv` is a record for readers that no script uses. `root_cause_categories.csv` holds the grouping of the confirmed events that results from reading the boundary commits (Section 4.2 of the paper).
 
 Not in this package:
 
@@ -130,7 +130,7 @@ The paper numbers its steps by what they do, and the scripts by the order of the
    scripts/analysis/bin/thermal_state      # prints 0 (nominal), 1 (fair), 2 (serious) or 3 (critical)
    mv results results.published
    mkdir -p results/analysis/harness_check_E01 results/analysis/switch
-   cp results.published/analysis/{control_events.csv,remeasure_events.csv,load_windows.tsv,root_cause_categories.csv} results/analysis/
+   cp results.published/analysis/{control_events.csv,remeasure_events.csv,load_windows.tsv,root_cause_categories.csv,root_cause_coding.csv} results/analysis/
    cp results.published/analysis/harness_check_E01/run.sh results/analysis/harness_check_E01/
    ```
 
