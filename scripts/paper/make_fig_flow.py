@@ -43,8 +43,8 @@ logger = logging.getLogger(__name__)
 
 ROOT = Path(__file__).resolve().parents[2]
 
-HEIGHT_CM = 3.72
-ROW_TOP, ROW_BOTTOM = 2.74, 0.56  # vertical centres of the two rows
+HEIGHT_CM = 4.12
+ROW_TOP, ROW_BOTTOM = 3.04, 0.68  # vertical centres of the two rows
 TITLE_PT, NOTE_PT, LINK_PT = 6.9, 6.3, 6.5
 
 
@@ -108,19 +108,19 @@ def draw(m: dict[str, str]) -> plt.Figure:
     ax.set_ylim(0, HEIGHT_CM)
     ax.axis("off")
 
-    h = 1.08
-    x_start, w_start = 0.03, 2.1
-    x_rem, w_rem = 2.42, 3.2
-    xc_d1, w_d1, h_d1 = 6.62, 1.72, 1.5
-    x_bis, w_bis = 7.92, 2.25
-    xc_d2, w_d2, h_d2 = 12.13, 2.96, 1.92
+    h = 1.38
+    x_start, w_start = 0.03, 2.3
+    x_rem, w_rem = 2.6, 2.95
+    xc_d1, w_d1, h_d1 = 6.53, 1.72, 1.56
+    x_bis, w_bis = 7.88, 2.45
+    xc_d2, w_d2, h_d2 = 12.04, 2.96, 1.92
     box(ax, x_start, ROW_TOP, w_start, h, "A change in a\nbenchmark history",
         f"{m['nCandidates']} + {m['nChangepointEvents']} events here", gl.tint(LIGHT_BLUE, 0.3))
     box(ax, x_rem, ROW_TOP, w_rem, h, "Re-measure in alternation",
-        f"Alternating runs, warm-up, A/A;\nmedian {m['remeasureEventMinutes']} min of runs per event")
+        f"Alternating runs, warm-up,\nA/A run; median {m['remeasureEventMinutes']} min\nof runs per event")
     diamond(ax, xc_d1, ROW_TOP, w_d1, h_d1, "Confirmed\nby the rule?")
     box(ax, x_bis, ROW_TOP, w_bis, h, "Bisect to commits",
-        f"{m['nConfirmed']} events, {m['bisectBuildsTotal']} builds,\nmedian {m['bisectBuildSeconds']} s per build")
+        f"{m['nConfirmed']} events,\n{m['bisectBuildsTotal']} builds, median\n{m['bisectBuildSeconds']} s per build")
     diamond(ax, xc_d2, ROW_TOP, w_d2, h_d2, "Can the change be\nswitched off?")
 
     gl.arrow(ax, (x_start + w_start + 0.03, ROW_TOP), (x_rem - 0.03, ROW_TOP))
@@ -130,19 +130,19 @@ def draw(m: dict[str, str]) -> plt.Figure:
     gl.arrow(ax, (x_bis + w_bis + 0.03, ROW_TOP), (xc_d2 - w_d2 / 2 - 0.02, ROW_TOP))
 
     # leaves
-    leaf_h = 0.98
+    leaf_h = 1.24
     leaf_top = ROW_BOTTOM + leaf_h / 2 + 0.01
-    x_keep, w_keep = 4.35, 3.9
+    x_keep, w_keep = 4.25, 3.3
     box(ax, x_keep, ROW_BOTTOM, w_keep, leaf_h, "Not confirmed",
-        f"{refuted} refuted, {inconclusive} inconclusive here; state the\nsmallest confirmable change",
+        f"{refuted} refuted, {inconclusive} inconclusive\nhere; state the smallest\nconfirmable change",
         gl.tint(ROSE, 0.2))
     gl.arrow(ax, (xc_d1, ROW_TOP - h_d1 / 2 - 0.01), (xc_d1, leaf_top))
     link(ax, xc_d1 + 0.08, (ROW_TOP - h_d1 / 2 + leaf_top) / 2, "No", ha="left")
 
-    x_read, w_read = 8.4, 2.3
+    x_read, w_read = 7.95, 2.45
     box(ax, x_read, ROW_BOTTOM, w_read, leaf_h, "Read the diff and\nthe pull request", f"{n_read} events here",
         gl.tint(GREEN, 0.14))
-    x_sw, w_sw = xc_d2 - 1.25, 2.5
+    x_sw, w_sw = xc_d2 - 1.3, 2.6
     box(ax, x_sw, ROW_BOTTOM, w_sw, leaf_h, "Test the mechanism\nwith a switch control", f"{n_switch} events here",
         gl.tint(GREEN, 0.14))
     # the "no" branch leaves the diamond below the level of the bisection box
